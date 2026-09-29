@@ -44,10 +44,11 @@ public class EnemyAI : MonoBehaviour
 
         RaycastHit hit; //Info on object hit
         //Determines if the player is behind cover
-        if(Physics.Raycast(transform.position, target.transform.position, out hit, visionRange))
+        if(Physics.Raycast(transform.position, (target.transform.position - transform.position), out hit, visionRange))
         {
             if(hit.transform == target.transform)
             {
+                Debug.Log("Is not hidden");
                 isNotHidden = true;
             }
         }
@@ -60,9 +61,14 @@ public class EnemyAI : MonoBehaviour
         Vector3 playerAngle = target.transform.position - transform.position;
         Vector3 enemyAngle = transform.forward;
         float angle = Vector3.SignedAngle(playerAngle, enemyAngle, Vector3.up);
-        if(angle <= detectionAngle) isInAngle = true;
+        if(angle <= detectionAngle && angle >= (-1 * detectionAngle))
+        {
+            isInAngle = true;
+        }
+        else isInAngle = false;
 
         if(isNotHidden && isInRange && isInAngle) return true;
+        
         return false;
     }
 
