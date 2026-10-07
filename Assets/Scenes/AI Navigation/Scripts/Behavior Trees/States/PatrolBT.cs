@@ -1,16 +1,16 @@
 using BehaviorTree;
+using UnityEngine;
 
 public class PatrolBT : BehaviorTree.Tree
 {
 
     public UnityEngine.Transform[] waypoints;
-    public Patrol patrolScript;
 
     public float speed = 2f;
 
     protected override Node SetupTree()
     {
-        Node root = new PatrolTask();
+        Node root = new PatrolTask(gameObject, waypoints);
         return root;
     }
 }
