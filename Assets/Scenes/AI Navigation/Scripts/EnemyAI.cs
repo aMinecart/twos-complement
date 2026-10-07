@@ -22,16 +22,13 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         //Moves enemy toward player if seen
         if(CanTrackPlayer()) agent.destination = target.transform.position;
-
     }
 
     //Determines if the enemy can see the player
     bool CanTrackPlayer()
     {
-
         //Determines if the player is in range
         if(Vector3.Distance(target.transform.position, transform.position) < visionRange)
         {
@@ -48,13 +45,13 @@ public class EnemyAI : MonoBehaviour
         {
             if(hit.transform == target.transform)
             {
-                Debug.Log("Is not hidden");
+                //Debug.Log("Is not hidden");
                 isNotHidden = true;
             }
-        }
-        else
-        {
-            isNotHidden = false;
+            else
+            {
+                isNotHidden = false;
+            }
         }
 
         //Determines if the player is within the enemy's vision cone
@@ -68,11 +65,7 @@ public class EnemyAI : MonoBehaviour
         else isInAngle = false;
 
         if(isNotHidden && isInRange && isInAngle) return true;
-        
+        //Debug.Log("False");
         return false;
     }
-
-
-
-
 }
