@@ -19,32 +19,46 @@ public class Gun : MonoBehaviour
         currentAmmo = magazineSize;
     }
 
-    void Update()
+    private void OnAttack(InputValue value)
     {
-        if (isReloading)
-            return;
-
-        if (Keyboard.current != null &&
-            Keyboard.current.rKey.wasPressedThisFrame &&
-            currentAmmo < magazineSize)
+        if(value.isPressed)
         {
-            StartCoroutine(Reload());
-            return;
-        }
-
-        if (Mouse.current != null && 
-            Mouse.current.leftButton.wasPressedThisFrame &&
-            Time.time >= nextFireTime)
-        {
-            if (currentAmmo > 0)
-            {
-                Shoot();
-                nextFireTime = Time.time + fireRate;
-            } else {
-                Debug.Log("Out of ammo! Press R to reload.");
-            }
+            TryShoot();
         }
     }
+
+    private void OnReload(InputValue value)
+    {
+        if(value.isPressed)
+        {
+            TryReload();
+        }
+    }
+
+    private void TryShoot()
+    {
+        if(isReloading || Time.time < nextFireTime)
+            return;
+        
+        if(currentAmmo > 0)
+        {
+            Shoot();
+            nextFireTime = Time.time + fireRate;
+        }
+        else
+        {
+            Debug.Log("Out of ammo! Press R to reload");
+        }
+    }
+
+    private void TryReload()
+    {
+        if(isReloading || currentAmmo == magazineSize)
+            return;
+
+        StartCoroutine(Reload());
+    }
+
     public void Shoot()
     {
         currentAmmo--;
