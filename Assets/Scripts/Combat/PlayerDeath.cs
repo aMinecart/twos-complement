@@ -30,8 +30,12 @@ public class PlayerDeath : MonoBehaviour
 
         isGameOver = true;
 
-        // Temp behavior 
         Debug.Log("GAME OVER - Player has died!");
+
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.GameOver();
+        }
 
         // Disable player movement and combat 
         // Display Game over screen 

@@ -22,5 +22,13 @@ public class DamageTester : MonoBehaviour
         {
             targetHealth.Heal(testHealing);
         }
+
+        if (Keyboard.current.pKey.wasPressedThisFrame)
+        {
+            if (GameManager.instance != null && GameManager.instance.CurrentState == GameManager.GameState.GameOver)
+            {
+                GameManager.instance.RestartGame();
+            }
+        }
     }
 }
