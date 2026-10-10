@@ -14,6 +14,10 @@ public class Gun : MonoBehaviour
     private int currentAmmo;
     private bool isReloading = false;
 
+    private bool CanUseWeapon()
+    {
+        return GameManager.instance != null && GameManager.instance.CurrentState == GameManager.GameState.Playing;
+    }
     void Start()
     {
         currentAmmo = magazineSize;
@@ -37,7 +41,7 @@ public class Gun : MonoBehaviour
 
     private void TryShoot()
     {
-        if(GameManager.instance != null && GameManager.instance.CurrentState != GameManager.GameState.Playing)
+        if(!CanUseWeapon())
             return;
         if(isReloading || Time.time < nextFireTime)
             return;
@@ -55,6 +59,8 @@ public class Gun : MonoBehaviour
 
     private void TryReload()
     {
+        if (!CanUseWeapon())
+            return;
         if(isReloading || currentAmmo == magazineSize)
             return;
 
@@ -86,7 +92,26 @@ public class Gun : MonoBehaviour
     {
         isReloading = true;
         Debug.Log("Reloading...");
-        yield return new WaitForSeconds(reloadTime);
+        float elapsedTime = 0f;
+
+        while (elapsedTime < reloadTime)
+        {
+            if(!CanUseWeapon())
+            {
+                isReloading = false;
+                Debug.Log("Reload canceled: Player died.");
+                yield break;
+            }
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        if (!CanUseWeapon())
+        {
+            isReloading = false;
+            Debug.Log("Reload canceled: Player died.");
+            yield break;
+        }
         
         currentAmmo = magazineSize;
         isReloading = false;
