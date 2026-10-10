@@ -37,6 +37,8 @@ public class Gun : MonoBehaviour
 
     private void TryShoot()
     {
+        if(GameManager.instance != null && GameManager.instance.CurrentState != GameManager.GameState.Playing)
+            return;
         if(isReloading || Time.time < nextFireTime)
             return;
         
