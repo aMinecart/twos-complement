@@ -18,6 +18,7 @@ public class Gun : MonoBehaviour
     {
         return GameManager.instance != null && GameManager.instance.CurrentState == GameManager.GameState.Playing;
     }
+
     void Start()
     {
         currentAmmo = magazineSize;

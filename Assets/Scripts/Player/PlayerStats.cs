@@ -10,4 +10,6 @@ public class PlayerStats : MonoBehaviour
     public float min_stop_speed { get; set; } = PlayerPhysics.BASE_MIN_STOP_SPEED;
     public float air_reduction_factor { get; set; } = PlayerPhysics.BASE_AIR_REDUCTION_FACTOR;
     public float gravity_multiplier { get; set; } = PlayerPhysics.BASE_GRAVITY_MULTIPLIER;
+
+    public float reload_speed { get; set; }
 }

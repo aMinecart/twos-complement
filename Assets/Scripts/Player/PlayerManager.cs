@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(ItemManager))]
 [RequireComponent(typeof(UnityEngine.InputSystem.PlayerInput))]
 [RequireComponent(typeof(MovementController))]
 [RequireComponent(typeof(HealthTracker))]
