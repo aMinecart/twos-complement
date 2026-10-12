@@ -39,6 +39,13 @@ public class MovementController : MonoBehaviour
     // FixedUpdate is called once per fixed framerate frame
     void FixedUpdate()
     {
+        if (GameManager.instance.CurrentState == GameManager.GameState.GameOver)
+        {
+            rb.linearVelocity = Vector3.zero;
+            this.enabled = false;
+            return;
+        }
+
         // check if player is grounded by protuding a sphere below the player's collider
         Bounds bounds = capsuleCollider.bounds;
         grounded = Physics.CheckSphere(bounds.center - new Vector3(0, bounds.extents.y, 0),

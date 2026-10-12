@@ -2,6 +2,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(UnityEngine.InputSystem.PlayerInput))]
 [RequireComponent(typeof(MovementController))]
+[RequireComponent(typeof(HealthTracker))]
 [RequireComponent(typeof(PlayerStats))]
 public class PlayerManager : MonoBehaviour
 {

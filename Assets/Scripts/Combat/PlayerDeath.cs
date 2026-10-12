@@ -1,15 +1,15 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Health))]
+[RequireComponent(typeof(HealthTracker))]
 public class PlayerDeath : MonoBehaviour
 {
-    private Health health; 
+    private HealthTracker health; 
     private bool isGameOver = false;
 
     void Awake()
     {
         // Get player health component
-        health = GetComponent<Health>();
+        health = GetComponent<HealthTracker>();
     }
 
     void OnEnable()
