@@ -1,14 +1,14 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Health))]
+[RequireComponent(typeof(HealthTracker))]
 public class HealthTester : MonoBehaviour
 {
-    private Health health;
+    private HealthTracker health;
     
     void Awake()
     {
         // Get health component 
-        health = GetComponent<Health>();
+        health = GetComponent<HealthTracker>();
     }
 
     void OnEnable()

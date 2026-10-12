@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+public class HealthTracker : MonoBehaviour
 {
     [SerializeField] private float maxHealth = 100f;
     private float currentHealth;

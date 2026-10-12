@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class DamageTester : MonoBehaviour
 {
-    [SerializeField] private Health targetHealth;
+    [SerializeField] private HealthTracker targetHealth;
     [SerializeField] private float testDamage = 25f;
     [SerializeField] private float testHealing = 25f;
 
