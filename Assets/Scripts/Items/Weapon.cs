@@ -19,7 +19,7 @@ public abstract class Weapon : MonoBehaviour
         return GameManager.instance != null && GameManager.instance.CurrentState == GameManager.GameState.Playing;
     }
 
-    protected void OnShoot(InputAction.CallbackContext context)
+    protected virtual void OnShoot(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
@@ -27,7 +27,7 @@ public abstract class Weapon : MonoBehaviour
         }
     }
 
-    protected void OnReload(InputAction.CallbackContext context)
+    protected virtual void OnReload(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
@@ -38,9 +38,9 @@ public abstract class Weapon : MonoBehaviour
     protected abstract void OnEnable();
     protected abstract void OnDisable();
 
-    protected abstract void TryShoot();
+    protected abstract bool TryShoot();
     protected abstract void Shoot();
 
-    protected abstract void TryReload();
+    protected abstract bool TryReload();
     protected abstract IEnumerator Reload();
 }

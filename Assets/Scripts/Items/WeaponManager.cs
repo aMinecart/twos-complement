@@ -2,13 +2,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ItemManager : MonoBehaviour
+public class WeaponManager : MonoBehaviour
 {
     public List<Weapon> weapons = new();
     public int currWeaponIndex = 0;
-
-    // public List<Equipment> equipment;
-    // public BuffsRecord statBuffs;
 
     public void AddWeapon(Weapon weapon)
     {
@@ -47,27 +44,11 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-    /*
-    void OnCollisionEnter(Collision collision)
-    {
-        // to be implemented with item pickup system
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Pickup"))
-        {
-            print("");
-        }
-    }
-    */
-
     public void OnWeaponSwitch(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            SwitchWeapon();
+            SwitchWeapons();
         }
-    }
-
-    void Update()
-    {
-        
     }
 }
