@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace BehaviorTree
 {
+    //Logical and. Ensures all children are executed, else its a failure
     public class Sequence : Node
     {
         public Sequence() : base() { }
@@ -11,7 +12,6 @@ namespace BehaviorTree
 
         public override NodeState Evaluate()
         {
-
             bool anyChildIsRunning = false;
 
             foreach(Node node in children)

@@ -66,7 +66,8 @@ namespace BehaviorTree
             return null;
         }
 
-        //Removes object associated with the key of a node
+        //Removes object associated with the key of a node.
+        //Works up the branch to look for data.
         public bool ClearData(string key)
         {
             if(_dataContext.ContainsKey(key)) //Removes if on current node
