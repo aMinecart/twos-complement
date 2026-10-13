@@ -12,7 +12,7 @@ public class MeleeWeapon : MonoBehaviour
     [SerializeField] private Transform attackOrigin;
 
     // Character using this weapon 
-    [SerializeField] private Health ownerHealth;
+    [SerializeField] private HealthTracker ownerHealth;
 
     private float nextAttackTime = 0f;
 
@@ -47,7 +47,7 @@ public class MeleeWeapon : MonoBehaviour
 
         foreach (RaycastHit hit in hits)
         {
-            Health targetHealth = hit.collider.GetComponentInParent<Health>();
+            HealthTracker targetHealth = hit.collider.GetComponentInParent<HealthTracker>();
 
             // Ignore the character using the weapon 
             if (ownerHealth != null && targetHealth == ownerHealth)
