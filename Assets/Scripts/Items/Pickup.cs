@@ -20,8 +20,10 @@ public class WeaponPickup : Pickup
 
     protected override void RegisterPickup(PlayerInventory inventory)
     {
+        // Create weapon from its prefab
         Weapon weaponFromPickup = Instantiate(weaponPrefab);
-        inventory.weaponManager.AddWeapon(weaponFromPickup);
+        // Add weapon to inventory without automatically equipping it 
+        inventory.AddWeapon(weaponFromPickup);
     }
 }
 

@@ -1,44 +1,28 @@
 using UnityEngine;
 
-public class MeleeWeapon : MonoBehaviour
+public class MeleeWeapon : Weapon
 {
-    // Weapon stats
-    [SerializeField] private float damage = 35f;
-    [SerializeField] private float range = 2f;
-    [SerializeField] private float attackCooldown = 0.7f;
-
-    // Attack setup
-    // Where attack starts and its direction
-    [SerializeField] private Transform attackOrigin;
-
-    // Character using this weapon 
-    [SerializeField] private HealthTracker ownerHealth;
-
-    private float nextAttackTime = 0f;
-
-    public void Attack()
+    // Called when player or anemy tries to use melee attack 
+    public override bool Attack()
     {
-        // Don't attack when game is over or not in Playing state 
-        if (GameManager.instance != null && GameManager.instance.CurrentState != GameManager.GameState.Playing)
-            return;
-        
-        if (Time.time < nextAttackTime)
-            return;
+        // Don't attack if game isn't playing or weapon on cooldown
+        if (!CanAttack())
+            return false;
         
         // Check if origin has been assigned 
-        if (attackOrigin == null)
+        if (firingOriginTransform == null)
         {
             Debug.LogWarning("MeleeWeapon: Attack origin not assigned");
-            return;
+            return false;
         }
 
-        nextAttackTime = Time.time + attackCooldown;
+        nextAttackTime = Time.time + fireRate;
         Debug.Log("Melee attack!");
 
         // Find all objects hit by the attack within its range 
         RaycastHit[] hits = Physics.RaycastAll(
-            attackOrigin.position,
-            attackOrigin.forward,
+            firingOriginTransform.position,
+            firingOriginTransform.forward,
             range
         );
 
@@ -61,8 +45,11 @@ public class MeleeWeapon : MonoBehaviour
             } 
 
             // Stop at the first non-owner collider 
+            // Prevents attacking through walls 
             break; 
         }
+
+        return true; 
         
     }
 }

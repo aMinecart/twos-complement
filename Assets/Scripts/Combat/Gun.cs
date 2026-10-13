@@ -1,95 +1,82 @@
-using UnityEngine.InputSystem;
 using UnityEngine;
 using System.Collections;
 
-public class Gun : MonoBehaviour
+public class Gun : Weapon
 {
-    [SerializeField] private float damage = 25f;
-    [SerializeField] private float range = 100f;
-    [SerializeField] private float fireRate = 0.25f;
-    [SerializeField] private int magazineSize = 8;
-    [SerializeField] private float reloadTime = 2f;
-    [SerializeField] private Camera playerCamera;
-    private float nextFireTime = 0f;
+    // Gun specific stats 
+    [SerializeField] private int magazineSize;
+    [SerializeField] private float reloadTime;
+
     private int currentAmmo;
     private bool isReloading = false;
-
-    private bool CanUseWeapon()
-    {
-        return GameManager.instance != null && GameManager.instance.CurrentState == GameManager.GameState.Playing;
-    }
 
     void Start()
     {
         currentAmmo = magazineSize;
     }
 
-    private void OnAttack(InputValue value)
+    // Called when the player or enemy tries to fire 
+    public override bool Attack()
     {
-        if(value.isPressed)
-        {
-            TryShoot();
-        }
-    }
-
-    private void OnReload(InputValue value)
-    {
-        if(value.isPressed)
-        {
-            TryReload();
-        }
-    }
-
-    private void TryShoot()
-    {
-        if(!CanUseWeapon())
-            return;
-        if(isReloading || Time.time < nextFireTime)
-            return;
+        if(!CanAttack() || isReloading)
+            return false; 
         
-        if(currentAmmo > 0)
+        if (firingOriginTransform == null)
         {
-            Shoot();
-            nextFireTime = Time.time + fireRate;
+            Debug.LogWarning("Gun: Firing origin not assigned");
+            return false;
         }
-        else
+
+        if (currentAmmo <= 0)
         {
             Debug.Log("Out of ammo! Press R to reload");
+            return false; 
         }
+
+        Shoot();
+
+        // Set time when gun can shoot again 
+        nextAttackTime = Time.time + fireRate;
+        return true; 
     }
 
-    private void TryReload()
-    {
-        if (!CanUseWeapon())
-            return;
-        if(isReloading || currentAmmo == magazineSize)
-            return;
-
-        StartCoroutine(Reload());
-    }
-
+    // Fire gun check if it hits smth 
     public void Shoot()
     {
         currentAmmo--;
         Debug.Log("Ammo: " + currentAmmo + "/" + magazineSize);
 
-        RaycastHit hit; 
+        // Shoot a ray forward from firing origin
         if (Physics.Raycast(
-            playerCamera.transform.position,
-            playerCamera.transform.forward,
-            out hit,
+            firingOriginTransform.position,
+            firingOriginTransform.forward,
+            out RaycastHit hit,
             range))
         {
-            Debug.Log("Hit: " + hit.transform.name);
-            HealthTracker targetHealth = hit.transform.GetComponent<HealthTracker>();
-            if (targetHealth != null)
+            Debug.Log("Hit: " + hit.collider.name);
+
+            // Check if object hit has a health component 
+            HealthTracker targetHealth = hit.collider.GetComponentInParent<HealthTracker>();
+            // Damage the target, but not character using weapon 
+            if (targetHealth != null && targetHealth != ownerHealth)
             {
                 targetHealth.TakeDamage(damage);
             }
         }
     }
 
-    private IEnumerator Reload()
+    // Reload the gun when requested 
+    public override void Reload()
+    {
+        // Don;t reload if game isn't playing, already reloading or mag is full 
+        if (!CanUseWeapon() || isReloading || currentAmmo == magazineSize)
+            return;
+
+        StartCoroutine(ReloadCoroutine());
+    }
+
+    // Wait for reload time before refilling mag 
+    private IEnumerator ReloadCoroutine()
     {
         isReloading = true;
         Debug.Log("Reloading...");
@@ -97,10 +84,11 @@ public class Gun : MonoBehaviour
 
         while (elapsedTime < reloadTime)
         {
+            // Cancel reload if player dies or game stops 
             if(!CanUseWeapon())
             {
                 isReloading = false;
-                Debug.Log("Reload canceled: Player died.");
+                Debug.Log("Reload canceled.");
                 yield break;
             }
             elapsedTime += Time.deltaTime;
@@ -110,7 +98,7 @@ public class Gun : MonoBehaviour
         if (!CanUseWeapon())
         {
             isReloading = false;
-            Debug.Log("Reload canceled: Player died.");
+            Debug.Log("Reload canceled.");
             yield break;
         }
         
@@ -118,5 +106,12 @@ public class Gun : MonoBehaviour
         isReloading = false;
 
         Debug.Log("Reload complete. Ammo: " + currentAmmo + "/" + magazineSize);
+    }
+
+    private void OnDisable()
+    {
+        // Stop reloading if gun is unequipped or disabled 
+        StopAllCoroutines();
+        isReloading = false;
     }
 }
