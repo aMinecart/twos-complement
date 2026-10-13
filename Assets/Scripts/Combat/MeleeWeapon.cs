@@ -8,8 +8,11 @@ public class MeleeWeapon : MonoBehaviour
     [SerializeField] private float attackCooldown = 0.7f;
 
     // Attack setup
-    // Where attack starts and which layers it can hit
+    // Where attack starts and its direction
     [SerializeField] private Transform attackOrigin;
+
+    // Character using this weapon 
+    [SerializeField] private Health ownerHealth;
 
     private float nextAttackTime = 0f;
 
@@ -32,22 +35,34 @@ public class MeleeWeapon : MonoBehaviour
         nextAttackTime = Time.time + attackCooldown;
         Debug.Log("Melee attack!");
 
-        // Cast ray forward to check if it hits smth within range
-        if (Physics.Raycast(
+        // Find all objects hit by the attack within its range 
+        RaycastHit[] hits = Physics.RaycastAll(
             attackOrigin.position,
             attackOrigin.forward,
-            out RaycastHit hit,
-            range))
+            range
+        );
+
+        // Check hits in order, starting with the closest 
+        System.Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
+
+        foreach (RaycastHit hit in hits)
         {
             Health targetHealth = hit.collider.GetComponentInParent<Health>();
-            Health ownerHealth = GetComponentInParent<Health>();
 
-            // Apply damage only if target has health and is not the attacker
-            if (targetHealth != null && targetHealth != ownerHealth)
+            // Ignore the character using the weapon 
+            if (ownerHealth != null && targetHealth == ownerHealth)
+                continue;
+
+            // Damage first valud target
+            if (targetHealth != null)
             {
                 targetHealth.TakeDamage(damage);
                 Debug.Log("Melee hit: " + hit.collider.name);
-            }
+            } 
+
+            // Stop at the first non-owner collider 
+            break; 
         }
+        
     }
 }
