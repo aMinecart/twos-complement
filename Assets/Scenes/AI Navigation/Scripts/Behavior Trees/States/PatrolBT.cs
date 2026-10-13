@@ -8,6 +8,7 @@ public class PatrolBT : BehaviorTree.Tree
     public UnityEngine.Transform[] waypoints;
     public float visionRange;
     public float attackRange;
+    public float visionAngle = 45f;
 
     public float speed = 2f;
 
@@ -25,7 +26,7 @@ public class PatrolBT : BehaviorTree.Tree
 
             new Sequence(new List<Node>
             {
-                new CheckCanSee(player, gameObject, visionRange),
+                new CheckCanSee(player, gameObject, visionRange, visionAngle),
                 new TaskWalkTowards(gameObject, player),
             }),
             new PatrolTask(gameObject, waypoints),

@@ -8,14 +8,17 @@ public class CheckCanSee : Node
 {
     private GameObject target;
     private GameObject enemy;
+    private float visionAngle;
     private float visionRange;
-    private Boolean isNotHidden;
+    private Boolean isNotHidden = false;
+    private Boolean isInAngle = false;
 
-    public CheckCanSee(GameObject target, GameObject enemy, float visionRange)
+    public CheckCanSee(GameObject target, GameObject enemy, float visionRange, float visionAngle)
     {
         this.target = target;
         this.enemy = enemy;
         this.visionRange = visionRange;
+        this.visionAngle = visionAngle;
     }
 
     public override NodeState Evaluate()
@@ -29,21 +32,32 @@ public class CheckCanSee : Node
             {
                 //Debug.Log("Is not hidden");
                 isNotHidden = true;
-                state = NodeState.SUCCESS;
-                return state;
             }
             else
             {
-                //Debug.Log("Hidden");
-                isNotHidden = false;
                 state = NodeState.FAILURE;
                 return state;
             }
         }
+
+        //Determines if the player is within the enemy's FOV
+        Vector3 playerAngle = target.transform.position - enemy.transform.position;
+        Vector3 enemyAngle = enemy.transform.forward;
+        float angle = Vector3.SignedAngle(playerAngle, enemyAngle, Vector3.up);
+        if(angle <= visionAngle && angle >= (-1 * visionAngle))
+        {
+            isInAngle = true;
+        }
+        else isInAngle = false;
+
+        //If not hidden and in angle, walk towards target
+        if(isNotHidden && isInAngle)
+        {
+            state = NodeState.SUCCESS;
+            return state;
+        }
+
         state = NodeState.FAILURE;
         return state;
-
-
-
     }
 }

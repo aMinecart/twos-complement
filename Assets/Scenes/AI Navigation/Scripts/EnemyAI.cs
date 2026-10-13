@@ -2,6 +2,15 @@ using System;
 using UnityEngine;
 using UnityEngine.AI;
 
+/*
+***************************
+Used as reference! Was used to test player tracking.
+See the stuff in the Behavior Tree folder :D
+***************************
+*/
+
+
+
 [RequireComponent(typeof(NavMeshAgent))] //Creates NavMeshAgent if DNE
 public class EnemyAI : MonoBehaviour
 {
@@ -65,7 +74,6 @@ public class EnemyAI : MonoBehaviour
         else isInAngle = false;
 
         if(isNotHidden && isInRange && isInAngle) return true;
-        //Debug.Log("False");
         return false;
     }
 }
