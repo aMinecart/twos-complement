@@ -13,6 +13,12 @@ public abstract class Weapon : MonoBehaviour
 
     protected float nextAttackTime = 0f;
 
+    public void Initialize(HealthTracker owner, Transform origin)
+    {
+        ownerHealth = owner;
+        firingOriginTransform = origin;
+    }
+
     protected bool CanUseWeapon()
     {
         return isActiveAndEnabled && 
