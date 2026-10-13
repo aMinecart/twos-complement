@@ -80,7 +80,7 @@ public class Gun : MonoBehaviour
             range))
         {
             Debug.Log("Hit: " + hit.transform.name);
-            Health targetHealth = hit.transform.GetComponent<Health>();
+            HealthTracker targetHealth = hit.transform.GetComponent<HealthTracker>();
             if (targetHealth != null)
             {
                 targetHealth.TakeDamage(damage);
