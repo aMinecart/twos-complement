@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class MeleeWeapon : Weapon
 {
+    [SerializeField] protected float range;
+
     // Called when player or anemy tries to use melee attack 
     public override bool Attack()
     {
@@ -37,7 +39,7 @@ public class MeleeWeapon : Weapon
             if (ownerHealth != null && targetHealth == ownerHealth)
                 continue;
 
-            // Damage first valud target
+            // Damage first valid target
             if (targetHealth != null)
             {
                 targetHealth.TakeDamage(damage);
@@ -50,6 +52,5 @@ public class MeleeWeapon : Weapon
         }
 
         return true; 
-        
     }
 }

@@ -23,7 +23,7 @@ public class WeaponPickup : Pickup
         // Create weapon from its prefab
         Weapon weaponFromPickup = Instantiate(weaponPrefab);
         // Add weapon to inventory without automatically equipping it 
-        inventory.AddWeapon(weaponFromPickup);
+        inventory.weaponManager.AddWeapon(weaponFromPickup);
     }
 }
 
