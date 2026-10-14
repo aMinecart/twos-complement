@@ -13,13 +13,13 @@ public static class PlayerPhysics
 
 
     // basic physics functions
-    public static Vector3 applyGravity(Vector3 currVelocity, float gravityAccel, float gravityMultiplier = 1.0f)
+    public static Vector3 ApplyGravity(Vector3 currVelocity, float gravityAccel, float gravityMultiplier = 1.0f)
     {
         currVelocity.y -= gravityAccel * gravityMultiplier * Time.fixedDeltaTime;
         return currVelocity;
     }
 
-    public static Vector3 applyFriction(Vector3 currVelocity, float frictionRate, float minStopSpeed)
+    public static Vector3 ApplyFriction(Vector3 currVelocity, float frictionRate, float minStopSpeed)
     {
         float currSpeed = currVelocity.magnitude;
 
@@ -34,7 +34,7 @@ public static class PlayerPhysics
         return currVelocity;
     }
 
-    public static Vector3 accelerate(Vector3 currVelocity, VectorNorm3 accelDir, float accelRate, float maxSpeed)
+    public static Vector3 Accelerate(Vector3 currVelocity, VectorNorm3 accelDir, float accelRate, float maxSpeed)
     {
         float projSpeed = Vector3.Dot(currVelocity, accelDir);
         float accelSpeed = accelRate * maxSpeed * Time.fixedDeltaTime;

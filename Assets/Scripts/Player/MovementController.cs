@@ -16,7 +16,7 @@ public class MovementController : MonoBehaviour
     // relevant player components
     private Rigidbody rb;
     private CapsuleCollider capsuleCollider;
-    private PlayerStats playerStats;
+    private StatsManager playerStats;
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -33,7 +33,7 @@ public class MovementController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         capsuleCollider = GetComponent<CapsuleCollider>();
-        playerStats = GetComponent<PlayerStats>();
+        playerStats = GetComponent<StatsManager>();
     }
 
     // FixedUpdate is called once per fixed framerate frame
@@ -66,7 +66,7 @@ public class MovementController : MonoBehaviour
         // apply friction if player is grounded
         if (grounded)
         {
-            rb.linearVelocity = PlayerPhysics.applyFriction(
+            rb.linearVelocity = PlayerPhysics.ApplyFriction(
                 rb.linearVelocity,
                 playerStats.friction_rate,
                 playerStats.min_stop_speed
@@ -74,7 +74,7 @@ public class MovementController : MonoBehaviour
         }
 
         // apply accleration based on player's desired acceleration and if airborne
-        rb.linearVelocity = PlayerPhysics.accelerate(
+        rb.linearVelocity = PlayerPhysics.Accelerate(
             rb.linearVelocity,
             new VectorNorm3(moveDir.ToXZVector3()),
             (grounded ? playerStats.accel_rate : playerStats.accel_rate * playerStats.air_reduction_factor),
@@ -82,7 +82,7 @@ public class MovementController : MonoBehaviour
         );
 
         // apply gravity to the player unconditionally
-        rb.linearVelocity = PlayerPhysics.applyGravity(
+        rb.linearVelocity = PlayerPhysics.ApplyGravity(
             rb.linearVelocity,
             playerStats.gravity_accel
         );
