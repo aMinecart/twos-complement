@@ -9,6 +9,10 @@ public class PlayerSpawnManager : MonoBehaviour
 
    [Header("Auto Save")]
    [Tooltip("Off = position is only saved by Save & Exit Button OR an Exit Point!")]
+   
+   [Header("Fall Respawn")]
+   public float fallY = -20f;
+
    public bool autoSave = true;
    public float autoSaveInterval = 2f;
    private float saveTimer = 0f; 
@@ -55,10 +59,26 @@ public class PlayerSpawnManager : MonoBehaviour
 
         Physics.SyncTransforms(); //so exitpoint doesn't overlap when re-starting game
     }
+
+    public void RespawnAtSpawnPoint()
+    {
+        if(player == null || spawnPoint == null)
+        {
+            return;
+        }
+        MovePlayer(spawnPoint.position, spawnPoint.rotation); 
+        Debug.Log("Player fell off the board and respawned at the spawn point!");
+    }
     // Update is called once per frame
     void Update()
     {
-        if(!ready || autoSave){
+        if(!ready){
+            return;
+        }
+        //player fell off "world" (just for testing for now purposes will probs comment out later)
+        if(player != null && player.position.y < fallY)
+        {
+            RespawnAtSpawnPoint();
             return;
         }
         saveTimer += Time.deltaTime; 
