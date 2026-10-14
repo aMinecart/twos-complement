@@ -15,13 +15,16 @@ GameObject:
   - component: {fileID: 3565558133661645343}
   - component: {fileID: 3695433080083191987}
   - component: {fileID: 1426892409222100061}
-  - component: {fileID: 9059583086714734165}
-  - component: {fileID: 8594699368722953663}
   - component: {fileID: -5584147671675708098}
   - component: {fileID: -7320979413795158261}
+  - component: {fileID: 8594699368722953663}
+  - component: {fileID: 6040458594501993499}
+  - component: {fileID: 5850317871984665783}
+  - component: {fileID: 3493042549601224085}
+  - component: {fileID: 8828159628091250056}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -278,34 +281,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4f3a90c10d62904b88d3ebfebf7b536, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
---- !u!114 &9059583086714734165
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5720902316750530133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8126e7f160466d54698184c5cbca1fab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
---- !u!114 &8594699368722953663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5720902316750530133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c475336ab049541409a97eb28a30f7ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MovementController
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 8
-  maxGroundDistance: 0.1
 --- !u!114 &-5584147671675708098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,3 +306,69 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98b9a7a0272fc49619eb4f3b7394bc2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDeath
+--- !u!114 &8594699368722953663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5720902316750530133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c475336ab049541409a97eb28a30f7ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MovementController
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 8
+  maxGroundDistance: 0.1
+--- !u!114 &6040458594501993499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5720902316750530133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3bc82dce922e124d88aa21cc583f12e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInventory
+--- !u!114 &5850317871984665783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5720902316750530133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3b45c69da9a6f3498ec0cd96bf47287, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponManager
+  weapons: []
+  currWeaponIndex: 0
+--- !u!114 &3493042549601224085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5720902316750530133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d3e01f67431b048b89310fbdffe651, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipmentManager
+--- !u!114 &8828159628091250056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5720902316750530133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21c060705c6f1f64da49450bc424ca8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StatsManager

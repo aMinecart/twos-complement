@@ -1,6 +1,17 @@
 using UnityEngine;
 
-public class PlayerStats : MonoBehaviour
+public enum BuffType
+{
+    FIRE_RATE,
+    MAX_AMMO,
+    COOLDOWN,
+    DAMAGE,
+    MAX_HEALTH,
+    DAMAGE_RESIST,
+    MOVE_SPEED
+}
+
+public class StatsManager : MonoBehaviour
 {
     // player physics constants
     public float gravity_accel { get; set; } = PlayerPhysics.BASE_GRAVITY_ACCEL;
@@ -10,4 +21,11 @@ public class PlayerStats : MonoBehaviour
     public float min_stop_speed { get; set; } = PlayerPhysics.BASE_MIN_STOP_SPEED;
     public float air_reduction_factor { get; set; } = PlayerPhysics.BASE_AIR_REDUCTION_FACTOR;
     public float gravity_multiplier { get; set; } = PlayerPhysics.BASE_GRAVITY_MULTIPLIER;
+
+    // public float reload_speed { get; set; }
+
+    public void ApplyBuff(BuffType buffType, float buffValue)
+    {
+        throw new System.NotImplementedException();
+    }
 }
