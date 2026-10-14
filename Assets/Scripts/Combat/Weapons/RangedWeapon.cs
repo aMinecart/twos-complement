@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
+// shared functionality for all weapons that use ammo and can reload
 public abstract class RangedWeapon : Weapon
 {
     // Ranged weapon specific stats 

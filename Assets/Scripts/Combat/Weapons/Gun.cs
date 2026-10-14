@@ -1,11 +1,14 @@
 using UnityEngine;
 using System.Collections;
 
+// the actual weapon class only needs to override the Shoot and ReloadCoroutine methods,
+// making creating new weapons much easier
 public class Gun : RangedWeapon
 {
     // Fire gun check if it hits smth 
     protected override void Shoot()
     {
+        // can eventually be replaced with calls to WeaponsComponents
         currentAmmo--;
         Debug.Log("Ammo: " + currentAmmo + "/" + magazineSize);
 

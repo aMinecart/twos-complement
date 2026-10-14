@@ -1,5 +1,7 @@
 using UnityEngine;
 
+// eventually can be made abstract, allowing child classes to inherit all functionality from this class
+// and only change stats values (at least for the basic test)
 public class MeleeWeapon : Weapon
 {
     [SerializeField] protected float range;
