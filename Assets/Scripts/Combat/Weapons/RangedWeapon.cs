@@ -7,13 +7,13 @@ public abstract class RangedWeapon : Weapon
     // Ranged weapon specific stats 
     [SerializeField] protected int magazineSize;
     [SerializeField] protected float reloadTime;
+    [SerializeField] protected float range;
 
     protected int currentAmmo;
     protected bool isReloading = false;
 
     // weapon specific implementation of firing and reload
     protected abstract void Shoot();
-    protected abstract IEnumerator ReloadCoroutine();
 
     // set ammo to full when the script first stats
     void Start()
@@ -61,5 +61,38 @@ public abstract class RangedWeapon : Weapon
             return;
 
         StartCoroutine(ReloadCoroutine());
+    }
+
+    // Shared realoding functionality 
+    protected virtual IEnumerator ReloadCoroutine()
+    {
+        isReloading = true;
+        Debug.Log("Reloading...");
+
+        float elapsedTime = 0f;
+        while (true)
+        {
+            // Cancel reload if player dies or game stops 
+            if(!CanUseWeapon())
+            {
+                isReloading = false;
+                Debug.Log("Reload canceled");
+                yield break;
+            }
+
+            // Complete rest of reload once sufficent time has passed
+            if (elapsedTime >= reloadTime)
+            {
+                break;
+            }
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        
+        currentAmmo = magazineSize;
+        isReloading = false;
+
+        Debug.Log("Reload complete. Ammo: " + currentAmmo + "/" + magazineSize);
     }
 }

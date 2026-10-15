@@ -31,6 +31,7 @@ public class WeaponManager : MonoBehaviour
         if (index < -1 || index >= weapons.Count)
         {
             Debug.LogError($"Attempted to switch to invalid weapon index {index}");
+            return;
         }
 
         // check if weapon is already being used
@@ -54,7 +55,7 @@ public class WeaponManager : MonoBehaviour
             weapons[currWeaponIndex].enabled = true;
         }
 
-        Debug.Log("Switched to: " + (ActiveWeapon != null ? ActiveWeapon.name : "empty hands"));
+        Debug.Log("Switched to: " + (ActiveWeapon != null ? ActiveWeapon.GetType().Name : "empty hands"));
     }
 
     void Start()
@@ -68,6 +69,17 @@ public class WeaponManager : MonoBehaviour
             }
         }
 
+        // Disable all weapons before selecting one 
+        foreach (Weapon weapon in weapons)
+        {
+            if (weapon != null)
+            {
+                weapon.enabled = false;
+            }
+        }
+
+        currWeaponIndex = -1;
+
         // Start with first equipped weapon selected, if any
         if (weapons.Count > 0)
         {
@@ -78,7 +90,7 @@ public class WeaponManager : MonoBehaviour
     // Add a weapon to player's inventory without equipping it 
     public void AddWeapon(Weapon weapon)
     {
-        if (weapon == null || !weapons.Contains(weapon))
+        if (weapon == null || weapons.Contains(weapon))
         {
             return;
         }
@@ -99,27 +111,29 @@ public class WeaponManager : MonoBehaviour
         }
 
         // check if removing currently equipped weapon
-        if (index == currWeaponIndex)
-        {
-            // switch away from current weapon
-            if (weapons.Count == 1)
-            {
-                // last weapon, switch to empty hands
-                SwitchToWeapon(-1);
-            }
-            else
-            {
-                // switch to next weapon in list
-                SwitchToWeapon((currWeaponIndex + 1) % weapons.Count);
-            }
-        }
+        bool removingActiveWeapon = (index == currWeaponIndex);
 
+        // Disabele weapon being removed
+        weapons[index].enabled = false;
         Debug.Log($"Removing weapon: {weapons[index].name}");
 
-        // remove weapon and adjust current weapon index if necessary
+        // Remove weapon from list
         weapons.RemoveAt(index);
-        if (index > currWeaponIndex)
+
+        if (weapons.Count == 0)
         {
+            // No weapons left
+            currWeaponIndex = -1;
+        }
+        else if (removingActiveWeapon)
+        {
+            // Select another valid weapon 
+            currWeaponIndex = -1;
+            SwitchToWeapon(index % weapons.Count);
+        }
+        else if (index < currWeaponIndex)
+        {
+            // Selected weapon moved one pos left
             currWeaponIndex--;
         }
     }
@@ -161,14 +175,17 @@ public class WeaponManager : MonoBehaviour
     // Switch to next equipped weapon
     public void OnNext(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && weapons.Count > 0)
             SwitchToWeapon((currWeaponIndex + 1) % weapons.Count);
     }
 
     // Switch to previous equipped weapon
     public void OnPrevious(InputAction.CallbackContext context)
     {
-        if (context.performed)
-            SwitchToWeapon((currWeaponIndex - 1 + weapons.Count) % weapons.Count);
+        if (context.performed && weapons.Count > 0)
+        {
+            int prevIndex = currWeaponIndex == -1 ? weapons.Count - 1 : (currWeaponIndex - 1 + weapons.Count) % weapons.Count;
+            SwitchToWeapon(prevIndex);
+        }
     }
 }
