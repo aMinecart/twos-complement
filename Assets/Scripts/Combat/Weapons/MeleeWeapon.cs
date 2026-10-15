@@ -1,5 +1,7 @@
 using UnityEngine;
 
+// eventually can be made abstract, allowing child classes to inherit all functionality from this class
+// and only change stats values (at least for the basic test)
 public class MeleeWeapon : Weapon
 {
     // Called when player or anemy tries to use melee attack 
@@ -37,7 +39,7 @@ public class MeleeWeapon : Weapon
             if (ownerHealth != null && targetHealth == ownerHealth)
                 continue;
 
-            // Damage first valud target
+            // Damage first valid target
             if (targetHealth != null)
             {
                 targetHealth.TakeDamage(damage);
@@ -50,6 +52,5 @@ public class MeleeWeapon : Weapon
         }
 
         return true; 
-        
     }
 }

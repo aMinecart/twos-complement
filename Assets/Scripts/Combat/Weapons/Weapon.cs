@@ -3,13 +3,11 @@ public abstract class Weapon : MonoBehaviour
 {
     // Shared weapon stats
     [SerializeField] protected float damage;
-    [SerializeField] protected float range;
     [SerializeField] protected float fireRate;
-    
-    // Where attack starts
-    [SerializeField] protected Transform firingOriginTransform;
-    // Character using weapon
-    [SerializeField] protected HealthTracker ownerHealth;
+    [SerializeField] protected float range;
+
+    [SerializeField] protected Transform firingOriginTransform; // Where attack starts
+    [SerializeField] protected HealthTracker ownerHealth; // Character using weapon
 
     protected float nextAttackTime = 0f;
 
@@ -21,9 +19,9 @@ public abstract class Weapon : MonoBehaviour
 
     protected bool CanUseWeapon()
     {
-        return isActiveAndEnabled && 
-            GameManager.instance != null && 
-            GameManager.instance.CurrentState == GameManager.GameState.Playing;
+        return isActiveAndEnabled &&
+               GameManager.instance != null &&
+               GameManager.instance.CurrentState == GameManager.GameState.Playing;
     }
 
     // Shared cooldown check 
@@ -36,7 +34,5 @@ public abstract class Weapon : MonoBehaviour
     public abstract bool Attack();
 
     // Optional for weapons that support reloading 
-    public virtual void Reload()
-    {
-    }
+    public virtual void Reload() { }
 }
