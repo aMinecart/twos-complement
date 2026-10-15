@@ -12,11 +12,11 @@ public class BuildNavMesh : MonoBehaviour
     void Awake()
     {
         navMesh = GetComponent<NavMeshSurface>(); //Get NavMesh component for baking
-        navMesh.BuildNavMesh(); //Builds NavMesh on runtime
+        //navMesh.BuildNavMesh(); //Builds NavMesh on runtime
     }
 
-    void OnEnable()
+    void Start()
     {
-        //navMesh.BuildNavMesh(); //Builds NavMesh on runtime
+        navMesh.BuildNavMesh(); //Builds NavMesh on runtime
     }
 }

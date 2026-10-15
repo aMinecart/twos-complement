@@ -2,9 +2,10 @@ using BehaviorTree;
 using UnityEngine;
 using System.Collections.Generic;
 
-public class PatrolBT : BehaviorTree.Tree
+[RequireComponent(typeof(PlaceOnNavMesh))]
+public class PatrolBT : TreeSetup
 {
-    public GameObject player;
+    private GameObject player;
     public UnityEngine.Transform[] waypoints;
     public float visionRange;
     public float attackRange;
@@ -14,7 +15,7 @@ public class PatrolBT : BehaviorTree.Tree
 
     protected override Node SetupTree()
     {
-
+        player = Player.Instance.gameObject;
         Node root = new Selector(new List<Node>
         {
 
