@@ -9,14 +9,9 @@ public class BuildNavMesh : MonoBehaviour
     public GameObject[] characters;
     public Transform[] SpawnPoints;
 
-    void Awake()
+    void OnEnable()
     {
         navMesh = GetComponent<NavMeshSurface>(); //Get NavMesh component for baking
-        //navMesh.BuildNavMesh(); //Builds NavMesh on runtime
-    }
-
-    void Start()
-    {
         navMesh.BuildNavMesh(); //Builds NavMesh on runtime
     }
 }
