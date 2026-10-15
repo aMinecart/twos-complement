@@ -4,8 +4,6 @@ using UnityEngine;
 // and only change stats values (at least for the basic test)
 public class MeleeWeapon : Weapon
 {
-    [SerializeField] protected float range;
-
     // Called when player or anemy tries to use melee attack 
     public override bool Attack()
     {

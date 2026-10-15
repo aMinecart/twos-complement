@@ -66,15 +66,7 @@ public class WeaponManager : MonoBehaviour
             if (weapon != null && !weapons.Contains(weapon))
             {
                 weapons.Add(weapon);
-            }
-        }
-
-        // Disable all weapons before selecting one 
-        foreach (Weapon weapon in weapons)
-        {
-            if (weapon != null)
-            {
-                weapon.enabled = false;
+                weapon.enabled = false; // Disable all weapons to start
             }
         }
 

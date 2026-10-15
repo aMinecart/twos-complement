@@ -2,7 +2,7 @@ using UnityEngine;
 
 // the actual weapon class only needs to override the Shoot and ReloadCoroutine methods,
 // making creating new weapons much easier
-public class Gun : RangedWeapon
+public class Pistol : RangedWeapon
 {
     // Fire gun check if it hits smth 
     protected override void Shoot()
@@ -12,11 +12,11 @@ public class Gun : RangedWeapon
         Debug.Log("Ammo: " + currentAmmo + "/" + magazineSize);
 
         // Shoot a ray forward from firing origin
-       WeaponComponents.FireSingleHitscan(
-        firingOriginTransform,
-        ownerHealth,
-        damage,
-        range
-       );
+        WeaponComponents.FireSingleHitscan(
+            firingOriginTransform,
+            ownerHealth,
+            damage,
+            range
+        );
     }
 }

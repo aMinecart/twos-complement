@@ -1,9 +1,9 @@
 using UnityEngine;
 
-// Shotgun fires multiple pallets in a spread 
+// Shotgun fires multiple pellets in a spread 
 public class Shotgun : RangedWeapon
 {
-    [SerializeField] private int palletCount;
+    [SerializeField] private int pelletCount;
     [SerializeField] private float spreadAngle;
 
     // Fire pallets
@@ -17,7 +17,7 @@ public class Shotgun : RangedWeapon
             ownerHealth,
             damage,
             range,
-            palletCount,
+            pelletCount,
             spreadAngle
         );
     }

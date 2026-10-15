@@ -7,7 +7,6 @@ public abstract class RangedWeapon : Weapon
     // Ranged weapon specific stats 
     [SerializeField] protected int magazineSize;
     [SerializeField] protected float reloadTime;
-    [SerializeField] protected float range;
 
     protected int currentAmmo;
     protected bool isReloading = false;

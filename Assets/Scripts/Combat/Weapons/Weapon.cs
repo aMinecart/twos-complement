@@ -4,6 +4,7 @@ public abstract class Weapon : MonoBehaviour
     // Shared weapon stats
     [SerializeField] protected float damage;
     [SerializeField] protected float fireRate;
+    [SerializeField] protected float range;
 
     [SerializeField] protected Transform firingOriginTransform; // Where attack starts
     [SerializeField] protected HealthTracker ownerHealth; // Character using weapon
