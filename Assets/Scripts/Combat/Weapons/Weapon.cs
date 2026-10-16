@@ -1,6 +1,10 @@
 using UnityEngine;
 public abstract class Weapon : MonoBehaviour
 {
+    // Stable identifier used by inventory and save system
+    [SerializeField] private string weaponId;
+    public string WeaponId => weaponId;
+
     // Shared weapon stats
     [SerializeField] protected float damage;
     [SerializeField] protected float fireRate;
@@ -24,7 +28,7 @@ public abstract class Weapon : MonoBehaviour
                GameManager.instance.CurrentState == GameManager.GameState.Playing;
     }
 
-    // Shared cooldown check 
+    // Shared cooldown check
     protected bool CanAttack()
     {
         return CanUseWeapon() && Time.time >= nextAttackTime;
@@ -33,6 +37,6 @@ public abstract class Weapon : MonoBehaviour
     // Called by WeaponManager or enemy AI
     public abstract bool Attack();
 
-    // Optional for weapons that support reloading 
+    // Optional for weapons that support reloading
     public virtual void Reload() { }
 }
