@@ -5,13 +5,14 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CapsuleCollider))]
 public class MovementController : MonoBehaviour
 {
-    // control variables
-    [SerializeField] private float lookSensitivity;
-
-    // player status variables
+    // player input management variables
     public Vector2 moveDir { get; private set; } = Vector2.zero;
     public Vector2 lookDir { get; private set; } = Vector2.zero;
+    private bool attemptJump = false;
+
+    // player status variables
     public bool grounded { get; private set; } = false;
+    public bool inCrouch { get; private set; } = false;
 
     // inputs to collision detection system
     [SerializeField] private LayerMask groundMask;
@@ -29,7 +30,28 @@ public class MovementController : MonoBehaviour
 
     public void OnLook(InputAction.CallbackContext context)
     {
-        lookDir += lookSensitivity * context.ReadValue<Vector2>();
+        Vector2 readVal = context.ReadValue<Vector2>();
+        lookDir = new Vector2(
+            lookDir.x + playerStats.look_sensitivity * readVal.x,
+            Mathf.Clamp(
+                lookDir.y + playerStats.look_sensitivity * readVal.y,
+                -playerStats.vert_look_range_degrees / 2,
+                playerStats.vert_look_range_degrees / 2
+            )
+        );
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            attemptJump = true;
+        }
+
+        if (context.canceled)
+        {
+            attemptJump = false;
+        }
     }
 
     void Awake()
@@ -99,6 +121,18 @@ public class MovementController : MonoBehaviour
             rb.linearVelocity,
             playerStats.gravity_accel
         );
+
+        // apply jump force if player meets jump requirements
+        if (attemptJump && grounded && !inCrouch)
+        {
+            rb.linearVelocity = PlayerPhysics.ApplyJumpForce(
+                rb.linearVelocity,
+                playerStats.jump_height,
+                playerStats.gravity_accel
+            );            
+        }
+
+        attemptJump = false; // prevent player from jumping until they release and press the button again
 
         // display current movement information
         // print($"input vector: {moveDir}");
