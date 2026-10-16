@@ -5,8 +5,12 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CapsuleCollider))]
 public class MovementController : MonoBehaviour
 {
+    // control variables
+    [SerializeField] private float lookSensitivity;
+
     // player status variables
     public Vector2 moveDir { get; private set; } = Vector2.zero;
+    public Vector2 lookDir { get; private set; } = Vector2.zero;
     public bool grounded { get; private set; } = false;
 
     // inputs to collision detection system
@@ -21,6 +25,11 @@ public class MovementController : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         moveDir = context.ReadValue<Vector2>();
+    }
+
+    public void OnLook(InputAction.CallbackContext context)
+    {
+        lookDir += lookSensitivity * context.ReadValue<Vector2>();
     }
 
     void Awake()
@@ -39,12 +48,16 @@ public class MovementController : MonoBehaviour
     // FixedUpdate is called once per fixed framerate frame
     void FixedUpdate()
     {
-        if (GameManager.instance.CurrentState == GameManager.GameState.GameOver)
+        // disable movement if the game is not active
+        if (GameManager.instance.CurrentState != GameManager.GameState.Playing)
         {
             rb.linearVelocity = Vector3.zero;
             this.enabled = false;
             return;
         }
+
+        // update player rotation
+        rb.rotation = Quaternion.Euler(0.0f, lookDir.x, 0.0f);
 
         // check if player is grounded by protuding a sphere below the player's collider
         Bounds bounds = capsuleCollider.bounds;
@@ -76,7 +89,7 @@ public class MovementController : MonoBehaviour
         // apply accleration based on player's desired acceleration and if airborne
         rb.linearVelocity = PlayerPhysics.Accelerate(
             rb.linearVelocity,
-            new VectorNorm3(moveDir.ToXZVector3()),
+            new VectorNorm3(rb.rotation * moveDir.ToXZVector3()), // rotate desired direction by rigidbody's current rotation
             (grounded ? playerStats.accel_rate : playerStats.accel_rate * playerStats.air_reduction_factor),
             (grounded ? playerStats.max_move_speed : playerStats.max_move_speed * playerStats.air_reduction_factor)
         );
