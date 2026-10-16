@@ -31,7 +31,7 @@ public static class WeaponComponents
             // Ignore the character using the weapon
             if (targetHealth != null && targetHealth == ownerHealth)
                 continue;
-            
+
             // Damge only the target 
             if (targetHealth != null)
                 targetHealth.TakeDamage(damage);
@@ -101,9 +101,7 @@ public static class WeaponComponents
         );
 
         // Initialize projectile damage, owner, and movement
-        Projectile projectileScript = projectile.GetComponent<Projectile>();
-
-        if (projectileScript != null)
+        if (projectile.TryGetComponent<Projectile>(out Projectile projectileScript))
         {
             projectileScript.Initialize(ownerHealth, damage, speed, range);
         }

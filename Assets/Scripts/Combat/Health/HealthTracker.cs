@@ -7,23 +7,23 @@ public class HealthTracker : MonoBehaviour
     private float currentHealth;
     private bool isDead = false;
 
-    // Allows other scripts to read health without modifying it directly 
+    // Allows other scripts to read health without modifying it directly
     public float CurrentHealth => currentHealth;
     public float MaxHealth => maxHealth;
 
-    // Returns health as a value between 0 and 1 for UI health bars 
+    // Returns health as a value between 0 and 1 for UI health bars
     public float HealthPercentage => maxHealth > 0f
         ? currentHealth / maxHealth
         : 0f;
 
     // Notifies other scripts when this object dies
-    // Players and enemies will be able to have different death behaviours 
+    // Players and enemies will be able to have different death behaviours
     public event Action OnDeath;
     // Notifies other scripts whenever health changes
     // Sends current health and max health
     public event Action<float, float> OnHealthChanged;
 
-    void Start()
+    void Awake()
     {
         currentHealth = maxHealth;
     }
@@ -49,10 +49,21 @@ public class HealthTracker : MonoBehaviour
         // Prevent healing dead characters / invalid amounts
         if (isDead || amount <= 0f) return;
 
-        // Heal without going over max health 
+        // Heal without going over max health
         currentHealth = MathF.Min(currentHealth + amount, maxHealth);
 
         Debug.Log(gameObject.name + " healed. Health: " + currentHealth);
+
+        OnHealthChanged?.Invoke(currentHealth, maxHealth);
+    }
+
+    // Set health values when initializing or restoring an entity
+    public void InitializeHealth(float health, float maximumHealth)
+    {
+        maxHealth = Mathf.Max(1f, maximumHealth);
+        currentHealth = Mathf.Clamp(health, 0f, maxHealth);
+
+        isDead = currentHealth <= 0f;
 
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
     }

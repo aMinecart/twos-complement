@@ -42,7 +42,7 @@ public class PlayerHealthUI : MonoBehaviour
         }
     }
 
-    private void Osable()
+    private void OnDisable()
     {
         if(playerHealth != null)
         {

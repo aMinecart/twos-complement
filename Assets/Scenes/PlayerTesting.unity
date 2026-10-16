@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f834cb3b9be444369fe5ab343e98fe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeWeapon
+  weaponId: 
   damage: 20
   fireRate: 1
   range: 2
@@ -212,10 +213,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b644f956488264f51b54e51be67499fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pistol
+  weaponId: Pistol
   damage: 25
   fireRate: 0.5
   range: Infinity
-  firingOriginTransform: {fileID: 330585546}
+  firingOriginTransform: {fileID: 1768839616}
   ownerHealth: {fileID: 1263121377}
   magazineSize: 5
   reloadTime: 2
@@ -321,6 +323,7 @@ GameObject:
   - component: {fileID: 330585545}
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
+  - component: {fileID: 330585548}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -395,12 +398,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.3, y: 1.5000001, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1263121386}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
@@ -446,6 +449,19 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &330585548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ae9509b09ae71b41aee3e32d6d750db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  offset: {x: 0, y: 0.5, z: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -627,7 +643,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5850317871984665783, guid: 342ec638fc1434e4e9693886bd9c8ddc, type: 3}
       propertyPath: weapons.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5850317871984665783, guid: 342ec638fc1434e4e9693886bd9c8ddc, type: 3}
       propertyPath: 'weapons.Array.data[0]'
@@ -641,18 +657,38 @@ PrefabInstance:
       propertyPath: 'weapons.Array.data[2]'
       value: 
       objectReference: {fileID: 983174780}
+    - target: {fileID: 5850317871984665783, guid: 342ec638fc1434e4e9693886bd9c8ddc, type: 3}
+      propertyPath: 'weapons.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1245820743}
+    - target: {fileID: 5850317871984665783, guid: a81f8be6fc8bc9048b8a18ad7a8eba76, type: 3}
+      propertyPath: weapons.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5850317871984665783, guid: a81f8be6fc8bc9048b8a18ad7a8eba76, type: 3}
+      propertyPath: 'weapons.Array.data[0]'
+      value: 
+      objectReference: {fileID: 949173632}
+    - target: {fileID: 5850317871984665783, guid: a81f8be6fc8bc9048b8a18ad7a8eba76, type: 3}
+      propertyPath: 'weapons.Array.data[1]'
+      value: 
+      objectReference: {fileID: 252665334}
+    - target: {fileID: 5850317871984665783, guid: a81f8be6fc8bc9048b8a18ad7a8eba76, type: 3}
+      propertyPath: 'weapons.Array.data[2]'
+      value: 
+      objectReference: {fileID: 983174780}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 193947545450241422, guid: 342ec638fc1434e4e9693886bd9c8ddc, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 330585546}
     - targetCorrespondingSourceObject: {fileID: 193947545450241422, guid: 342ec638fc1434e4e9693886bd9c8ddc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 949173631}
     - targetCorrespondingSourceObject: {fileID: 193947545450241422, guid: 342ec638fc1434e4e9693886bd9c8ddc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 252665333}
+    - targetCorrespondingSourceObject: {fileID: 193947545450241422, guid: 342ec638fc1434e4e9693886bd9c8ddc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1245820742}
     - targetCorrespondingSourceObject: {fileID: 193947545450241422, guid: 342ec638fc1434e4e9693886bd9c8ddc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 983174779}
@@ -754,10 +790,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f834cb3b9be444369fe5ab343e98fe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeWeapon
+  weaponId: Knife
   damage: 35
   fireRate: 0.7
   range: 2
-  firingOriginTransform: {fileID: 330585546}
+  firingOriginTransform: {fileID: 1768839616}
   ownerHealth: {fileID: 1263121377}
 --- !u!1 &983174778
 GameObject:
@@ -803,15 +840,70 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ede6106b94c0401cba71e11f554ddc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlasmaGun
+  weaponId: PlasmaGun
   damage: 50
   fireRate: 1
-  range: 100
-  firingOriginTransform: {fileID: 330585546}
+  range: 20
+  firingOriginTransform: {fileID: 1768839616}
   ownerHealth: {fileID: 1263121377}
   magazineSize: 2
   reloadTime: 3
   projectilePrefab: {fileID: 6258376407274449733, guid: 99e8ffdaf26884ad0980d99b98870ab2, type: 3}
   projectileSpeed: 10
+--- !u!1 &1245820741
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1245820742}
+  - component: {fileID: 1245820743}
+  m_Layer: 0
+  m_Name: Shotgun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1245820742
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245820741}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1263121386}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1245820743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245820741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f02a25d56546c43ffbf36d17bce0a8b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Shotgun
+  weaponId: Shotgun
+  damage: 8
+  fireRate: 0.9
+  range: 75
+  firingOriginTransform: {fileID: 1768839616}
+  ownerHealth: {fileID: 1263121377}
+  magazineSize: 8
+  reloadTime: 5
+  pelletCount: 8
+  spreadAngle: 10
 --- !u!1 &1263121374 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5720902316750530133, guid: 342ec638fc1434e4e9693886bd9c8ddc, type: 3}
@@ -824,12 +916,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1263121374}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4dd98c8dc56040ffb9ceb2a631fd95d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageTester
-  targetHealth: {fileID: 1263121377}
+  targetHealth: {fileID: 0}
   testDamage: 25
   testHealing: 25
 --- !u!114 &1263121377 stripped
@@ -1247,7 +1339,7 @@ Transform:
   m_GameObject: {fileID: 1758400385}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.344, y: 1, z: -0.8}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1265,6 +1357,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc116301ce3114e70bf8a1fc6bab3c32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDeath
+--- !u!4 &1768839616 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7228580563444382083, guid: 342ec638fc1434e4e9693886bd9c8ddc, type: 3}
+  m_PrefabInstance: {fileID: 779172793}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1917585482
 GameObject:
   m_ObjectHideFlags: 0
@@ -1383,6 +1480,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 410087041}
+  - {fileID: 330585546}
   - {fileID: 832575519}
   - {fileID: 1917585486}
   - {fileID: 779172793}

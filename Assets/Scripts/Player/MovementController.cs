@@ -5,9 +5,14 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CapsuleCollider))]
 public class MovementController : MonoBehaviour
 {
-    // player status variables
+    // player input management variables
     public Vector2 moveDir { get; private set; } = Vector2.zero;
+    public Vector2 lookDir { get; private set; } = Vector2.zero;
+    private bool attemptJump = false;
+
+    // player status variables
     public bool grounded { get; private set; } = false;
+    public bool inCrouch { get; private set; } = false;
 
     // inputs to collision detection system
     [SerializeField] private LayerMask groundMask;
@@ -21,6 +26,32 @@ public class MovementController : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         moveDir = context.ReadValue<Vector2>();
+    }
+
+    public void OnLook(InputAction.CallbackContext context)
+    {
+        Vector2 readVal = context.ReadValue<Vector2>();
+        lookDir = new Vector2(
+            lookDir.x + playerStats.look_sensitivity * readVal.x,
+            Mathf.Clamp(
+                lookDir.y + playerStats.look_sensitivity * readVal.y,
+                -playerStats.vert_look_range_degrees / 2,
+                playerStats.vert_look_range_degrees / 2
+            )
+        );
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            attemptJump = true;
+        }
+
+        if (context.canceled)
+        {
+            attemptJump = false;
+        }
     }
 
     void Awake()
@@ -39,12 +70,16 @@ public class MovementController : MonoBehaviour
     // FixedUpdate is called once per fixed framerate frame
     void FixedUpdate()
     {
-        if (GameManager.instance.CurrentState == GameManager.GameState.GameOver)
+        // disable movement if the game is not active
+        if (GameManager.instance.CurrentState != GameManager.GameState.Playing)
         {
             rb.linearVelocity = Vector3.zero;
             this.enabled = false;
             return;
         }
+
+        // update player rotation
+        rb.rotation = Quaternion.Euler(0.0f, lookDir.x, 0.0f);
 
         // check if player is grounded by protuding a sphere below the player's collider
         Bounds bounds = capsuleCollider.bounds;
@@ -76,7 +111,7 @@ public class MovementController : MonoBehaviour
         // apply accleration based on player's desired acceleration and if airborne
         rb.linearVelocity = PlayerPhysics.Accelerate(
             rb.linearVelocity,
-            new VectorNorm3(moveDir.ToXZVector3()),
+            new VectorNorm3(rb.rotation * moveDir.ToXZVector3()), // rotate desired direction by rigidbody's current rotation
             (grounded ? playerStats.accel_rate : playerStats.accel_rate * playerStats.air_reduction_factor),
             (grounded ? playerStats.max_move_speed : playerStats.max_move_speed * playerStats.air_reduction_factor)
         );
@@ -86,6 +121,18 @@ public class MovementController : MonoBehaviour
             rb.linearVelocity,
             playerStats.gravity_accel
         );
+
+        // apply jump force if player meets jump requirements
+        if (attemptJump && grounded && !inCrouch)
+        {
+            rb.linearVelocity = PlayerPhysics.ApplyJumpForce(
+                rb.linearVelocity,
+                playerStats.jump_height,
+                playerStats.gravity_accel
+            );            
+        }
+
+        attemptJump = false; // prevent player from jumping until they release and press the button again
 
         // display current movement information
         // print($"input vector: {moveDir}");
