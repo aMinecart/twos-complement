@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
     public enum GameState
     {
         Playing,
-        GameOver, 
+        Paused,
+        GameOver,
         Victory
     }
 
@@ -54,6 +55,24 @@ public class GameManager : MonoBehaviour
         OnGameStateChanged?.Invoke(CurrentState);
     }
 
+    public void PauseGame()
+    {
+        if (CurrentState != GameState.Playing)
+            return;
+
+        SetGameState(GameState.Paused);
+        Time.timeScale = 0f;
+    }
+
+    public void ResumeGame()
+    {
+        if (CurrentState != GameState.Paused)
+            return;
+
+        Time.timeScale = 1f;
+        SetGameState(GameState.Playing);
+    }
+
     public void GameOver()
     {
         SetGameState(GameState.GameOver);
@@ -77,6 +96,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
+        Time.timeScale = 1f;
         CurrentLevel = 1;
         SetGameState(GameState.Playing);
         SceneManager.LoadScene(startingScene);
