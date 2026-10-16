@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using System.Text;
 using UnityEngine;
 
@@ -20,6 +21,10 @@ public class TerrainGen : MonoBehaviour
         lvlSeed = GameManager.runSeed;
         Debug.Log($"lvlSeed: {lvlSeed}");
         Generate();
+
+        //Builds the Navmesh after the map is generated :D
+        BuildNavMesh navMeshScript = GetComponent<BuildNavMesh>();
+        navMeshScript.enabled = true;
     }
 
     void Generate()
