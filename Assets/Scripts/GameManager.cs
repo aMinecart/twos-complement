@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public event Action<GameState> OnGameStateChanged;
     [SerializeField] private string startingScene = "SampleScene";
     public int CurrentLevel { get; private set; } = 1;
-
+    public static int runSeed = 0;
 
     [RuntimeInitializeOnLoadMethod]
     private static void Initialization()
@@ -42,6 +42,13 @@ public class GameManager : MonoBehaviour
 
         instance = this;
         // DontDestroyOnLoad(gameObject);
+
+        long time_val = DateTime.UtcNow.Ticks;
+
+        runSeed = (int)(time_val ^ (time_val >> 32));
+        int lvlSeed = runSeed;
+
+        Debug.Log($"Seed: {runSeed}");
     }
 
     public void SetGameState(GameState newState)
