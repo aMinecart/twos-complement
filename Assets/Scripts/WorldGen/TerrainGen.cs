@@ -6,8 +6,8 @@ public class TerrainGen : MonoBehaviour
 {
     [Header("Terrain")]
     public int resolution = 2049;
-    public float width = 1000f;
-    public float heightScale = 200f;
+    public float width = 500f;
+    public float heightScale = 100f;
 
     [Header("Generation")]
     public float sampleScale = 1.0f;
@@ -18,6 +18,8 @@ public class TerrainGen : MonoBehaviour
 
     void Start()
     {
+        lvlSeed = GameManager.runSeed;
+        Debug.Log($"lvlSeed: {lvlSeed}");
         Generate();
 
         //Builds the Navmesh after the map is generated :D
@@ -59,6 +61,13 @@ public class TerrainGen : MonoBehaviour
 
         // Optional: generate colors/material
         GenerateTerrainTexture(data, heights, mazeGen);
+
+        TreeSpawner tree_spawner = transform.parent.GetComponentInChildren<TreeSpawner>();
+
+        if (tree_spawner != null)
+        {
+            tree_spawner.GenTrees(mazeGen, heights);
+        }
     }
 
     float HeightFunction(float x, float z, int[,] mazeGen)
@@ -71,7 +80,7 @@ public class TerrainGen : MonoBehaviour
 
         float mzMag = mazeMag(X + varyX, Z + varyZ, mazeGen);
 
-	float mntVal = perlin(0.5f*X, 0.5f*Z) + 1.7f*perlin(0.897f*X, 0.897f*(Z+41f))+1.4f*perlin(1.77f*X, 1.77f*(Z+83f))+1.25f*perlin(2.57f*X, 2.57f*(Z+127f))+1.1f*perlin(4.157f*X, 4.157f*(Z+171f))+0.9f*perlin(7.157f*X, 7.157f*(Z+221f));
+	    float mntVal = perlin(0.5f*X, 0.5f*Z) + 1.7f*perlin(0.897f*X, 0.897f*(Z+41f))+1.4f*perlin(1.77f*X, 1.77f*(Z+83f))+1.25f*perlin(2.57f*X, 2.57f*(Z+127f))+1.1f*perlin(4.157f*X, 4.157f*(Z+171f))+0.9f*perlin(7.157f*X, 7.157f*(Z+221f));
         float baseVal = 0.25f+mzMag*(3f*mzMag+3f+mntVal)+0.2f*mntVal;
         float wVal = perlin(0.5f*X+51f, 0.5f*Z)+1.7f*perlin(0.897f*X, 0.897f*(Z+147f))+1.4f*perlin(1.77f*X, 1.77f*(Z+183f))+1.25f*perlin(2.57f*X, 2.57f*(Z+227f))+1.1f*perlin(4.157f*X, 4.157f*(Z+271f))+0.9f*perlin(7.157f*X, 7.157f*(Z+321f));
 
