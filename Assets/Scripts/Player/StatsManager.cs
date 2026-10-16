@@ -2,13 +2,14 @@ using UnityEngine;
 
 public enum BuffType
 {
-    FIRE_RATE,
-    MAX_AMMO,
-    COOLDOWN,
-    DAMAGE,
-    MAX_HEALTH,
-    DAMAGE_RESIST,
-    MOVE_SPEED
+    NONE = 0,
+    FIRE_RATE = 1,
+    MAX_AMMO = 2,
+    COOLDOWN = 3,
+    DAMAGE = 4,
+    MAX_HEALTH = 5,
+    DAMAGE_RESIST = 6,
+    MOVE_SPEED = 7
 }
 
 public class StatsManager : MonoBehaviour

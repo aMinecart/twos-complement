@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public abstract class Pickup : MonoBehaviour
@@ -29,8 +32,21 @@ public class WeaponPickup : Pickup
 
 public class BuffPickup : Pickup
 {
+    //private static Dictionary<BuffType, int> genRecord = Enum.GetValues(typeof(BuffType))
+    //                                                         .Cast<BuffType>()
+    //                                                         .ToDictionary(buff => buff, buff => 0);
+
+    //private static readonly BuffType[] buffList = Enum.GetValues(typeof(BuffType)).Cast<BuffType>().ToArray();
+    //private static readonly BuffType lastBuff = BuffType.NONE;
+
     [SerializeField] protected BuffType buffType;
     [SerializeField] protected float buffAmount;
+    
+    //public static BuffType getNextBuff(System.Random randGen)
+    //{
+    //    BuffType buff = buffList[randGen.Next(1, buffList.Length)];
+    //    if (lastBuffs.Contains(buff))
+    //}
 
     protected override void RegisterPickup(PlayerInventory inventory)
     {
