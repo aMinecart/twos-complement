@@ -15,7 +15,7 @@ public class PatrolBT : TreeSetup
 
     protected override Node SetupTree()
     {
-        player = Player.Instance.gameObject;
+        player = PlayerReference.Instance.gameObject;
         Node root = new Selector(new List<Node>
         {
 
