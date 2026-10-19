@@ -12,8 +12,11 @@ public class StatsManager : MonoBehaviour
     public float gravity_multiplier { get; set; } = PlayerPhysics.BASE_GRAVITY_MULTIPLIER;
     public float jump_height { get; set; } = PlayerPhysics.BASE_JUMP_HEIGHT;
 
+    // player control constants
     public float look_sensitivity { get; set; } = 0.1f;
     public float vert_look_range_degrees { get; set; } = 115.0f;
+
+    // player bonus stat constants
     // public float reload_speed { get; set; } = 1.0f;
 
     public void ApplyBuff(BuffType buffType, float buffValue)

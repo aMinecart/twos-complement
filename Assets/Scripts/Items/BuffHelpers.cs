@@ -16,6 +16,16 @@ public enum BuffType
 
 public class BuffHelpers
 {
+    private static readonly Dictionary<BuffType, float> buffAmountMap = new() {
+        { BuffType.FIRE_RATE, 1.5f },
+        { BuffType.MAX_AMMO, 3.0f },
+        { BuffType.COOLDOWN, 0.5f },
+        { BuffType.DAMAGE, 3.0f },
+        { BuffType.MAX_HEALTH, 15.0f },
+        { BuffType.DAMAGE_RESIST, 0.5f },
+        { BuffType.MOVE_SPEED, 0.1f }
+    };
+    
     private static readonly Dictionary<BuffType, uint> buffLikelihoodMap = new() {
         { BuffType.FIRE_RATE, 2 },
         { BuffType.MAX_AMMO, 2 },
@@ -25,10 +35,12 @@ public class BuffHelpers
         { BuffType.DAMAGE_RESIST, 2 },
         { BuffType.MOVE_SPEED, 1 },
     };
+
     private static readonly BuffType[] buffList = buffLikelihoodMap.Keys.ToArray();
     private static readonly uint[] buffWeights = buffLikelihoodMap.Values.ToArray();
-
     private static BuffType lastBuff = BuffType.NONE;
+
+    private static readonly int secondsPerPowerLevel = 300; // increase buffs' strengh every five minutes
 
     public static int GetRandWeighted(Random randGen, uint[] weights, int biasedAgainst)
     {
@@ -74,5 +86,20 @@ public class BuffHelpers
     public static BuffType GetNextBuffManaged(Random randGen)
     {
         return GetNextBuff(randGen, buffList, buffWeights, ref lastBuff);
+    }
+
+    private static float GetBuffAmount(BuffType buff, int powerLevel)
+    {
+        if (buffAmountMap.TryGetValue(buff, out float amount))
+        {
+            return amount * powerLevel;
+        }
+
+        return 0.0f;
+    }
+
+    public static float GetBuffAmountManaged(BuffType buff)
+    { 
+        return GetBuffAmount(buff, (int)(UnityEngine.Time.timeSinceLevelLoad / secondsPerPowerLevel));
     }
 }

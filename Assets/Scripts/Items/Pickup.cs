@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public abstract class Pickup : MonoBehaviour
@@ -48,10 +45,14 @@ public class BuffPickup : Pickup
     //    if (lastBuffs.Contains(buff))
     //}
 
-    public static BuffPickup getNextBuffPickup(System.Random randGen)
+    public static BuffPickup createRandBuffPickup(System.Random randGen, BuffPickup basePrefab, Vector3 position)
     {
-        BuffType targetType = BuffHelpers.GetNextBuffManaged(randGen);
-        return new GameObject("BuffPickup", typeof(BuffPickup)).GetComponent<BuffPickup>();
+        // create new buff pickup using weighted psuedo-random system
+        BuffPickup pickup = Instantiate(basePrefab, position, Quaternion.identity);
+        pickup.buffType = BuffHelpers.GetNextBuffManaged(randGen);
+        pickup.buffAmount = BuffHelpers.GetBuffAmountManaged(pickup.buffType);
+
+        return pickup;
     }
 
     protected override void RegisterPickup(PlayerInventory inventory)
