@@ -10,6 +10,7 @@ public static class PlayerPhysics
     public const float BASE_GRAVITY_ACCEL = 15.24f;
     public const float BASE_GRAVITY_MULTIPLIER = 1.0f;
     public const float BASE_AIR_REDUCTION_FACTOR = 0.1f;
+    public const float BASE_JUMP_HEIGHT = 0.1677050983f;
 
 
     // basic physics functions
@@ -45,5 +46,11 @@ public static class PlayerPhysics
         }
 
         return currVelocity + accelSpeed * (Vector3)accelDir;
+    }
+
+    public static Vector3 ApplyJumpForce(Vector3 currVelocity, float jumpHeight, float gravityAccel)
+    {
+        currVelocity.y = 2 * gravityAccel * jumpHeight;
+        return currVelocity;
     }
 }

@@ -1,15 +1,29 @@
 using System.Collections;
 using UnityEngine;
 
+// TODO:
+// - Coordinate initial magazine setup with saved ammunition restoration
+// so Start() doesnt overwrite ammunition restored earlier
+
 // shared functionality for all weapons that use ammo and can reload
 public abstract class RangedWeapon : Weapon
 {
-    // Ranged weapon specific stats 
+    // Ranged weapon specific stats
     [SerializeField] protected int magazineSize;
     [SerializeField] protected float reloadTime;
 
     protected int currentAmmo;
     protected bool isReloading = false;
+
+    // Allow the UI and save system to read ammunition
+    public int CurrentAmmo => currentAmmo;
+    public int MagazineSize => magazineSize;
+
+    // Restore ammunition without exposing internal variables
+    public void SetAmmo(int amount)
+    {
+        currentAmmo = Mathf.Clamp(amount, 0, magazineSize);
+    }
 
     // weapon specific implementation of firing and reload
     protected abstract void Shoot();
@@ -22,7 +36,7 @@ public abstract class RangedWeapon : Weapon
 
     protected void OnDisable()
     {
-        // Stop reloading if gun is unequipped or disabled 
+        // Stop reloading if gun is unequipped or disabled
         StopAllCoroutines();
         isReloading = false;
     }
@@ -48,12 +62,12 @@ public abstract class RangedWeapon : Weapon
         Shoot();
         base.Attack();
 
-        // Set time when gun can shoot again 
+        // Set time when gun can shoot again
         nextAttackTime = Time.time + fireRate;
         return true;
     }
 
-    // Reload the gun when requested 
+    // Reload the gun when requested
     public override void Reload()
     {
         // Don't reload if game isn't playing, already reloading or mag is full 
@@ -63,7 +77,7 @@ public abstract class RangedWeapon : Weapon
         StartCoroutine(ReloadCoroutine());
     }
 
-    // Shared realoding functionality 
+    // Shared realoding functionality
     protected virtual IEnumerator ReloadCoroutine()
     {
         isReloading = true;
@@ -72,7 +86,7 @@ public abstract class RangedWeapon : Weapon
         float elapsedTime = 0f;
         while (true)
         {
-            // Cancel reload if player dies or game stops 
+            // Cancel reload if player dies or game stops
             if(!CanUseWeapon())
             {
                 isReloading = false;
@@ -89,7 +103,7 @@ public abstract class RangedWeapon : Weapon
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        
+
         currentAmmo = magazineSize;
         isReloading = false;
 

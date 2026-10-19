@@ -12,7 +12,8 @@ public class GameManager : MonoBehaviour
     public enum GameState
     {
         Playing,
-        GameOver, 
+        Paused,
+        GameOver,
         Victory
     }
 
@@ -20,7 +21,7 @@ public class GameManager : MonoBehaviour
     public event Action<GameState> OnGameStateChanged;
     [SerializeField] private string startingScene = "SampleScene";
     public int CurrentLevel { get; private set; } = 1;
-
+    public static int runSeed = 0;
 
     [RuntimeInitializeOnLoadMethod]
     private static void Initialization()
@@ -46,6 +47,13 @@ public class GameManager : MonoBehaviour
         instance = this;
         // DontDestroyOnLoad(gameObject);
 
+        long time_val = DateTime.UtcNow.Ticks;
+
+        runSeed = (int)(time_val ^ (time_val >> 32));
+        int lvlSeed = runSeed;
+
+        Debug.Log($"Seed: {runSeed}");
+
         // get random seed from terrain gen, if it exists
         int levelSeed = 0;
         TerrainGen terrainGen = FindFirstObjectByType<TerrainGen>();
@@ -66,6 +74,24 @@ public class GameManager : MonoBehaviour
         CurrentState = newState;
         Debug.Log("Game state changed to: " + CurrentState);
         OnGameStateChanged?.Invoke(CurrentState);
+    }
+
+    public void PauseGame()
+    {
+        if (CurrentState != GameState.Playing)
+            return;
+
+        SetGameState(GameState.Paused);
+        Time.timeScale = 0f;
+    }
+
+    public void ResumeGame()
+    {
+        if (CurrentState != GameState.Paused)
+            return;
+
+        Time.timeScale = 1f;
+        SetGameState(GameState.Playing);
     }
 
     public void GameOver()
@@ -91,6 +117,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
+        Time.timeScale = 1f;
         CurrentLevel = 1;
         SetGameState(GameState.Playing);
         SceneManager.LoadScene(startingScene);
