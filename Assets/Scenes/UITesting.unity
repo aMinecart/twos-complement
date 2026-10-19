@@ -2415,7 +2415,6 @@ MonoBehaviour:
   healthBarFill: {fileID: 1537153661}
   healthText: {fileID: 2090052066}
   playerHealth: {fileID: 1263121377}
-  testHealthBar: 1
 --- !u!4 &1896704735
 Transform:
   m_ObjectHideFlags: 0
@@ -2897,6 +2896,14 @@ PrefabInstance:
     - target: {fileID: 3930792758395679741, guid: c9ffa0823a189cf419c61e22507afd05, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5084440969362544688, guid: c9ffa0823a189cf419c61e22507afd05, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 3659709167108178068, guid: 8420cc0fe0b855f48a4d8f29d19c049a, type: 3}
+    - target: {fileID: 5969077552504535423, guid: c9ffa0823a189cf419c61e22507afd05, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 258
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
