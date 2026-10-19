@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 4165229618976737060}
   - component: {fileID: 7865173182974903209}
   - component: {fileID: 8308330553904616884}
+  - component: {fileID: 8970186528393848212}
+  - component: {fileID: 6633444083179730993}
   m_Layer: 6
   m_Name: Enemy Small 3
   m_TagString: Untagged
@@ -168,6 +170,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcaf8b8cb6d94494d974b3f7bef68e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlaceOnNavMesh
+--- !u!114 &8970186528393848212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353164656664759604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34585d1aeb0db41d1b01fe1477920cb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthTracker
+  maxHealth: 100
+--- !u!114 &6633444083179730993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353164656664759604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc116301ce3114e70bf8a1fc6bab3c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDeath
 --- !u!1 &1547409030807396111
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,8 +276,9 @@ GameObject:
   - component: {fileID: 4218429217558552038}
   - component: {fileID: 5158941926020986277}
   - component: {fileID: 6433171048972454879}
-  - component: {fileID: 1709139536752438933}
   - component: {fileID: 1091073192696167681}
+  - component: {fileID: 2820888156508119333}
+  - component: {fileID: 1976560875275504634}
   m_Layer: 6
   m_Name: Enemy Huge
   m_TagString: Untagged
@@ -374,24 +402,6 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1709139536752438933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2798592634254206544}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38e764089f2cd164fb8c4a41e5cd969f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PrefabOneTree
-  spawn:
-  - {fileID: 8286076507872241557}
-  visionRange: 50
-  attackRange: 2
-  visionAngle: 90
-  speed: 1.5
 --- !u!114 &1091073192696167681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,6 +414,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcaf8b8cb6d94494d974b3f7bef68e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlaceOnNavMesh
+--- !u!114 &2820888156508119333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2798592634254206544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34585d1aeb0db41d1b01fe1477920cb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthTracker
+  maxHealth: 100
+--- !u!114 &1976560875275504634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2798592634254206544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc116301ce3114e70bf8a1fc6bab3c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDeath
 --- !u!1 &3472768951009101848
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,6 +516,8 @@ GameObject:
   - component: {fileID: 6432473137672505171}
   - component: {fileID: 4026420707219358803}
   - component: {fileID: 2184141852110713140}
+  - component: {fileID: 5071448722456799902}
+  - component: {fileID: 2638044956428422171}
   m_Layer: 6
   m_Name: Enemy Small 1
   m_TagString: Untagged
@@ -634,6 +671,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcaf8b8cb6d94494d974b3f7bef68e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlaceOnNavMesh
+--- !u!114 &5071448722456799902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5344612188687772232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34585d1aeb0db41d1b01fe1477920cb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthTracker
+  maxHealth: 100
+--- !u!114 &2638044956428422171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5344612188687772232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc116301ce3114e70bf8a1fc6bab3c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDeath
 --- !u!1 &5552723754206538274
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,7 +708,7 @@ GameObject:
   - component: {fileID: 5794197931008363460}
   - component: {fileID: 8995414640698128281}
   - component: {fileID: 2583415982018190385}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -828,6 +890,8 @@ GameObject:
   - component: {fileID: 6141521727535648559}
   - component: {fileID: 8892255678629583966}
   - component: {fileID: 4438292908897728776}
+  - component: {fileID: 2284492401461340059}
+  - component: {fileID: 7518815393923139145}
   m_Layer: 6
   m_Name: Enemy Small 2
   m_TagString: Untagged
@@ -981,6 +1045,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcaf8b8cb6d94494d974b3f7bef68e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlaceOnNavMesh
+--- !u!114 &2284492401461340059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6041602329962087265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34585d1aeb0db41d1b01fe1477920cb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthTracker
+  maxHealth: 100
+--- !u!114 &7518815393923139145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6041602329962087265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc116301ce3114e70bf8a1fc6bab3c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDeath
 --- !u!1 &6221385506352297167
 GameObject:
   m_ObjectHideFlags: 0
