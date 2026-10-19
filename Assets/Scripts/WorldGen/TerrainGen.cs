@@ -13,6 +13,7 @@ public class TerrainGen : MonoBehaviour
     public float sampleScale = 1.0f;
     public int lvlSeed = 42;
     public int mazeSize = 6;
+    public Transform player;
 
     private Terrain terrain;
 
@@ -67,6 +68,20 @@ public class TerrainGen : MonoBehaviour
         if (tree_spawner != null)
         {
             tree_spawner.GenTrees(mazeGen, heights);
+        }
+
+        BountySpawner bounty_spawner = transform.parent.GetComponentInChildren<BountySpawner>();
+
+        if (bounty_spawner != null)
+        {
+            bounty_spawner.GenBounties(mazeGen, heights);
+        }
+
+        PlayerSpawnPoint player_spawn = player.GetComponent<PlayerSpawnPoint>();
+
+        if (player_spawn != null)
+        {
+            player_spawn.SetSpawn(mazeGen, heights);
         }
     }
 
