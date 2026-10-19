@@ -78,18 +78,5 @@ public class HealthTracker : MonoBehaviour
 
         // Notifies subscribed scripts
         OnDeath?.Invoke();
-
-        //ONLY PLAYER'S DEATH triggers "Game Over" screen: 
-        if (CompareTag("Player"))
-        {
-            if(GameManager.instance != null)
-            {
-                GameManager.instance.GameOver();
-            }
-            else
-            {
-                Debug.LogError("Player has died BUT GameManager.instance = null!");
-            }
-        }
     }
 }
