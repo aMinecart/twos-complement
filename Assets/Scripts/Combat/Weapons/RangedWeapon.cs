@@ -46,6 +46,7 @@ public abstract class RangedWeapon : Weapon
         }
 
         Shoot();
+        base.Attack();
 
         // Set time when gun can shoot again 
         nextAttackTime = Time.time + fireRate;
@@ -55,7 +56,7 @@ public abstract class RangedWeapon : Weapon
     // Reload the gun when requested 
     public override void Reload()
     {
-        // Don;t reload if game isn't playing, already reloading or mag is full 
+        // Don't reload if game isn't playing, already reloading or mag is full 
         if (!CanUseWeapon() || isReloading || currentAmmo == magazineSize)
             return;
 

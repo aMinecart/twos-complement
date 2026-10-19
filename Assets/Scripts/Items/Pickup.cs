@@ -32,6 +32,12 @@ public class BuffPickup : Pickup
     [SerializeField] protected BuffType buffType;
     [SerializeField] protected float buffAmount;
 
+    public static BuffPickup getNextBuffPickup(System.Random randGen)
+    {
+        BuffType targetType = BuffHelpers.GetNextBuffManaged(randGen);
+        return new GameObject("BuffPickup", typeof(BuffPickup)).GetComponent<BuffPickup>();
+    }
+
     protected override void RegisterPickup(PlayerInventory inventory)
     {
         inventory.statsManager.ApplyBuff(buffType, buffAmount);

@@ -1,10 +1,13 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }
+    public static System.Random rng { get; private set; }
 
     public enum GameState
     {
@@ -42,6 +45,17 @@ public class GameManager : MonoBehaviour
 
         instance = this;
         // DontDestroyOnLoad(gameObject);
+
+        // get random seed from terrain gen, if it exists
+        int levelSeed = 0;
+        TerrainGen terrainGen = FindFirstObjectByType<TerrainGen>();
+        if (terrainGen != null)
+        {
+            levelSeed = terrainGen.lvlSeed;
+        }
+
+        // set up random number generator for spawns
+        rng = new System.Random(levelSeed);
     }
 
     public void SetGameState(GameState newState)

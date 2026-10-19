@@ -1,16 +1,5 @@
 using UnityEngine;
 
-public enum BuffType
-{
-    FIRE_RATE,
-    MAX_AMMO,
-    COOLDOWN,
-    DAMAGE,
-    MAX_HEALTH,
-    DAMAGE_RESIST,
-    MOVE_SPEED
-}
-
 public class StatsManager : MonoBehaviour
 {
     // player physics constants
