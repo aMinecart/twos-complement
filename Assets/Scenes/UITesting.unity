@@ -553,7 +553,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2887871361382982934, guid: 8752a776e09a2134ca4cc41739e32c97, type: 3}
       propertyPath: m_Name
-      value: PauseMenuCanvas (1)
+      value: PauseMenuCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281964770476976814, guid: 8752a776e09a2134ca4cc41739e32c97, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281964770476976814, guid: 8752a776e09a2134ca4cc41739e32c97, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281964770476976814, guid: 8752a776e09a2134ca4cc41739e32c97, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8281964770476976814, guid: 8752a776e09a2134ca4cc41739e32c97, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8878071168857294452, guid: 8752a776e09a2134ca4cc41739e32c97, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8878071168857294452, guid: 8752a776e09a2134ca4cc41739e32c97, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8878071168857294452, guid: 8752a776e09a2134ca4cc41739e32c97, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8878071168857294452, guid: 8752a776e09a2134ca4cc41739e32c97, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2383,6 +2415,7 @@ MonoBehaviour:
   healthBarFill: {fileID: 1537153661}
   healthText: {fileID: 2090052066}
   playerHealth: {fileID: 1263121377}
+  testHealthBar: 1
 --- !u!4 &1896704735
 Transform:
   m_ObjectHideFlags: 0
