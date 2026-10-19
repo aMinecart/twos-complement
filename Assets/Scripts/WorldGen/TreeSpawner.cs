@@ -26,7 +26,7 @@ public class TreeSpawner : MonoBehaviour
             {
                 GameObject tree = Instantiate(prefab, transform);
 
-                tree.transform.localPosition = new Vector3(xPos, yPos, zPos);
+                tree.transform.localPosition = new Vector3(xPos, yPos-1.5f, zPos);
             }
         }
     }
