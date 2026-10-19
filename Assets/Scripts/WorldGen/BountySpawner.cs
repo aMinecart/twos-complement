@@ -31,35 +31,9 @@ public class BountySpawner : MonoBehaviour
 
             mzMag = mazeMag(X + varyX, Z + varyZ, mazeGen);
         }
-        GameObject bounty1 = Instantiate(prefab1, transform);
+        GameObject bounty1 = Instantiate(prefab1, new Vector3(xPos, yPos+8, zPos), Quaternion.identity, transform);
 
-        bounty1.transform.localPosition = new Vector3(xPos, yPos+2, zPos);
-
-        xPos = 0;
-        zPos = 0;
-        yPos = 0;
-        X = 0;
-        Z = 0;
-        varyX = 0;
-        varyZ = 0;
-        mzMag = 0;
-        while((mzMag > 0.025f)||(yPos<15f)||(yPos>22f))
-        {
-            xPos = 1f*Random.Range(1,499);
-            zPos = 1f*Random.Range(1,499);
-            yPos = 50f*heights[(int)(4.098*zPos), (int)(4.098*xPos)];
-
-            X = (((float)xPos/500f)*(2f*6f+2f)-1f);
-            Z = (((float)zPos/500f)*(2f*6f+2f)-1f);
-
-            varyX = 1.5f*(0.5f*perlin(0.37f*X, 0.37f*(Z-34f)) + 0.45f*perlin(0.511f*X, 0.511f*(Z-81f)));
-            varyZ = 1.5f*(0.5f*perlin(0.37f*(X-43f), 0.37f*Z) + 0.45f*perlin(0.511f*(X+73f), 0.511f*Z));
-
-            mzMag = mazeMag(X + varyX, Z + varyZ, mazeGen);
-        }
-        GameObject bounty2 = Instantiate(prefab2, transform);
-
-        bounty2.transform.localPosition = new Vector3(xPos, yPos+2, zPos);
+        //bounty1.transform.localPosition = new Vector3(xPos, yPos+10, zPos);
 
         xPos = 0;
         zPos = 0;
@@ -83,9 +57,35 @@ public class BountySpawner : MonoBehaviour
 
             mzMag = mazeMag(X + varyX, Z + varyZ, mazeGen);
         }
-        GameObject bounty3 = Instantiate(prefab3, transform);
+        GameObject bounty2 = Instantiate(prefab2, new Vector3(xPos, yPos+8, zPos), Quaternion.identity, transform);
 
-        bounty3.transform.localPosition = new Vector3(xPos, yPos+2, zPos);
+        //bounty2.transform.localPosition = new Vector3(xPos, yPos+10, zPos);
+
+        xPos = 0;
+        zPos = 0;
+        yPos = 0;
+        X = 0;
+        Z = 0;
+        varyX = 0;
+        varyZ = 0;
+        mzMag = 0;
+        while((mzMag > 0.025f)||(yPos<15f)||(yPos>22f))
+        {
+            xPos = 1f*Random.Range(1,499);
+            zPos = 1f*Random.Range(1,499);
+            yPos = 50f*heights[(int)(4.098*zPos), (int)(4.098*xPos)];
+
+            X = (((float)xPos/500f)*(2f*6f+2f)-1f);
+            Z = (((float)zPos/500f)*(2f*6f+2f)-1f);
+
+            varyX = 1.5f*(0.5f*perlin(0.37f*X, 0.37f*(Z-34f)) + 0.45f*perlin(0.511f*X, 0.511f*(Z-81f)));
+            varyZ = 1.5f*(0.5f*perlin(0.37f*(X-43f), 0.37f*Z) + 0.45f*perlin(0.511f*(X+73f), 0.511f*Z));
+
+            mzMag = mazeMag(X + varyX, Z + varyZ, mazeGen);
+        }
+        GameObject bounty3 = Instantiate(prefab3, new Vector3(xPos, yPos+8, zPos), Quaternion.identity, transform);
+
+        //bounty3.transform.localPosition = new Vector3(xPos, yPos+8, zPos);
     }
 
     float mazeMag(float x, float z, int[,] mazeGen)

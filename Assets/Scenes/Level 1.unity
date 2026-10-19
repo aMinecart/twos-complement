@@ -452,6 +452,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 604861848121008991, guid: 571b95ea7a9946a4c9527def14f19510, type: 3}
       insertIndex: -1
       addedObject: {fileID: 802402277}
+    - targetCorrespondingSourceObject: {fileID: 604861848121008991, guid: 571b95ea7a9946a4c9527def14f19510, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1299643223}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2618407136681197504, guid: 571b95ea7a9946a4c9527def14f19510, type: 3}
       insertIndex: -1
@@ -498,7 +501,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 127
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0
@@ -807,33 +810,13 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 193947545450241422, guid: 342ec638fc1434e4e9693886bd9c8ddc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1970611299}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5720902316750530133, guid: 342ec638fc1434e4e9693886bd9c8ddc, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2121900427}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 342ec638fc1434e4e9693886bd9c8ddc, type: 3}
---- !u!1 &2121900425 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5720902316750530133, guid: 342ec638fc1434e4e9693886bd9c8ddc, type: 3}
-  m_PrefabInstance: {fileID: 2121900424}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2121900426 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 193947545450241422, guid: 342ec638fc1434e4e9693886bd9c8ddc, type: 3}
   m_PrefabInstance: {fileID: 2121900424}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2121900427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2121900425}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0309a9f1d8e88204db0ed5e349d643b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerSpawnPoint
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

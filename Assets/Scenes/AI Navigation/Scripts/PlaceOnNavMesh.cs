@@ -9,10 +9,11 @@ public class PlaceOnNavMesh : MonoBehaviour
     {
         NavMeshHit hit;
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
-        if(NavMesh.SamplePosition(gameObject.transform.position, out hit, 500f, NavMesh.AllAreas))
+        if(NavMesh.SamplePosition(gameObject.transform.position, out hit, 12f, NavMesh.AllAreas))
         {
-            gameObject.transform.position = hit.position;
+            gameObject.transform.position = hit.position; // + new Vector3(0f, 0.5f, 0f);
             agent.enabled = true;
+            agent.Warp(hit.position);
         }
     }
 
