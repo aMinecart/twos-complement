@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -10,6 +12,9 @@ public class GameMenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenuPanel;
     [SerializeField] private PlayerSpawnManager spawnManager;
+
+       [Tooltip("Scene to load after Save & Quit. Leave empty (or not in Build Profiles) to quit the application instead.")]
+    [SerializeField] private string mainMenuScene = "MainMenu";
 
     public static bool IsPaused {get; private set; }
 
@@ -38,13 +43,33 @@ public class GameMenuManager : MonoBehaviour
 
     public void SaveAndQuit()
     {
-        if(spawnManager == null)
+        bool saved = TrySaveRun();
+        if (!saved)
         {
-            Debug.LogError("Spawn Manager isn't assigned!");
-            return;
+            if(spawnManager == null)
+            {
+                spawnManager = FindFirstObjectByType<PlayerSpawnManager>();
+            }
+            if(spawnManager == null)
+            {
+                Debug.LogError("Spawn Manager isn't assigned and none was found!"); 
+                return;
+            }
+            spawnManager.SavePosition();
         }
-        spawnManager.SavePosition();
         QuitGame();
+    }
+
+    private bool TrySaveRun()
+    {
+        if(RunSaveManager.instance == null)
+        {
+            return false;
+        }
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player"); 
+        RunSaveData data = RunSaveManager.instance.CaptureRunData(player); 
+        return data != null && RunSaveManager.instance.SaveRun(data); 
     }
 
     private void SetPaused(bool paused)
@@ -98,6 +123,11 @@ public class GameMenuManager : MonoBehaviour
             GameManager.instance.ResumeGame();
         }
 
+        if(!string.IsNullOrWhiteSpace(mainMenuScene) && Application.CanStreamedLevelBeLoaded(mainMenuScene))
+        {
+            SceneManager.LoadScene(mainMenuScene);
+            return; 
+        }
         Application.Quit();
     #if UNITY_EDITOR
         EditorApplication.isPlaying = false;
