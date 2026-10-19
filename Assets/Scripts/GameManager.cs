@@ -54,16 +54,8 @@ public class GameManager : MonoBehaviour
 
         Debug.Log($"Seed: {runSeed}");
 
-        // get random seed from terrain gen, if it exists
-        int levelSeed = 0;
-        TerrainGen terrainGen = FindFirstObjectByType<TerrainGen>();
-        if (terrainGen != null)
-        {
-            levelSeed = terrainGen.lvlSeed;
-        }
-
         // set up random number generator for spawns
-        rng = new System.Random(levelSeed);
+        rng = new System.Random(runSeed);
     }
 
     public void SetGameState(GameState newState)
