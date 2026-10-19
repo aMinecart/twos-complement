@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerSpawnPoint : MonoBehaviour
 {
+    public Transform player;
+    
     public void SetSpawn(int[,] mazeGen, float[,] heights)
     {
         float xPos = 0;
@@ -28,6 +30,7 @@ public class PlayerSpawnPoint : MonoBehaviour
         }
 
         transform.localPosition = new Vector3(xPos, yPos+2, zPos);
+        player.localPosition = new Vector3(xPos, yPos+2, zPos);
     }
 
     float mazeMag(float x, float z, int[,] mazeGen)
