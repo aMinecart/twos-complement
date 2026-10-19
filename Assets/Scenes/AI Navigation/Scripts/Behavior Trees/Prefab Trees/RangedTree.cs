@@ -7,9 +7,10 @@ public class RangedTree : TreeSetup
 {
     private GameObject player;
     public UnityEngine.Transform[] spawn;
-    public float visionRange;
-    public float attackRange = 50f;
+    public float visionRange = 35f;
+    public float attackRange = 15f;
     public float visionAngle = 45f;
+    public float runDistance = 15f;
     public float speed = 2f;
 
     protected override Node SetupTree()
@@ -17,6 +18,11 @@ public class RangedTree : TreeSetup
         player = PlayerReference.Instance.gameObject;
         Node root = new Selector(new List<Node>
         {
+            new Sequence(new List<Node>
+            {
+                new CheckRangedTooClose(player, gameObject, runDistance),
+                new TaskRunAway(player, gameObject, runDistance),
+            }),
 
             new Sequence(new List<Node>
             {

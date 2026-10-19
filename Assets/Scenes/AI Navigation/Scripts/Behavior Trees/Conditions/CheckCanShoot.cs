@@ -19,6 +19,7 @@ public class CheckCanShoot : Node
         if(Vector3.Distance(target.transform.position, enemy.transform.position) < attackRange)
         {
             state = NodeState.SUCCESS;
+            //Debug.Log(Vector3.Distance(target.transform.position, enemy.transform.position));
             return NodeState.SUCCESS;
         }
         state = NodeState.FAILURE;
