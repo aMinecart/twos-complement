@@ -332,6 +332,9 @@ GameObject:
   - component: {fileID: 4052566353296248523}
   - component: {fileID: 1777380749949595714}
   - component: {fileID: 6046235960225303858}
+  - component: {fileID: 5747011130214243417}
+  - component: {fileID: 297222970503154234}
+  - component: {fileID: 8502367156230202937}
   m_Layer: 6
   m_Name: Enemy Small 4
   m_TagString: Untagged
@@ -485,6 +488,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcaf8b8cb6d94494d974b3f7bef68e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlaceOnNavMesh
+--- !u!114 &5747011130214243417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2414614570815649556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34585d1aeb0db41d1b01fe1477920cb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthTracker
+  maxHealth: 100
+--- !u!114 &297222970503154234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2414614570815649556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc116301ce3114e70bf8a1fc6bab3c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDeath
+--- !u!114 &8502367156230202937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2414614570815649556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f834cb3b9be444369fe5ab343e98fe7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeleeWeapon
+  weaponId: 
+  damage: 10
+  fireRate: 1
+  range: 2
+  firingOriginTransform: {fileID: 0}
+  ownerHealth: {fileID: 0}
 --- !u!1 &2491917793797506238
 GameObject:
   m_ObjectHideFlags: 0
@@ -500,6 +546,7 @@ GameObject:
   - component: {fileID: 1688394900999606917}
   - component: {fileID: 6407310066309186307}
   - component: {fileID: 3512663033212370242}
+  - component: {fileID: 6650043394725982814}
   m_Layer: 6
   m_Name: Enemy Small 6
   m_TagString: Untagged
@@ -653,6 +700,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcaf8b8cb6d94494d974b3f7bef68e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlaceOnNavMesh
+--- !u!114 &6650043394725982814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2491917793797506238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f834cb3b9be444369fe5ab343e98fe7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeleeWeapon
+  weaponId: 
+  damage: 10
+  fireRate: 1
+  range: 2
+  firingOriginTransform: {fileID: 0}
+  ownerHealth: {fileID: 0}
 --- !u!1 &3031999419072535276
 GameObject:
   m_ObjectHideFlags: 0
@@ -961,6 +1026,9 @@ GameObject:
   - component: {fileID: 108996728930252506}
   - component: {fileID: 3882012845208367131}
   - component: {fileID: 8422024627718640998}
+  - component: {fileID: 8381300341403262863}
+  - component: {fileID: 5289792107156617834}
+  - component: {fileID: 3132728228046811035}
   m_Layer: 6
   m_Name: Enemy Small 3
   m_TagString: Untagged
@@ -1114,6 +1182,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcaf8b8cb6d94494d974b3f7bef68e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlaceOnNavMesh
+--- !u!114 &8381300341403262863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4810672924812750114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34585d1aeb0db41d1b01fe1477920cb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthTracker
+  maxHealth: 100
+--- !u!114 &5289792107156617834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4810672924812750114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc116301ce3114e70bf8a1fc6bab3c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDeath
+--- !u!114 &3132728228046811035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4810672924812750114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f834cb3b9be444369fe5ab343e98fe7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeleeWeapon
+  weaponId: 
+  damage: 10
+  fireRate: 1
+  range: 2
+  firingOriginTransform: {fileID: 0}
+  ownerHealth: {fileID: 0}
 --- !u!1 &5113513394007454002
 GameObject:
   m_ObjectHideFlags: 0
@@ -1340,6 +1451,9 @@ GameObject:
   - component: {fileID: 190798429417634021}
   - component: {fileID: 7819794883637611180}
   - component: {fileID: 6015669885405875641}
+  - component: {fileID: 4003953356510799803}
+  - component: {fileID: 7075666273618815130}
+  - component: {fileID: 7030197453292726730}
   m_Layer: 6
   m_Name: Enemy Small 1
   m_TagString: Untagged
@@ -1493,6 +1607,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcaf8b8cb6d94494d974b3f7bef68e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlaceOnNavMesh
+--- !u!114 &4003953356510799803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7398344233433658868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34585d1aeb0db41d1b01fe1477920cb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthTracker
+  maxHealth: 100
+--- !u!114 &7075666273618815130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7398344233433658868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc116301ce3114e70bf8a1fc6bab3c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDeath
+--- !u!114 &7030197453292726730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7398344233433658868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f834cb3b9be444369fe5ab343e98fe7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeleeWeapon
+  weaponId: 
+  damage: 10
+  fireRate: 1
+  range: 2
+  firingOriginTransform: {fileID: 0}
+  ownerHealth: {fileID: 0}
 --- !u!1 &7623896725553302717
 GameObject:
   m_ObjectHideFlags: 0
@@ -1508,6 +1665,9 @@ GameObject:
   - component: {fileID: 7427580994425149026}
   - component: {fileID: 3106216068032301218}
   - component: {fileID: 3851412286801781659}
+  - component: {fileID: 4830505290096392923}
+  - component: {fileID: 2785161483128390632}
+  - component: {fileID: 21690377035500765}
   m_Layer: 6
   m_Name: Enemy Small 5
   m_TagString: Untagged
@@ -1661,6 +1821,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcaf8b8cb6d94494d974b3f7bef68e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlaceOnNavMesh
+--- !u!114 &4830505290096392923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7623896725553302717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34585d1aeb0db41d1b01fe1477920cb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthTracker
+  maxHealth: 100
+--- !u!114 &2785161483128390632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7623896725553302717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc116301ce3114e70bf8a1fc6bab3c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDeath
+--- !u!114 &21690377035500765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7623896725553302717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f834cb3b9be444369fe5ab343e98fe7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeleeWeapon
+  weaponId: 
+  damage: 10
+  fireRate: 1
+  range: 2
+  firingOriginTransform: {fileID: 0}
+  ownerHealth: {fileID: 0}
 --- !u!1 &8401916052909814633
 GameObject:
   m_ObjectHideFlags: 0
@@ -1788,6 +1991,9 @@ GameObject:
   - component: {fileID: 3340083941216544557}
   - component: {fileID: 5614373334018767385}
   - component: {fileID: 7953061839517416178}
+  - component: {fileID: 7852271314647575263}
+  - component: {fileID: 6091492047294647343}
+  - component: {fileID: 6474176702307878816}
   m_Layer: 6
   m_Name: Enemy Small 2
   m_TagString: Untagged
@@ -1941,3 +2147,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcaf8b8cb6d94494d974b3f7bef68e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlaceOnNavMesh
+--- !u!114 &7852271314647575263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8969019907375411451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34585d1aeb0db41d1b01fe1477920cb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthTracker
+  maxHealth: 100
+--- !u!114 &6091492047294647343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8969019907375411451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc116301ce3114e70bf8a1fc6bab3c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDeath
+--- !u!114 &6474176702307878816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8969019907375411451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f834cb3b9be444369fe5ab343e98fe7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeleeWeapon
+  weaponId: 
+  damage: 10
+  fireRate: 1
+  range: 2
+  firingOriginTransform: {fileID: 0}
+  ownerHealth: {fileID: 0}

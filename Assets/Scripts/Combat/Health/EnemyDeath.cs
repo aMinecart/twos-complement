@@ -24,7 +24,8 @@ public class EnemyDeath : MonoBehaviour
 
     private void HandleDeath()
     {
-        // Remove enemy from scene when it dies 
+        // Remove enemy from scene when it dies
+        HeatController.Instance.currentHeat += 5;
         Destroy(gameObject);
     }
 }
