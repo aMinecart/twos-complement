@@ -68,5 +68,5 @@
         "*.slnx": "*.csproj"
     },
     "Left Astray.slnx=======dotnet.defaultSolution": "twos-complement.slnx>>>>>>>00ef593d481d4f390cb49eb5bb5a6083480d1117",
-    "dotnet.defaultSolution": "twos-complement.slnx"
+    "dotnet.defaultSolution": "Left Astray.slnx"
 }

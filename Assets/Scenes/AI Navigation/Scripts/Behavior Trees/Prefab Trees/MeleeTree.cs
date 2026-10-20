@@ -20,7 +20,7 @@ public class MeleeTree : TreeSetup
 
             new Sequence(new List<Node>
             {
-                new CheckInRange(player, gameObject, attackRange),
+                new CheckInMeleeRange(player, gameObject, attackRange),
                 new TaskAttack(gameObject, player),
             }),
 
