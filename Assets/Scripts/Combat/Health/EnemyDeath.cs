@@ -4,6 +4,7 @@ using UnityEngine;
 public class EnemyDeath : MonoBehaviour
 {
     private HealthTracker health;
+    [SerializeField] private BuffPickup basePickupPrefab;
 
     void Awake()
     {
@@ -24,7 +25,10 @@ public class EnemyDeath : MonoBehaviour
 
     private void HandleDeath()
     {
-        // Remove enemy from scene when it dies 
+        // spawn random buff at enemy location
+        BuffPickup.CreateRandBuffPickup(GameManager.rng, basePickupPrefab, transform.position);
+
+        // Remove enemy from scene when it dies
         Destroy(gameObject);
     }
 }

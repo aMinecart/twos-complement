@@ -6,34 +6,34 @@ public enum BuffType
 {
     NONE,
     FIRE_RATE,
-    MAX_AMMO,
     COOLDOWN,
+    MAX_AMMO,
     DAMAGE,
     MAX_HEALTH,
-    DAMAGE_RESIST,
-    MOVE_SPEED
+    MOVE_SPEED,
+    DAMAGE_RESIST
 }
 
 public class BuffHelpers
 {
     private static readonly Dictionary<BuffType, float> buffAmountMap = new() {
         { BuffType.FIRE_RATE, 1.5f },
-        { BuffType.MAX_AMMO, 3.0f },
         { BuffType.COOLDOWN, 0.5f },
+        { BuffType.MAX_AMMO, 3.0f },
         { BuffType.DAMAGE, 3.0f },
         { BuffType.MAX_HEALTH, 15.0f },
-        { BuffType.DAMAGE_RESIST, 0.5f },
-        { BuffType.MOVE_SPEED, 0.1f }
+        { BuffType.MOVE_SPEED, 0.1f },
+        { BuffType.DAMAGE_RESIST, 0.5f }
     };
     
     private static readonly Dictionary<BuffType, uint> buffLikelihoodMap = new() {
         { BuffType.FIRE_RATE, 2 },
-        { BuffType.MAX_AMMO, 2 },
         { BuffType.COOLDOWN, 2 },
+        { BuffType.MAX_AMMO, 2 },
         { BuffType.DAMAGE, 2 },
         { BuffType.MAX_HEALTH, 4 },
-        { BuffType.DAMAGE_RESIST, 2 },
         { BuffType.MOVE_SPEED, 1 },
+        { BuffType.DAMAGE_RESIST, 2 }
     };
 
     private static readonly BuffType[] buffList = buffLikelihoodMap.Keys.ToArray();
@@ -53,13 +53,13 @@ public class BuffHelpers
         uint weightSum = 0;
         for (int i = 0; i < weights.Length; ++i)
         {
-            weightSum += weights[i];
-        }
+            // double the weight of each index except for biased index, if one was given
+            if (weights[i] != biasedAgainst)
+            {
+                weights[i] *= 2;
+            }
 
-        // double the weight of each index except for biased index, if one was given
-        if (biasedAgainst >= 0)
-        {
-            weightSum = 2 * weightSum - weights[biasedAgainst];
+            weightSum += weights[i];
         }
 
         // make a selection from 0 to (weight sum - 1)
@@ -71,6 +71,15 @@ public class BuffHelpers
         {
             selection -= weights[index];
             index++;
+        }
+
+        for (int i = 0; i < weights.Length; ++i)
+        {
+            // reset the weight of each index except for biased index, if one was given
+            if (weights[i] != biasedAgainst)
+            {
+                weights[i] /= 2;
+            }
         }
 
         return index;
@@ -99,7 +108,8 @@ public class BuffHelpers
     }
 
     public static float GetBuffAmountManaged(BuffType buff)
-    { 
-        return GetBuffAmount(buff, (int)(UnityEngine.Time.timeSinceLevelLoad / secondsPerPowerLevel));
+    {
+        // use "one plus number of five minute intervals since scene start" as power level for testing
+        return GetBuffAmount(buff, (int)(UnityEngine.Time.timeSinceLevelLoad / secondsPerPowerLevel) + 1);
     }
 }

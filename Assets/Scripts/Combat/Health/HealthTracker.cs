@@ -57,6 +57,23 @@ public class HealthTracker : MonoBehaviour
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
     }
 
+    public void AddMaxHealth(int amount, bool healForAmount = true)
+    {
+        // Prevent healing dead characters / invalid amounts
+        if (isDead || amount <= 0f)
+            return;
+
+        maxHealth += amount;
+        Debug.Log(gameObject.name + " max health increased. Max health: " + maxHealth);
+
+        if (healForAmount)
+        {
+            currentHealth += amount; // can always heal for the amount of max health gained
+            Debug.Log(gameObject.name + " healed. Health: " + currentHealth);
+            OnHealthChanged?.Invoke(currentHealth, maxHealth);
+        }
+    }
+
     // Set health values when initializing or restoring an entity
     public void InitializeHealth(float health, float maximumHealth)
     {

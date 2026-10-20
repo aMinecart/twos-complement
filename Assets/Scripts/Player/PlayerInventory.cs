@@ -10,7 +10,7 @@ public class PlayerInventory : MonoBehaviour
     public EquipmentManager equipmentManager { get; private set; }
     public StatsManager statsManager { get; private set; }
 
-    void Awake()
+    void Start()
     {
         // Get references to the player's inventory related components 
         weaponManager = GetComponent<WeaponManager>();
