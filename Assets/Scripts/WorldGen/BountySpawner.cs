@@ -7,87 +7,72 @@ public class BountySpawner : MonoBehaviour
     public GameObject prefab3;
     public int numberOfInstances = 1;
 
+    [Header("Valid bounty height (normalized 0-1)")]
+    public float minNormHeight = 0.30f;
+    public float maxNormHeight = 0.44f;
+
+    public float heightOffset = 8f;
+ 
+    public int maxAttempts = 5000;
+
     public void GenBounties(int[,] mazeGen, float[,] heights)
     {
-        float xPos = 0;
-        float zPos = 0;
-        float yPos = 0;
-        float X = 0;
-        float Z = 0;
-        float varyX = 0;
-        float varyZ = 0;
-        float mzMag = 0;
-        while((mzMag > 0.025f)||(yPos<15f)||(yPos>22f))
-        {
-            xPos = 1f*Random.Range(1,499);
-            zPos = 1f*Random.Range(1,499);
-            yPos = 50f*heights[(int)(4.098*zPos), (int)(4.098*xPos)];
-
-            X = (((float)xPos/500f)*(2f*6f+2f)-1f);
-            Z = (((float)zPos/500f)*(2f*6f+2f)-1f);
-
-            varyX = 1.5f*(0.5f*perlin(0.37f*X, 0.37f*(Z-34f)) + 0.45f*perlin(0.511f*X, 0.511f*(Z-81f)));
-            varyZ = 1.5f*(0.5f*perlin(0.37f*(X-43f), 0.37f*Z) + 0.45f*perlin(0.511f*(X+73f), 0.511f*Z));
-
-            mzMag = mazeMag(X + varyX, Z + varyZ, mazeGen);
-        }
-        GameObject bounty1 = Instantiate(prefab1, new Vector3(xPos, yPos+8, zPos), Quaternion.identity, transform);
-
-        //bounty1.transform.localPosition = new Vector3(xPos, yPos+10, zPos);
-
-        xPos = 0;
-        zPos = 0;
-        yPos = 0;
-        X = 0;
-        Z = 0;
-        varyX = 0;
-        varyZ = 0;
-        mzMag = 0;
-        while((mzMag > 0.025f)||(yPos<15f)||(yPos>22f))
-        {
-            xPos = 1f*Random.Range(1,499);
-            zPos = 1f*Random.Range(1,499);
-            yPos = 50f*heights[(int)(4.098*zPos), (int)(4.098*xPos)];
-
-            X = (((float)xPos/500f)*(2f*6f+2f)-1f);
-            Z = (((float)zPos/500f)*(2f*6f+2f)-1f);
-
-            varyX = 1.5f*(0.5f*perlin(0.37f*X, 0.37f*(Z-34f)) + 0.45f*perlin(0.511f*X, 0.511f*(Z-81f)));
-            varyZ = 1.5f*(0.5f*perlin(0.37f*(X-43f), 0.37f*Z) + 0.45f*perlin(0.511f*(X+73f), 0.511f*Z));
-
-            mzMag = mazeMag(X + varyX, Z + varyZ, mazeGen);
-        }
-        GameObject bounty2 = Instantiate(prefab2, new Vector3(xPos, yPos+8, zPos), Quaternion.identity, transform);
-
-        //bounty2.transform.localPosition = new Vector3(xPos, yPos+10, zPos);
-
-        xPos = 0;
-        zPos = 0;
-        yPos = 0;
-        X = 0;
-        Z = 0;
-        varyX = 0;
-        varyZ = 0;
-        mzMag = 0;
-        while((mzMag > 0.025f)||(yPos<15f)||(yPos>22f))
-        {
-            xPos = 1f*Random.Range(1,499);
-            zPos = 1f*Random.Range(1,499);
-            yPos = 50f*heights[(int)(4.098*zPos), (int)(4.098*xPos)];
-
-            X = (((float)xPos/500f)*(2f*6f+2f)-1f);
-            Z = (((float)zPos/500f)*(2f*6f+2f)-1f);
-
-            varyX = 1.5f*(0.5f*perlin(0.37f*X, 0.37f*(Z-34f)) + 0.45f*perlin(0.511f*X, 0.511f*(Z-81f)));
-            varyZ = 1.5f*(0.5f*perlin(0.37f*(X-43f), 0.37f*Z) + 0.45f*perlin(0.511f*(X+73f), 0.511f*Z));
-
-            mzMag = mazeMag(X + varyX, Z + varyZ, mazeGen);
-        }
-        GameObject bounty3 = Instantiate(prefab3, new Vector3(xPos, yPos+8, zPos), Quaternion.identity, transform);
-
-        //bounty3.transform.localPosition = new Vector3(xPos, yPos+8, zPos);
+        SpawnBounty(prefab1, mazeGen, heights);
+        SpawnBounty(prefab2, mazeGen, heights);
+        SpawnBounty(prefab3, mazeGen, heights);
     }
 
+    void SpawnBounty(GameObject prefab, int[,] mazeGen, float[,] heights)
+    {
+        if(prefab == null)
+        {
+           Debug.LogWarning("BountySpawner: a bounty prefab is not assigned.");
+            return; 
+        }
+
+        //uses terrain height scale 
+        float heightScale = 50f;
+        if (Terrain.activeTerrain != null)
+        {
+            heightScale = Terrain.activeTerrain.terrainData.size.y;
+        }
+ 
+        float xPos = 0f;
+        float zPos = 0f;
+        float normH = 0f;
+        bool found = false;
+
+          for (int attempt = 0; attempt < maxAttempts; attempt++)
+        {
+            xPos = 1f * Random.Range(1, 499);
+            zPos = 1f * Random.Range(1, 499);
+            normH = heights[(int)(4.098 * zPos), (int)(4.098 * xPos)];
+ 
+            float X = (((float)xPos / 500f) * (2f * 6f + 2f) - 1f);
+            float Z = (((float)zPos / 500f) * (2f * 6f + 2f) - 1f);
+ 
+            float varyX = 1.5f * (0.5f * perlin(0.37f * X, 0.37f * (Z - 34f)) + 0.45f * perlin(0.511f * X, 0.511f * (Z - 81f)));
+            float varyZ = 1.5f * (0.5f * perlin(0.37f * (X - 43f), 0.37f * Z) + 0.45f * perlin(0.511f * (X + 73f), 0.511f * Z));
+ 
+            float mzMag = mazeMag(X + varyX, Z + varyZ, mazeGen);
+ 
+            if (mzMag <= 0.025f && normH >= minNormHeight && normH <= maxNormHeight)
+            {
+                found = true;
+                break;
+            }
+        }
+
+         if (!found)
+        {
+            Debug.LogWarning("BountySpawner: no ideal spot found, using last candidate.");
+        }
+
+        float yPos = normH * heightScale;
+
+        Instantiate(prefab, new Vector3(xPos, yPos + heightOffset, zPos), Quaternion.identity, transform);
+    }
+    
     float mazeMag(float x, float z, int[,] mazeGen)
     {
         if((x<0f)||(x>=2f*6f)||(z<0f)||(z>=2f*6f)) return 1f;
