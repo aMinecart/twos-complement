@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI; 
 using TMPro;
-using Unity.VisualScripting;
-using UnityEngine.InputSystem; 
 
 public class PlayerHealthUI : MonoBehaviour
 {
@@ -82,22 +80,36 @@ public class PlayerHealthUI : MonoBehaviour
 
    /*private void Update()
    {
-    if (!testHealthBar || Keyboard.current == null)
-        return;
+        if (!testHealthBar || Keyboard.current == null)
+            return;
 
-    if (Keyboard.current.digit1Key.wasPressedThisFrame)
-        testHealth = 100f;
-    else if (Keyboard.current.digit2Key.wasPressedThisFrame)
-        testHealth = 75f;
-    else if (Keyboard.current.digit3Key.wasPressedThisFrame)
-        testHealth = 40f;
-    else if (Keyboard.current.digit4Key.wasPressedThisFrame)
-        testHealth = 10f;
-    else if (Keyboard.current.digit5Key.wasPressedThisFrame)
-        testHealth = 0f;
-    else
-        return;
+        if (Keyboard.current.digit1Key.wasPressedThisFrame)
+            testHealth = 100f;
+        else if (Keyboard.current.digit2Key.wasPressedThisFrame)
+            testHealth = 75f;
+        else if (Keyboard.current.digit3Key.wasPressedThisFrame)
+            testHealth = 40f;
+        else if (Keyboard.current.digit4Key.wasPressedThisFrame)
+            testHealth = 10f;
+        else if (Keyboard.current.digit5Key.wasPressedThisFrame)
+            testHealth = 0f;
+        else
+            return;
 
-    UpdateHealthUI(testHealth, 100f);
+        UpdateHealthUI(testHealth, 100f);
+
+        //TESTING: triggers the death Screen @ zero health
+        if (testHealth <= 0f)
+        {
+            if (GameManager.instance != null)
+            {
+                Debug.Log("Health test reached zero. Triggering Game Over.");
+                GameManager.instance.GameOver();
+            }
+            else
+            {
+                Debug.LogError("Cannot trigger Game Over: GameManager.instance is null!");
+            }
+        }
     }*/
 }
