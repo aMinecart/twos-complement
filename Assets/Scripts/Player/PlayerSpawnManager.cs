@@ -56,7 +56,7 @@ public class PlayerSpawnManager : MonoBehaviour
             rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
         }
-
+        //Debug.Log("Moved");
         Physics.SyncTransforms(); //so exitpoint doesn't overlap when re-starting game
     }
 

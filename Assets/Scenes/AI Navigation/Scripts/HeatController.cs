@@ -20,7 +20,7 @@ public class HeatController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(currentHeat);
+        //Debug.Log(currentHeat);
         currentHeat += Time.deltaTime * 0.33f;
     }
 }

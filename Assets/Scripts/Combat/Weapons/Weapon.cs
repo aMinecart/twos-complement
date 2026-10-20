@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 public abstract class Weapon : MonoBehaviour
 {
@@ -12,6 +13,14 @@ public abstract class Weapon : MonoBehaviour
 
     [SerializeField] protected Transform firingOriginTransform; // Where attack starts
     [SerializeField] protected HealthTracker ownerHealth; // Character using weapon
+    [SerializeField] protected GameObject weaponModel; //Model for the weapon
+    public GameObject WeaponModel => weaponModel;
+    [SerializeField] protected Animation weaponAnimation; //Weapon animation
+    public Animation WeaponAnimation => weaponAnimation;
+    [SerializeField] protected AudioSource weaponSound; //Weapon animation
+    public AudioSource WeaponSound => weaponSound;
+
+
 
     protected float nextAttackTime = 0f;
 

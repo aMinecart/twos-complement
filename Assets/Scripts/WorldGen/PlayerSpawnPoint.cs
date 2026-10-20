@@ -30,7 +30,9 @@ public class PlayerSpawnPoint : MonoBehaviour
         }
 
         transform.localPosition = new Vector3(xPos, yPos+2, zPos);
+        //Debug.Log("here");
         player.localPosition = new Vector3(xPos, yPos+2, zPos);
+        //Debug.Log("Player local : " + player.localPosition + " What is should be: " + new Vector3(xPos, yPos+2, zPos));
     }
 
     float mazeMag(float x, float z, int[,] mazeGen)
