@@ -321,10 +321,6 @@ public class WeaponManager : MonoBehaviour
         if (ActiveWeapon != null && ActiveWeapon.isActiveAndEnabled)
         {
             ActiveWeapon.Attack();
-            if(ActiveWeapon.WeaponAnimation != null)
-                ActiveWeapon.WeaponAnimation.Play();
-            if(ActiveWeapon.WeaponSound != null)
-                ActiveWeapon.WeaponSound.Play();
         }
     }
 
