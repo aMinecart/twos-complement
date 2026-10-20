@@ -119,7 +119,8 @@ public class MovementController : MonoBehaviour
         // apply gravity to the player unconditionally
         rb.linearVelocity = PlayerPhysics.ApplyGravity(
             rb.linearVelocity,
-            playerStats.gravity_accel
+            playerStats.gravity_accel,
+            playerStats.gravity_multiplier
         );
 
         // apply jump force if player meets jump requirements
@@ -128,7 +129,8 @@ public class MovementController : MonoBehaviour
             rb.linearVelocity = PlayerPhysics.ApplyJumpForce(
                 rb.linearVelocity,
                 playerStats.jump_height,
-                playerStats.gravity_accel
+                playerStats.gravity_accel,
+                playerStats.gravity_multiplier
             );            
         }
 
