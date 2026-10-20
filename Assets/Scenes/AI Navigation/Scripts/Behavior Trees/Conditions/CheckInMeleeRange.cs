@@ -1,13 +1,13 @@
 using UnityEngine;
 using BehaviorTree;
 
-public class CheckInRange : Node
+public class CheckInMeleeRange : Node
 {
     private GameObject target;
     private GameObject enemy;
     private float attackRange;
 
-    public CheckInRange(GameObject target, GameObject enemy, float attackRange)
+    public CheckInMeleeRange(GameObject target, GameObject enemy, float attackRange)
     {
         this.target = target;
         this.enemy = enemy;

@@ -57,6 +57,7 @@ public class TerrainGen : MonoBehaviour
         // Create Terrain GameObject
         GameObject terrainObject = Terrain.CreateTerrainGameObject(data);
         terrain = terrainObject.GetComponent<Terrain>();
+        terrainObject.layer = 3;
 
         // Optional: generate colors/material
         GenerateTerrainTexture(data, heights, mazeGen);
