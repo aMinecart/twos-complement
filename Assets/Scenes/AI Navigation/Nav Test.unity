@@ -231,60 +231,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 61817918}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &74247679
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 74247681}
-  - component: {fileID: 74247680}
-  m_Layer: 0
-  m_Name: Plasma Gun
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &74247680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 74247679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ede6106b94c0401cba71e11f554ddc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlasmaGun
-  weaponId: PlasmaGun
-  damage: 50
-  fireRate: 1
-  range: 20
-  firingOriginTransform: {fileID: 1518381541}
-  ownerHealth: {fileID: 1230209961}
-  magazineSize: 2
-  reloadTime: 3
-  projectilePrefab: {fileID: 6258376407274449733, guid: 99e8ffdaf26884ad0980d99b98870ab2, type: 3}
-  projectileSpeed: 10
---- !u!4 &74247681
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 74247679}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 47.28629, y: -0.17999983, z: 16.02}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1230209954}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &165512474
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,22 +862,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1230209954 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 193947545450241422, guid: 342ec638fc1434e4e9693886bd9c8ddc, type: 3}
-  m_PrefabInstance: {fileID: 2079920198}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1230209961 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: -5584147671675708098, guid: 342ec638fc1434e4e9693886bd9c8ddc, type: 3}
-  m_PrefabInstance: {fileID: 2079920198}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34585d1aeb0db41d1b01fe1477920cb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Health
 --- !u!1 &1258739358
 GameObject:
   m_ObjectHideFlags: 0
@@ -1431,11 +1361,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1463853361}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1518381541 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7228580563444382083, guid: 342ec638fc1434e4e9693886bd9c8ddc, type: 3}
-  m_PrefabInstance: {fileID: 2079920198}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1732265685
 GameObject:
   m_ObjectHideFlags: 0
@@ -1727,6 +1652,9 @@ MonoBehaviour:
   range: 20
   firingOriginTransform: {fileID: 0}
   ownerHealth: {fileID: 0}
+  weaponModel: {fileID: 0}
+  weaponAnimation: {fileID: 0}
+  weaponSound: {fileID: 0}
   magazineSize: 2
   reloadTime: 3
   projectilePrefab: {fileID: 6258376407274449733, guid: 99e8ffdaf26884ad0980d99b98870ab2, type: 3}
@@ -1796,30 +1724,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5720902316750530133, guid: 342ec638fc1434e4e9693886bd9c8ddc, type: 3}
       propertyPath: m_Name
-      value: Player (1)
+      value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5850317871984665783, guid: 342ec638fc1434e4e9693886bd9c8ddc, type: 3}
-      propertyPath: weapons.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5850317871984665783, guid: 342ec638fc1434e4e9693886bd9c8ddc, type: 3}
-      propertyPath: 'weapons.Array.data[0]'
-      value: 
-      objectReference: {fileID: 74247680}
-    - target: {fileID: 5850317871984665783, guid: 342ec638fc1434e4e9693886bd9c8ddc, type: 3}
-      propertyPath: equippedWeapons.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5850317871984665783, guid: 342ec638fc1434e4e9693886bd9c8ddc, type: 3}
-      propertyPath: 'equippedWeapons.Array.data[0]'
-      value: 
-      objectReference: {fileID: 74247680}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 193947545450241422, guid: 342ec638fc1434e4e9693886bd9c8ddc, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 74247681}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 342ec638fc1434e4e9693886bd9c8ddc, type: 3}
 --- !u!1001 &2643907262615850829
