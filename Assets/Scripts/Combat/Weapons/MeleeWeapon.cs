@@ -21,7 +21,7 @@ public class MeleeWeapon : Weapon
         nextAttackTime = Time.time + fireRate;
         Debug.Log("Melee attack!");
 
-        base.Attack();
+        //base.Attack();
 
         // below code should be moved to WeaponComponents
 

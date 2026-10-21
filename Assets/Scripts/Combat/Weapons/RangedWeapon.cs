@@ -65,7 +65,7 @@ public abstract class RangedWeapon : Weapon
             WeaponSound.Play();
             
         Shoot();
-        base.Attack();
+        //base.Attack();
 
         // Set time when gun can shoot again
         nextAttackTime = Time.time + fireRate;
