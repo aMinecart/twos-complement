@@ -15,6 +15,7 @@ public class EnemyDeath : MonoBehaviour
     void OnEnable()
     {
         // Listen for death event 
+        Debug.Log("GameObject name: " + gameObject.name);
         health.OnDeath += HandleDeath;
     }
 

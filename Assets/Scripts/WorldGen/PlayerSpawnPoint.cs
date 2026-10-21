@@ -3,36 +3,68 @@ using UnityEngine;
 public class PlayerSpawnPoint : MonoBehaviour
 {
     public Transform player;
-    
+    public PlayerSpawnManager manager; 
+    [Header("Valid spawn height (normalized 0-1)")]
+    public float minNormHeight = 0.30f;
+    public float maxNormHeight = 0.44f;
+    public int maxAttempts = 5000; 
     public void SetSpawn(int[,] mazeGen, float[,] heights)
     {
-        float xPos = 0;
-        float zPos = 0;
-        float yPos = 0;
-        float X = 0;
-        float Z = 0;
-        float varyX = 0;
-        float varyZ = 0;
-        float mzMag = 0;
-        while((mzMag > 0.075f)||(yPos<15f)||(yPos>22f))
+        //using the terrain height scale instead of hardcoded val
+        float heightScale = 50f; 
+        if(Terrain.activeTerrain != null)
         {
-            xPos = 1f*Random.Range(1,249);
-            zPos = 1f*Random.Range(1,249);
-            yPos = 50f*heights[(int)(4.098*zPos), (int)(4.098*xPos)];
-
-            X = (((float)xPos/500f)*(2f*6f+2f)-1f);
-            Z = (((float)zPos/500f)*(2f*6f+2f)-1f);
-
-            varyX = 1.5f*(0.5f*perlin(0.37f*X, 0.37f*(Z-34f)) + 0.45f*perlin(0.511f*X, 0.511f*(Z-81f)));
-            varyZ = 1.5f*(0.5f*perlin(0.37f*(X-43f), 0.37f*Z) + 0.45f*perlin(0.511f*(X+73f), 0.511f*Z));
-
-            mzMag = mazeMag(X + varyX, Z + varyZ, mazeGen);
+            heightScale = Terrain.activeTerrain.terrainData.size.y; 
         }
 
-        transform.localPosition = new Vector3(xPos, yPos+2, zPos);
-        //Debug.Log("here");
-        player.localPosition = new Vector3(xPos, yPos+2, zPos);
-        //Debug.Log("Player local : " + player.localPosition + " What is should be: " + new Vector3(xPos, yPos+2, zPos));
+        float xPos = 0f; 
+        float zPos = 0f; 
+        float normH = 0f; 
+        float mzMag = 1f; 
+        bool found = false; 
+
+       for (int attempt = 0; attempt < maxAttempts; attempt++)
+        {
+            xPos = 1f * Random.Range(1, 249);
+            zPos = 1f * Random.Range(1, 249);
+            normH = heights[(int)(4.098 * zPos), (int)(4.098 * xPos)];
+ 
+            float X = (((float)xPos / 500f) * (2f * 6f + 2f) - 1f);
+            float Z = (((float)zPos / 500f) * (2f * 6f + 2f) - 1f);
+ 
+            float varyX = 1.5f * (0.5f * perlin(0.37f * X, 0.37f * (Z - 34f)) + 0.45f * perlin(0.511f * X, 0.511f * (Z - 81f)));
+            float varyZ = 1.5f * (0.5f * perlin(0.37f * (X - 43f), 0.37f * Z) + 0.45f * perlin(0.511f * (X + 73f), 0.511f * Z));
+ 
+            mzMag = mazeMag(X + varyX, Z + varyZ, mazeGen);
+ 
+            if (mzMag <= 0.075f && normH >= minNormHeight && normH <= maxNormHeight)
+            {
+                found = true;
+                break;
+            }
+        }
+ 
+        if (!found)
+        {
+            Debug.LogWarning("PlayerSpawnPoint: no ideal spawn found, using last candidate.");
+        }
+ 
+        float yPos = normH * heightScale;
+        Debug.Log($"PlayerSpawnPoint: x={xPos}, z={zPos}, y={yPos}, heightScale={heightScale}");
+ 
+        transform.localPosition = new Vector3(xPos, yPos + 2f, zPos);
+        Physics.SyncTransforms();
+ 
+        if (manager != null)
+        {
+            // Manager moves the player (saved position or this spawn point)
+            manager.BeginSpawn();
+        }
+        else if (player != null)
+        {
+            // Fallback: old behavior if no manager is assigned
+            player.position = transform.position;
+        }
     }
 
     float mazeMag(float x, float z, int[,] mazeGen)

@@ -147,6 +147,10 @@ MonoBehaviour:
   prefab2: {fileID: 3204237622371620696, guid: 27c105e2dfa5680419712e257ed06680, type: 3}
   prefab3: {fileID: 1848911430419644008, guid: 7dede6fc5f486f040af18337b7170611, type: 3}
   numberOfInstances: 1
+  minNormHeight: 0.3
+  maxNormHeight: 0.44
+  heightOffset: 8
+  maxAttempts: 5000
 --- !u!1 &3138037724165960587
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,7 +310,7 @@ GameObject:
   - component: {fileID: 8708670236375641458}
   - component: {fileID: 4113449074066079604}
   m_Layer: 0
-  m_Name: SpawnPoint
+  m_Name: PlayerSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -341,6 +345,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSpawnPoint
   player: {fileID: 0}
+  manager: {fileID: 0}
+  minNormHeight: 0.3
+  maxNormHeight: 0.44
+  maxAttempts: 5000
 --- !u!1 &7166780335296567660
 GameObject:
   m_ObjectHideFlags: 0
@@ -387,6 +395,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PrefabSpawner
   prefab: {fileID: 3783213976052332230, guid: 9777b88291332dd4586ba993ac921ea0, type: 3}
   numberOfInstances: 20000
+  minNormHeight: 0.3
+  maxNormHeight: 0.44
 --- !u!1 &8122776432227323427
 GameObject:
   m_ObjectHideFlags: 0

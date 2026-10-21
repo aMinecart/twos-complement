@@ -7,50 +7,100 @@ public class PlayerSpawnManager : MonoBehaviour
    public Transform player;
    public Transform spawnPoint;
 
+   [Header("Procedural Levels")]
+   public bool waitForGeneratedSpawn = true;
+   public bool useSeedCheck = true; 
+   
    [Header("Auto Save")]
    [Tooltip("Off = position is only saved by Save & Exit Button OR an Exit Point!")]
+    public bool autoSave = true;
+    public float autoSaveInterval = 2f;
 
    [Header("Fall Respawn")]
    public float fallY = -20f;
-
-   public bool autoSave = true;
-   public float autoSaveInterval = 2f;
+   
    private float saveTimer = 0f;
    private bool ready = false;
+   private Rigidbody rb;
 
    private const string SavedKey = "HasSavedPlayerPosition";
    private const string XKey = "PlayerPositionX";
    private const string YKey = "PlayerPositionY";
    private const string ZKey = "PlayerPositionZ";
+   private const string SeedKey = "PlayerPositionSeed";
 
 
+    private void Awake()
+    {
+        if(player == null)
+        {
+            return; 
+        }
+        rb = player.GetComponent<Rigidbody>();
+
+        if(waitForGeneratedSpawn && rb != null)
+        {
+            rb.isKinematic = true;
+        }
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
-        if(spawnPoint == null || player == null){
-            Debug.LogWarning("Assign the player & spawn point!");
+        //non-procedural scenes- will spawn right away 
+        if (!waitForGeneratedSpawn)
+        {
+            BeginSpawn();
+        }
+    }
+
+    public void BeginSpawn()
+    {
+        //called by PlayerSpawnPoint.SetSpawn once the spawnPoint's position is finalized 
+        if(spawnPoint == null || player == null)
+        {
+            Debug.LogWarning("Assign the player & spawn point!"); 
             return;
         }
 
-        if(PlayerPrefs.GetInt(SavedKey, 0)== 1){
-            Vector3 savedPosition = new Vector3(
-                PlayerPrefs.GetFloat(XKey),
-                PlayerPrefs.GetFloat(YKey),
-                PlayerPrefs.GetFloat(ZKey)
-            );
-            MovePlayer(savedPosition, player.rotation);
-            Debug.Log("Player has spawned at the last saved position: "+ savedPosition);
-        } else {
-            MovePlayer(spawnPoint.position, spawnPoint.rotation);
-            Debug.Log("Player has spawned at the starting point!");
+        //unfreeze before moving so move player can zero the vel!
+        if(rb != null)
+        {
+            rb.isKinematic = false; 
         }
-        ready = true;
+
+        if (HasValidSavedPosition())
+        {
+            Vector3 savedPosition = new Vector3(PlayerPrefs.GetFloat(XKey), PlayerPrefs.GetFloat(YKey), PlayerPrefs.GetFloat(ZKey)); 
+            MovePlayer(savedPosition, player.rotation); 
+            Debug.Log("Player has spawned at the last saved position: " + savedPosition);
+        }
+        else
+        {
+           MovePlayer(spawnPoint.position, spawnPoint.rotation);
+           Debug.Log("Player has spawned at the starting point!"); 
+        }
+        saveTimer = 0f; 
+        ready = true; 
+    }
+    
+    private bool HasValidSavedPosition()
+    {
+        if (PlayerPrefs.GetInt(SavedKey, 0) != 1) return false;
+ 
+        if (useSeedCheck)
+        {
+            //saved position belongs to a different generated world -> ignore it!!!
+            if (!PlayerPrefs.HasKey(SeedKey) || PlayerPrefs.GetInt(SeedKey) != GameManager.runSeed)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     private void MovePlayer(Vector3 position, Quaternion rotation)
     {
         player.SetPositionAndRotation(position, rotation);
-        Rigidbody rb = player.GetComponent<Rigidbody>();
         if(rb !=null && !rb.isKinematic)
         {
             rb.linearVelocity = Vector3.zero;
@@ -103,6 +153,12 @@ public class PlayerSpawnManager : MonoBehaviour
         PlayerPrefs.SetFloat(XKey, player.position.x);
         PlayerPrefs.SetFloat(YKey, player.position.y);
         PlayerPrefs.SetFloat(ZKey, player.position.z);
+
+        if (useSeedCheck)
+        {
+            PlayerPrefs.SetInt(SeedKey, GameManager.runSeed);
+        }
+
         PlayerPrefs.Save();
         Debug.Log("Player position has been saved: " + player.position);
     }
@@ -112,6 +168,7 @@ public class PlayerSpawnManager : MonoBehaviour
         PlayerPrefs.DeleteKey(XKey);
         PlayerPrefs.DeleteKey(YKey);
         PlayerPrefs.DeleteKey(ZKey);
+        PlayerPrefs.DeleteKey(SeedKey);
         PlayerPrefs.Save();
     }
     private void OnApplicationQuit(){
