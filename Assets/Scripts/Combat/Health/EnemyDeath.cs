@@ -27,10 +27,11 @@ public class EnemyDeath : MonoBehaviour
     {
         // spawn random buff at enemy location
         BuffPickup.CreateRandBuffPickup(GameManager.rng, basePickupPrefab, transform.position);
+        
+        // increase global heat value
+        HeatController.Instance.currentHeat += 5;
 
         // Remove enemy from scene when it dies
-        // Remove enemy from scene when it dies
-        HeatController.Instance.currentHeat += 5;
         Destroy(gameObject);
     }
 }
