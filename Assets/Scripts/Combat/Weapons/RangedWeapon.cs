@@ -59,6 +59,11 @@ public abstract class RangedWeapon : Weapon
             return false;
         }
 
+        if(WeaponAnimation != null)
+            WeaponAnimation.Play();
+        if(WeaponSound != null)
+            WeaponSound.Play();
+            
         Shoot();
         base.Attack();
 

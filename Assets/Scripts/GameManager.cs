@@ -115,6 +115,14 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(startingScene);
     }
 
+    public void RestartGame(string sceneName)
+    {
+        Time.timeScale = 1f;
+        CurrentLevel = 1;
+        SetGameState(GameState.Playing);
+        SceneManager.LoadScene(sceneName);
+    }
+
     // Start is called before the first frame update
     void Start()
     {

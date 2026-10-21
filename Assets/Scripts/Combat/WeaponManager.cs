@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -64,6 +65,7 @@ public class WeaponManager : MonoBehaviour
             Weapon previous = equippedWeapons[currWeaponIndex];
             if (previous != null)
                 previous.enabled = false;
+                if(previous.WeaponModel != null) previous.WeaponModel.SetActive(false); //Disables weapon model
         }
 
         // switch to new weapon and enable it
@@ -75,6 +77,7 @@ public class WeaponManager : MonoBehaviour
             Weapon selected = equippedWeapons[currWeaponIndex];
             if(selected != null)
                 selected.enabled = true;
+                if(selected.WeaponModel != null) selected.WeaponModel.SetActive(true); //Makes weapon visible
         }
 
         Debug.Log("Switched to: " + (ActiveWeapon != null ? ActiveWeapon.GetType().Name : "empty hands"));
@@ -316,7 +319,9 @@ public class WeaponManager : MonoBehaviour
     public void Attack()
     {
         if (ActiveWeapon != null && ActiveWeapon.isActiveAndEnabled)
+        {
             ActiveWeapon.Attack();
+        }
     }
 
     // Reload currently equiped weapon

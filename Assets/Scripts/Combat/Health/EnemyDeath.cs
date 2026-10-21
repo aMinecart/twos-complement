@@ -29,6 +29,8 @@ public class EnemyDeath : MonoBehaviour
         BuffPickup.CreateRandBuffPickup(GameManager.rng, basePickupPrefab, transform.position);
 
         // Remove enemy from scene when it dies
+        // Remove enemy from scene when it dies
+        HeatController.Instance.currentHeat += 5;
         Destroy(gameObject);
     }
 }

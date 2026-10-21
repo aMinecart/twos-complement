@@ -23,9 +23,7 @@ public class TerrainGen : MonoBehaviour
         Debug.Log($"lvlSeed: {lvlSeed}");
         Generate();
 
-        //Builds the Navmesh after the map is generated :D
-        BuildNavMesh navMeshScript = GetComponent<BuildNavMesh>();
-        navMeshScript.enabled = true;
+        
     }
 
     void Generate()
@@ -59,6 +57,7 @@ public class TerrainGen : MonoBehaviour
         // Create Terrain GameObject
         GameObject terrainObject = Terrain.CreateTerrainGameObject(data);
         terrain = terrainObject.GetComponent<Terrain>();
+        terrainObject.layer = 3;
 
         // Optional: generate colors/material
         GenerateTerrainTexture(data, heights, mazeGen);
@@ -70,6 +69,10 @@ public class TerrainGen : MonoBehaviour
             tree_spawner.GenTrees(mazeGen, heights);
         }
 
+        //Builds the Navmesh after the map is generated :D
+        BuildNavMesh navMeshScript = GetComponent<BuildNavMesh>();
+        navMeshScript.enabled = true;
+
         BountySpawner bounty_spawner = transform.parent.GetComponentInChildren<BountySpawner>();
 
         if (bounty_spawner != null)
@@ -77,7 +80,7 @@ public class TerrainGen : MonoBehaviour
             bounty_spawner.GenBounties(mazeGen, heights);
         }
 
-        PlayerSpawnPoint player_spawn = player.GetComponent<PlayerSpawnPoint>();
+        PlayerSpawnPoint player_spawn = transform.parent.GetComponentInChildren<PlayerSpawnPoint>();
 
         if (player_spawn != null)
         {
