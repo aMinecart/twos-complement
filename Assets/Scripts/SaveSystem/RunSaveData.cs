@@ -16,6 +16,7 @@ public class RunSaveData
     // Player health
     public float currentHealth;
     public float maxHealth;
+    public float damageResist;
 
     // All weapons owned by the player, including ammunition
     public List<WeaponSaveData> weapons = new();

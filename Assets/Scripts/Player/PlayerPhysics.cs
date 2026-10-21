@@ -48,9 +48,16 @@ public static class PlayerPhysics
         return currVelocity + accelSpeed * (Vector3)accelDir;
     }
 
-    public static Vector3 ApplyJumpForce(Vector3 currVelocity, float jumpHeight, float gravityAccel)
+    public static Vector3 ApplyJumpForce(Vector3 currVelocity, float jumpHeight, float gravityAccel, float gravityMultiplier = 1.0f)
     {
-        currVelocity.y = 2 * gravityAccel * jumpHeight;
+        currVelocity.y = 2 * gravityAccel * gravityMultiplier * jumpHeight;
         return currVelocity;
+    }
+
+    public static Vector3 ApplyDashForce(Vector3 currVelocity, VectorNorm3 dashDir, float dashSpeed, float relativeDistance, bool asImpulse = false)
+    {
+        Vector3 dashVel = currVelocity;
+
+        return (asImpulse ? currVelocity + dashVel : dashVel);
     }
 }

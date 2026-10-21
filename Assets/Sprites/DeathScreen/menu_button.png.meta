@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9208814c0fbc6124ca06ee2845b782b1
+guid: 1e3b24e911bbf73468cd4835ed880a05
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5152181912005673020
-    second: TitleYouDied3D_0
+      213: 2598184430482478853
+    second: menu_button_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TitleYouDied3D_0
+      name: menu_button_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1700
-        height: 460
+        width: 1635
+        height: 729
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c308a4bc62a308740800000000000000
-      internalID: 5152181912005673020
+      spriteID: 507dbd749fa9e0420800000000000000
+      internalID: 2598184430482478853
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      TitleYouDied3D_0: 5152181912005673020
+      menu_button_0: 2598184430482478853
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

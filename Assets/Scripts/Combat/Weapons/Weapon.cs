@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+
 public abstract class Weapon : MonoBehaviour
 {
     // Stable identifier used by inventory and save system
@@ -24,10 +25,27 @@ public abstract class Weapon : MonoBehaviour
 
     protected float nextAttackTime = 0f;
 
+    //public static event Action AttackSuccess;
+    //public static event Action EnemyHit;
+
     public void Initialize(HealthTracker owner, Transform origin)
     {
         ownerHealth = owner;
         firingOriginTransform = origin;
+    }
+
+    public void ModifyFireRate(float multiplier)
+    {
+        Debug.Log($"Old weapon fire rate: {fireRate}");
+        fireRate *= multiplier;
+        Debug.Log($"New weapon fire rate: {fireRate}");
+    }
+
+    public void ModifyDamage(float multiplier)
+    {
+        Debug.Log($"Old weapon damage: {damage}");
+        damage *= multiplier;
+        Debug.Log($"New weapon damage: {damage}");
     }
 
     protected bool CanUseWeapon()
@@ -45,7 +63,29 @@ public abstract class Weapon : MonoBehaviour
 
     // Called by WeaponManager or enemy AI
     public abstract bool Attack();
+    //public virtual bool Attack()
+    //{
+    //    if (CanAttack())
+    //    {
+    //        InvokeAttackSuccess();
+    //        return true;
+    //    }
+    //    else
+    //    {
+    //        return false;
+    //    }
+    //}
 
     // Optional for weapons that support reloading
     public virtual void Reload() { }
+
+    //protected virtual void InvokeAttackSuccess()
+    //{
+    //    AttackSuccess?.Invoke();
+    //}
+
+    //protected virtual void InvokeEnemyHit()
+    //{
+    //    EnemyHit?.Invoke();
+    //}
 }
