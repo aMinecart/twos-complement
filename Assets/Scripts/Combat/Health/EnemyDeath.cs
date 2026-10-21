@@ -14,6 +14,7 @@ public class EnemyDeath : MonoBehaviour
     void OnEnable()
     {
         // Listen for death event 
+        Debug.Log("GameObject name: " + gameObject.name);
         health.OnDeath += HandleDeath;
     }
 
@@ -25,7 +26,7 @@ public class EnemyDeath : MonoBehaviour
     private void HandleDeath()
     {
         // Remove enemy from scene when it dies
-        HeatController.Instance.currentHeat += 5;
+        if(HeatController.Instance != null) HeatController.Instance.currentHeat += 5;
         Destroy(gameObject);
     }
 }
