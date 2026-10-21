@@ -154,6 +154,9 @@ MonoBehaviour:
   range: 2
   firingOriginTransform: {fileID: 1514050344}
   ownerHealth: {fileID: 323600391}
+  weaponModel: {fileID: 0}
+  weaponAnimation: {fileID: 0}
+  weaponSound: {fileID: 0}
 --- !u!4 &78682557
 Transform:
   m_ObjectHideFlags: 0
@@ -219,6 +222,9 @@ MonoBehaviour:
   range: Infinity
   firingOriginTransform: {fileID: 1768839616}
   ownerHealth: {fileID: 1263121377}
+  weaponModel: {fileID: 0}
+  weaponAnimation: {fileID: 0}
+  weaponSound: {fileID: 0}
   magazineSize: 5
   reloadTime: 2
 --- !u!1 &323600388
@@ -330,7 +336,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &330585544
 AudioListener:
   m_ObjectHideFlags: 0
@@ -781,26 +787,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5850317871984665783, guid: 342ec638fc1434e4e9693886bd9c8ddc, type: 3}
-      propertyPath: weapons.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5850317871984665783, guid: 342ec638fc1434e4e9693886bd9c8ddc, type: 3}
-      propertyPath: 'weapons.Array.data[0]'
-      value: 
-      objectReference: {fileID: 949173632}
-    - target: {fileID: 5850317871984665783, guid: 342ec638fc1434e4e9693886bd9c8ddc, type: 3}
-      propertyPath: 'weapons.Array.data[1]'
-      value: 
-      objectReference: {fileID: 252665334}
-    - target: {fileID: 5850317871984665783, guid: 342ec638fc1434e4e9693886bd9c8ddc, type: 3}
-      propertyPath: 'weapons.Array.data[2]'
-      value: 
-      objectReference: {fileID: 983174780}
-    - target: {fileID: 5850317871984665783, guid: 342ec638fc1434e4e9693886bd9c8ddc, type: 3}
-      propertyPath: 'weapons.Array.data[3]'
-      value: 
-      objectReference: {fileID: 1245820743}
     - target: {fileID: 5850317871984665783, guid: a81f8be6fc8bc9048b8a18ad7a8eba76, type: 3}
       propertyPath: weapons.Array.size
       value: 3
@@ -936,6 +922,9 @@ MonoBehaviour:
   range: 2
   firingOriginTransform: {fileID: 1768839616}
   ownerHealth: {fileID: 1263121377}
+  weaponModel: {fileID: 0}
+  weaponAnimation: {fileID: 0}
+  weaponSound: {fileID: 0}
 --- !u!1 &983174778
 GameObject:
   m_ObjectHideFlags: 0
@@ -986,6 +975,9 @@ MonoBehaviour:
   range: 20
   firingOriginTransform: {fileID: 1768839616}
   ownerHealth: {fileID: 1263121377}
+  weaponModel: {fileID: 0}
+  weaponAnimation: {fileID: 0}
+  weaponSound: {fileID: 0}
   magazineSize: 2
   reloadTime: 3
   projectilePrefab: {fileID: 6258376407274449733, guid: 99e8ffdaf26884ad0980d99b98870ab2, type: 3}
@@ -1040,6 +1032,9 @@ MonoBehaviour:
   range: 75
   firingOriginTransform: {fileID: 1768839616}
   ownerHealth: {fileID: 1263121377}
+  weaponModel: {fileID: 0}
+  weaponAnimation: {fileID: 0}
+  weaponSound: {fileID: 0}
   magazineSize: 8
   reloadTime: 5
   pelletCount: 8
