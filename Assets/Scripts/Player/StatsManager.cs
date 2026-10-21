@@ -20,8 +20,8 @@ public class StatsManager : MonoBehaviour
 
     // multiplicative player bonus stats
     public float fire_rate_multiplier { get; set; } = 1.0f;
-    public float global_cooldown_multiplier { get; set; } = 1.0f;
-    public float max_ammo_multiplier { get; set; } = 1.0f;
+    // public float global_cooldown_multiplier { get; set; } = 1.0f;
+    // public float max_ammo_multiplier { get; set; } = 1.0f;
     public float weapon_damage_multiplier { get; set; } = 1.0f;
 
     // additive player bonus stats
@@ -29,7 +29,7 @@ public class StatsManager : MonoBehaviour
     public float move_speed_bonus { get; set; } = 0.0f;
 
     // percentage-based player bonus stats
-    public float damage_resist_percent { get; set; } = 0.0f;
+    public float damage_resist_proportion { get; set; } = 0.0f;
 
     void Start()
     {
@@ -44,19 +44,53 @@ public class StatsManager : MonoBehaviour
         switch (buffType)
         {
             case BuffType.FIRE_RATE:
-                fire_rate_multiplier -= buffValue;
-                break;
+            {
+                float oldFireRateMultiplier = fire_rate_multiplier; // save old fire rate multiplier
+                fire_rate_multiplier -= buffValue; // record new fire rate multiplier
 
-            case BuffType.COOLDOWN:
-                global_cooldown_multiplier -= buffValue;
-                break;
+                foreach (Weapon weapon in playerManager.inventory.weaponManager.OwnedWeapons)
+                {
+                    if (weapon == null)
+                    {
+                        continue;
+                    }
 
-            case BuffType.MAX_AMMO:
-                max_ammo_multiplier += buffValue;
+                    // decrease weapon's fire rate by a percentage of 100 * buffValue
+                    weapon.ModifyFireRate(fire_rate_multiplier / oldFireRateMultiplier);
+                }
+                
                 break;
+            }
 
+            //case BuffType.COOLDOWN:
+            //    global_cooldown_multiplier -= buffValue;
+            //    break;
+
+            //case BuffType.MAX_AMMO:
+            //    max_ammo_multiplier += buffValue;
+            //    break;
+            
             case BuffType.DAMAGE:
-                weapon_damage_multiplier += buffValue;
+            {
+                float oldDamageMultiplier = weapon_damage_multiplier; // save old weapon damage multiplier
+                weapon_damage_multiplier += buffValue; // record new weapon damage multiplier
+                foreach (Weapon weapon in playerManager.inventory.weaponManager.OwnedWeapons)
+                {
+                    if (weapon == null)
+                    {
+                        continue;
+                    }
+
+                    // increase weapon's damage by a percentage of 100 * buffValue
+                    weapon.ModifyDamage(weapon_damage_multiplier / oldDamageMultiplier);
+                }
+
+                break;
+            }
+
+            case BuffType.DAMAGE_RESIST:
+                damage_resist_proportion += buffValue; // record player damage resist bonus
+                playerManager.healthTracker.AddResistance(buffValue); // increase player damage resistance
                 break;
 
             case BuffType.MAX_HEALTH:
@@ -67,10 +101,6 @@ public class StatsManager : MonoBehaviour
             case BuffType.MOVE_SPEED:
                 move_speed_bonus += buffValue; // record player speed bonus
                 max_move_speed += buffValue; // increase player move speed
-                break;
-
-            case BuffType.DAMAGE_RESIST:
-                damage_resist_percent += buffValue;
                 break;
 
             default:

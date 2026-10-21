@@ -6,34 +6,34 @@ public enum BuffType
 {
     NONE,
     FIRE_RATE,
-    COOLDOWN,
-    MAX_AMMO,
+    // COOLDOWN,
+    // MAX_AMMO,
     DAMAGE,
+    DAMAGE_RESIST,
     MAX_HEALTH,
-    MOVE_SPEED,
-    DAMAGE_RESIST
+    MOVE_SPEED
 }
 
 public class BuffHelpers
 {
     private static readonly Dictionary<BuffType, float> buffAmountMap = new() {
-        { BuffType.FIRE_RATE, 1.5f },
-        { BuffType.COOLDOWN, 0.5f },
-        { BuffType.MAX_AMMO, 3.0f },
-        { BuffType.DAMAGE, 3.0f },
+        { BuffType.FIRE_RATE, 0.015f },
+        // { BuffType.COOLDOWN, 0.005f },
+        // { BuffType.MAX_AMMO, 0.03f },
+        { BuffType.DAMAGE, 0.03f },
+        { BuffType.DAMAGE_RESIST, 0.005f },
         { BuffType.MAX_HEALTH, 15.0f },
-        { BuffType.MOVE_SPEED, 0.1f },
-        { BuffType.DAMAGE_RESIST, 0.5f }
+        { BuffType.MOVE_SPEED, 0.1f }
     };
     
     private static readonly Dictionary<BuffType, uint> buffLikelihoodMap = new() {
         { BuffType.FIRE_RATE, 2 },
-        { BuffType.COOLDOWN, 2 },
-        { BuffType.MAX_AMMO, 2 },
+        // { BuffType.COOLDOWN, 2 },
+        // { BuffType.MAX_AMMO, 2 },
         { BuffType.DAMAGE, 2 },
+        { BuffType.DAMAGE_RESIST, 2 },
         { BuffType.MAX_HEALTH, 4 },
-        { BuffType.MOVE_SPEED, 1 },
-        { BuffType.DAMAGE_RESIST, 2 }
+        { BuffType.MOVE_SPEED, 1 }
     };
 
     private static readonly BuffType[] buffList = buffLikelihoodMap.Keys.ToArray();

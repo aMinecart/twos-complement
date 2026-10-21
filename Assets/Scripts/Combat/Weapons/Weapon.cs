@@ -26,6 +26,20 @@ public abstract class Weapon : MonoBehaviour
         firingOriginTransform = origin;
     }
 
+    public void ModifyFireRate(float multiplier)
+    {
+        Debug.Log($"Old weapon fire rate: {fireRate}");
+        fireRate *= multiplier;
+        Debug.Log($"New weapon fire rate: {fireRate}");
+    }
+
+    public void ModifyDamage(float multiplier)
+    {
+        Debug.Log($"Old weapon damage: {damage}");
+        damage *= multiplier;
+        Debug.Log($"New weapon damage: {damage}");
+    }
+
     protected bool CanUseWeapon()
     {
         return isActiveAndEnabled &&
