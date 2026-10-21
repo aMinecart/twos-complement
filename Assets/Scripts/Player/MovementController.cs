@@ -100,6 +100,12 @@ public class MovementController : MonoBehaviour
         }
         */
 
+        // skip physics calculations if player cannot move
+        if (rb.isKinematic)
+        {
+            return;
+        }
+
         // apply friction if player is grounded
         if (grounded)
         {
