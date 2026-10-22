@@ -21,6 +21,10 @@ public class MeleeWeapon : Weapon
         nextAttackTime = Time.time + fireRate;
         Debug.Log("Melee attack!");
 
+        //base.Attack();
+
+        // below code should be moved to WeaponComponents
+
         // Find all objects hit by the attack within its range 
         RaycastHit[] hits = Physics.RaycastAll(
             firingOriginTransform.position,

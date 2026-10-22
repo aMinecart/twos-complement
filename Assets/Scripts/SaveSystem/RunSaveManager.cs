@@ -109,7 +109,8 @@ public class RunSaveManager : MonoBehaviour
             playerPosition = player.transform.position,
             playerRotation = player.transform.rotation,
             currentHealth = health.CurrentHealth,
-            maxHealth = health.MaxHealth
+            maxHealth = health.MaxHealth,
+            damageResist = health.DamageResist
         };
 
         return data;
@@ -161,7 +162,7 @@ public class RunSaveManager : MonoBehaviour
         }
 
         // Restore health through HealthTracker
-        health.InitializeHealth(data.currentHealth, data.maxHealth);
+        health.InitializeHealth(data.currentHealth, data.maxHealth, data.damageResist);
 
         // Restore the player's exact saved position and rotation
         Rigidbody rb = player.GetComponent<Rigidbody>();

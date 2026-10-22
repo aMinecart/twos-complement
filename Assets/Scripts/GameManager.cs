@@ -1,10 +1,13 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }
+    public static System.Random rng { get; private set; }
 
     public enum GameState
     {
@@ -50,6 +53,9 @@ public class GameManager : MonoBehaviour
         int lvlSeed = runSeed;
 
         Debug.Log($"Seed: {runSeed}");
+
+        // set up random number generator for spawns
+        rng = new System.Random(runSeed);
     }
 
     public void SetGameState(GameState newState)

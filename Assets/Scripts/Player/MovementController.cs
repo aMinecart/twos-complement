@@ -22,6 +22,7 @@ public class MovementController : MonoBehaviour
     private Rigidbody rb;
     private CapsuleCollider capsuleCollider;
     private StatsManager playerStats;
+    [SerializeField] private GameObject itemOrigin;
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -80,6 +81,7 @@ public class MovementController : MonoBehaviour
 
         // update player rotation
         rb.rotation = Quaternion.Euler(0.0f, lookDir.x, 0.0f);
+        itemOrigin.transform.rotation = Quaternion.Euler(-lookDir.y, lookDir.x, 0.0f);
 
         // check if player is grounded by protuding a sphere below the player's collider
         Bounds bounds = capsuleCollider.bounds;
@@ -97,6 +99,12 @@ public class MovementController : MonoBehaviour
             maxSpeed *= air_reduction_factor;
         }
         */
+
+        // skip physics calculations if player cannot move
+        if (rb.isKinematic)
+        {
+            return;
+        }
 
         // apply friction if player is grounded
         if (grounded)
@@ -119,7 +127,8 @@ public class MovementController : MonoBehaviour
         // apply gravity to the player unconditionally
         rb.linearVelocity = PlayerPhysics.ApplyGravity(
             rb.linearVelocity,
-            playerStats.gravity_accel
+            playerStats.gravity_accel,
+            playerStats.gravity_multiplier
         );
 
         // apply jump force if player meets jump requirements
@@ -128,7 +137,8 @@ public class MovementController : MonoBehaviour
             rb.linearVelocity = PlayerPhysics.ApplyJumpForce(
                 rb.linearVelocity,
                 playerStats.jump_height,
-                playerStats.gravity_accel
+                playerStats.gravity_accel,
+                playerStats.gravity_multiplier
             );            
         }
 
