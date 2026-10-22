@@ -1,6 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(UnityEngine.InputSystem.PlayerInput))]
+[RequireComponent(typeof(PlayerReference))]
 [RequireComponent(typeof(PlayerInventory))]
 [RequireComponent(typeof(MovementController))]
 [RequireComponent(typeof(HealthTracker))]
