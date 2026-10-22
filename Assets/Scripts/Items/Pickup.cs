@@ -26,14 +26,3 @@ public class WeaponPickup : Pickup
         inventory.weaponManager.AddWeapon(weaponFromPickup);
     }
 }
-
-public class BuffPickup : Pickup
-{
-    [SerializeField] protected BuffType buffType;
-    [SerializeField] protected float buffAmount;
-
-    protected override void RegisterPickup(PlayerInventory inventory)
-    {
-        inventory.statsManager.ApplyBuff(buffType, buffAmount);
-    }
-}
