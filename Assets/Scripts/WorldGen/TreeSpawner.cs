@@ -5,28 +5,38 @@ public class TreeSpawner : MonoBehaviour
     public GameObject prefab;
     public int numberOfInstances = 20000;
 
+    [Header("Valid tree height (normalized 0-1)")]
+    public float minNormHeight = 0.30f;
+    public float maxNormHeight = 0.44f;
+
     public void GenTrees(int[,] mazeGen, float[,] heights)
     {
+        float heightScale = 50f;
+        if (Terrain.activeTerrain != null)
+        {
+            heightScale = Terrain.activeTerrain.terrainData.size.y;
+        }
+ 
         for (int i = 0; i < numberOfInstances; i++)
         {
-            
-            float xPos = 1f*Random.Range(1,499);
-            float zPos = 1f*Random.Range(1,499);
-            float yPos = 50f*heights[(int)(4.098*zPos), (int)(4.098*xPos)];
-
-            float X = (((float)xPos/500f)*(2f*6f+2f)-1f);
-            float Z = (((float)zPos/500f)*(2f*6f+2f)-1f);
-
-            float varyX = 1.5f*(0.5f*perlin(0.37f*X, 0.37f*(Z-34f)) + 0.45f*perlin(0.511f*X, 0.511f*(Z-81f)));
-            float varyZ = 1.5f*(0.5f*perlin(0.37f*(X-43f), 0.37f*Z) + 0.45f*perlin(0.511f*(X+73f), 0.511f*Z));
-
+            float xPos = 1f * Random.Range(1, 499);
+            float zPos = 1f * Random.Range(1, 499);
+            float normH = heights[(int)(4.098 * zPos), (int)(4.098 * xPos)];
+            float yPos = normH * heightScale;
+ 
+            float X = (((float)xPos / 500f) * (2f * 6f + 2f) - 1f);
+            float Z = (((float)zPos / 500f) * (2f * 6f + 2f) - 1f);
+ 
+            float varyX = 1.5f * (0.5f * perlin(0.37f * X, 0.37f * (Z - 34f)) + 0.45f * perlin(0.511f * X, 0.511f * (Z - 81f)));
+            float varyZ = 1.5f * (0.5f * perlin(0.37f * (X - 43f), 0.37f * Z) + 0.45f * perlin(0.511f * (X + 73f), 0.511f * Z));
+ 
             float mzMag = mazeMag(X + varyX, Z + varyZ, mazeGen);
-
-            if((mzMag > 0.025f)&&(yPos>15f)&&(yPos<22f))
+ 
+            if ((mzMag > 0.025f) && (normH > minNormHeight) && (normH < maxNormHeight))
             {
                 GameObject tree = Instantiate(prefab, transform);
-
-                tree.transform.localPosition = new Vector3(xPos, yPos-1.5f, zPos);
+ 
+                tree.transform.localPosition = new Vector3(xPos, yPos - 1.5f, zPos);
             }
         }
     }
