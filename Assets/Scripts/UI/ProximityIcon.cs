@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class ProximityIcon : MonoBehaviour
 {
-    [Header("Player")]
-    public Transform player; 
+    private Transform player;
 
     [Header("Warning Icon")]
     public GameObject warningIcon; 
@@ -14,6 +13,7 @@ public class ProximityIcon : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        player = PlayerReference.Instance.transform; 
         if(warningIcon != null){
             warningIcon.SetActive(false);
         }

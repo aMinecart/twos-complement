@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 15b356131ec989d4ebd89dc5b0f622ef
+guid: 1e3b24e911bbf73468cd4835ed880a05
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3980165007497718673
-    second: DeathSkull3D_0
+      213: 2598184430482478853
+    second: menu_button_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DeathSkull3D_0
+      name: menu_button_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1024
-        height: 1024
+        width: 1635
+        height: 729
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f6498a4730d93c8c0800000000000000
-      internalID: -3980165007497718673
+      spriteID: 507dbd749fa9e0420800000000000000
+      internalID: 2598184430482478853
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      DeathSkull3D_0: -3980165007497718673
+      menu_button_0: 2598184430482478853
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
