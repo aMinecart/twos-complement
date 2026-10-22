@@ -100,21 +100,10 @@ public class MovementController : MonoBehaviour
 
         // check if player is grounded by protuding a sphere below the player's collider
         Bounds bounds = capsuleCollider.bounds;
-        grounded = Physics.CheckSphere(bounds.center - new Vector3(0, bounds.extents.y, 0),
-                                       maxGroundDistance,
-                                       groundMask);
-
-        // choose which acceleration to use based on if the player is airborne
-        /*
-        float accelRate = this.accel_rate;
-        float maxSpeed = this.max_speed;
-        if (!grounded)
-        {
-            accelRate *= air_reduction_factor;
-            maxSpeed *= air_reduction_factor;
-        }
-        */
-
+        grounded = Physics.CheckSphere(position: bounds.center - new Vector3(0, bounds.extents.y, 0),
+                                       radius: maxGroundDistance,
+                                       layerMask: groundMask);
+        
         // skip physics calculations if player cannot move
         if (rb.isKinematic)
         {
@@ -125,9 +114,9 @@ public class MovementController : MonoBehaviour
         if (grounded)
         {
             rb.linearVelocity = PlayerPhysics.ApplyFriction(
-                rb.linearVelocity,
-                playerStats.friction_rate,
-                playerStats.min_stop_speed
+                currVelocity: rb.linearVelocity,
+                frictionRate: playerStats.friction_rate,
+                minStopSpeed: playerStats.min_stop_speed
             );
         }
 
@@ -136,53 +125,57 @@ public class MovementController : MonoBehaviour
 
         // apply accleration based on player's desired acceleration and if airborne
         rb.linearVelocity = PlayerPhysics.Accelerate(
-            rb.linearVelocity,
-            wishDir,
-            (grounded ? playerStats.accel_rate : playerStats.accel_rate * playerStats.air_reduction_factor),
-            (grounded ? playerStats.max_move_speed : playerStats.max_move_speed * playerStats.air_reduction_factor)
+            currVelocity: rb.linearVelocity,
+            accelDir: wishDir,
+            accelRate: (grounded ? playerStats.accel_rate : playerStats.accel_rate * (1 / playerStats.air_reduction_factor)),
+            maxSpeed: (grounded ? playerStats.max_move_speed : playerStats.max_move_speed * playerStats.air_reduction_factor)
         );
 
         // apply jump force if player meets jump requirements
         if (attemptJump && grounded && !inCrouch)
         {
             rb.linearVelocity = PlayerPhysics.ApplyJumpForce(
-                rb.linearVelocity,
-                playerStats.jump_height,
-                playerStats.gravity_accel,
-                playerStats.gravity_multiplier
+                currVelocity: rb.linearVelocity,
+                jumpHeight: playerStats.jump_height,
+                gravityAccel: playerStats.gravity_accel,
+                gravityMultiplier: playerStats.gravity_multiplier
             );            
         }
-        else if (attemptDash)
+        else if (attemptDash && !inDash)
         {
             if (!grounded)
             {
                 // remove any vertical speed accumulated by the player
                 rb.linearVelocity = PlayerPhysics.ApplyFloatForce(
-                    rb.linearVelocity,
-                    playerStats.float_strength,
-                    playerStats.gravity_accel,
-                    playerStats.gravity_multiplier
+                    currVelocity: rb.linearVelocity,
+                    floatStrengh: playerStats.float_strength,
+                    gravityAccel: playerStats.gravity_accel,
+                    gravityMultiplier: playerStats.gravity_multiplier
                 );
             }
 
             rb.linearVelocity = PlayerPhysics.ApplyDashForce(
-                rb.linearVelocity,
-                wishDir,
-                playerStats.dash_speed,
+                currVelocity: rb.linearVelocity,
+                dashDir: wishDir,
+                dashSpeed: playerStats.dash_speed,
                 relativeDistance: 1.0f, // placeholder
                 asImpulse: !grounded
             );
+
+            inDash = true;
         }
 
         // apply gravity to the player unconditionally
         rb.linearVelocity = PlayerPhysics.ApplyGravity(
-            rb.linearVelocity,
-            playerStats.gravity_accel,
-            playerStats.gravity_multiplier
+            currVelocity: rb.linearVelocity,
+            gravityAccel: playerStats.gravity_accel,
+            gravityMultiplier: playerStats.gravity_multiplier
         );
 
         attemptJump = false; // prevent player from jumping until they release and press the button again
         attemptDash = false; // prevent player from dashing until they release and press the button again
+
+        inDash = false; // temp reset, replace with timer
 
         // display current movement information
         // print($"input vector: {moveInputDir}");
