@@ -335,6 +335,7 @@ GameObject:
   - component: {fileID: 5747011130214243417}
   - component: {fileID: 297222970503154234}
   - component: {fileID: 8502367156230202937}
+  - component: {fileID: 1230358188530682273}
   m_Layer: 6
   m_Name: Enemy Small 4
   m_TagString: Untagged
@@ -536,6 +537,21 @@ MonoBehaviour:
   weaponModel: {fileID: 0}
   weaponAnimation: {fileID: 0}
   weaponSound: {fileID: 0}
+--- !u!114 &1230358188530682273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2414614570815649556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d3d5e377d387949aca2024ad34bb8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  player: {fileID: 0}
+  detectionRadius: 8
+  heatPerSecond: 5
 --- !u!1 &2491917793797506238
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,6 +570,7 @@ GameObject:
   - component: {fileID: 6650043394725982814}
   - component: {fileID: 208597392795478485}
   - component: {fileID: 648706254791684019}
+  - component: {fileID: 4407558742427205972}
   m_Layer: 6
   m_Name: Enemy Small 6
   m_TagString: Untagged
@@ -755,6 +772,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDeath
   basePickupPrefab: {fileID: 4580489848919454108, guid: b320b3d8ca0f3ab4fbfb787c310ce1e0, type: 3}
+--- !u!114 &4407558742427205972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2491917793797506238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d3d5e377d387949aca2024ad34bb8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  player: {fileID: 0}
+  detectionRadius: 8
+  heatPerSecond: 5
 --- !u!1 &3031999419072535276
 GameObject:
   m_ObjectHideFlags: 0
@@ -1066,6 +1098,7 @@ GameObject:
   - component: {fileID: 8381300341403262863}
   - component: {fileID: 5289792107156617834}
   - component: {fileID: 3132728228046811035}
+  - component: {fileID: 3013700488800530104}
   m_Layer: 6
   m_Name: Enemy Small 3
   m_TagString: Untagged
@@ -1267,6 +1300,21 @@ MonoBehaviour:
   weaponModel: {fileID: 0}
   weaponAnimation: {fileID: 0}
   weaponSound: {fileID: 0}
+--- !u!114 &3013700488800530104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4810672924812750114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d3d5e377d387949aca2024ad34bb8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  player: {fileID: 0}
+  detectionRadius: 8
+  heatPerSecond: 5
 --- !u!1 &5113513394007454002
 GameObject:
   m_ObjectHideFlags: 0
@@ -1496,6 +1544,7 @@ GameObject:
   - component: {fileID: 4003953356510799803}
   - component: {fileID: 7075666273618815130}
   - component: {fileID: 7030197453292726730}
+  - component: {fileID: 7913943209961045975}
   m_Layer: 6
   m_Name: Enemy Small 1
   m_TagString: Untagged
@@ -1697,6 +1746,21 @@ MonoBehaviour:
   weaponModel: {fileID: 0}
   weaponAnimation: {fileID: 0}
   weaponSound: {fileID: 0}
+--- !u!114 &7913943209961045975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7398344233433658868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d3d5e377d387949aca2024ad34bb8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  player: {fileID: 0}
+  detectionRadius: 8
+  heatPerSecond: 5
 --- !u!1 &7623896725553302717
 GameObject:
   m_ObjectHideFlags: 0
@@ -1715,6 +1779,7 @@ GameObject:
   - component: {fileID: 4830505290096392923}
   - component: {fileID: 2785161483128390632}
   - component: {fileID: 21690377035500765}
+  - component: {fileID: 8165726031646064289}
   m_Layer: 6
   m_Name: Enemy Small 5
   m_TagString: Untagged
@@ -1916,6 +1981,21 @@ MonoBehaviour:
   weaponModel: {fileID: 0}
   weaponAnimation: {fileID: 0}
   weaponSound: {fileID: 0}
+--- !u!114 &8165726031646064289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7623896725553302717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d3d5e377d387949aca2024ad34bb8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  player: {fileID: 0}
+  detectionRadius: 8
+  heatPerSecond: 5
 --- !u!1 &8401916052909814633
 GameObject:
   m_ObjectHideFlags: 0
@@ -2046,6 +2126,7 @@ GameObject:
   - component: {fileID: 7852271314647575263}
   - component: {fileID: 6091492047294647343}
   - component: {fileID: 6474176702307878816}
+  - component: {fileID: 852084165159824464}
   m_Layer: 6
   m_Name: Enemy Small 2
   m_TagString: Untagged
@@ -2247,6 +2328,21 @@ MonoBehaviour:
   weaponModel: {fileID: 0}
   weaponAnimation: {fileID: 0}
   weaponSound: {fileID: 0}
+--- !u!114 &852084165159824464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8969019907375411451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d3d5e377d387949aca2024ad34bb8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  player: {fileID: 0}
+  detectionRadius: 8
+  heatPerSecond: 5
 --- !u!1001 &670417957033181152
 PrefabInstance:
   m_ObjectHideFlags: 0
