@@ -137,4 +137,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProximityIcon
   warningIcon: {fileID: 2885847135817048494}
-  warningDistance: 10
+  warningDistance: 50
