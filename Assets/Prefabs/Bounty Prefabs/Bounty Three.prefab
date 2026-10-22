@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 8970186528393848212}
   - component: {fileID: 6633444083179730993}
   - component: {fileID: 6700842958750816442}
+  - component: {fileID: 1264255293841177485}
   m_Layer: 6
   m_Name: Enemy Small 3
   m_TagString: Untagged
@@ -219,6 +220,21 @@ MonoBehaviour:
   weaponModel: {fileID: 0}
   weaponAnimation: {fileID: 0}
   weaponSound: {fileID: 0}
+--- !u!114 &1264255293841177485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353164656664759604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d3d5e377d387949aca2024ad34bb8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  player: {fileID: 0}
+  detectionRadius: 8
+  heatPerSecond: 5
 --- !u!1 &1547409030807396111
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,6 +320,7 @@ GameObject:
   - component: {fileID: 2820888156508119333}
   - component: {fileID: 1976560875275504634}
   - component: {fileID: 9072229442179628426}
+  - component: {fileID: 2926984485432842501}
   m_Layer: 6
   m_Name: Enemy Huge
   m_TagString: Untagged
@@ -510,6 +527,21 @@ MonoBehaviour:
   reloadTime: 0
   projectilePrefab: {fileID: 6258376407274449733, guid: 99e8ffdaf26884ad0980d99b98870ab2, type: 3}
   projectileSpeed: 10
+--- !u!114 &2926984485432842501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2798592634254206544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d3d5e377d387949aca2024ad34bb8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  player: {fileID: 0}
+  detectionRadius: 8
+  heatPerSecond: 5
 --- !u!1 &3472768951009101848
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,6 +622,7 @@ GameObject:
   - component: {fileID: 3695415089469275124}
   - component: {fileID: 2056293097227406619}
   - component: {fileID: 3165403713535605754}
+  - component: {fileID: 2827815912070642804}
   m_Layer: 6
   m_Name: Enemy Small 1
   m_TagString: Untagged
@@ -791,6 +824,21 @@ MonoBehaviour:
   weaponModel: {fileID: 0}
   weaponAnimation: {fileID: 0}
   weaponSound: {fileID: 0}
+--- !u!114 &2827815912070642804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5344612188687772232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d3d5e377d387949aca2024ad34bb8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  player: {fileID: 0}
+  detectionRadius: 8
+  heatPerSecond: 5
 --- !u!1 &5651274173034744739
 GameObject:
   m_ObjectHideFlags: 0
@@ -875,6 +923,7 @@ GameObject:
   - component: {fileID: 2284492401461340059}
   - component: {fileID: 7518815393923139145}
   - component: {fileID: 6413790349097193126}
+  - component: {fileID: 1436587851361369217}
   m_Layer: 6
   m_Name: Enemy Small 2
   m_TagString: Untagged
@@ -1076,6 +1125,21 @@ MonoBehaviour:
   weaponModel: {fileID: 0}
   weaponAnimation: {fileID: 0}
   weaponSound: {fileID: 0}
+--- !u!114 &1436587851361369217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6041602329962087265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d3d5e377d387949aca2024ad34bb8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  player: {fileID: 0}
+  detectionRadius: 8
+  heatPerSecond: 5
 --- !u!1 &6221385506352297167
 GameObject:
   m_ObjectHideFlags: 0

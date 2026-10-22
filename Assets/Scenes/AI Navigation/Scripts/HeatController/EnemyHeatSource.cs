@@ -14,7 +14,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private void Start()
     {
         if(player == null){
-            GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+            GameObject playerObject = PlayerReference.Instance.gameObject;
             if(playerObject != null)
             {
                 player = playerObject.transform; 
