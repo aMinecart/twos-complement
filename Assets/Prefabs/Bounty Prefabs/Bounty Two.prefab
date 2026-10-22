@@ -514,6 +514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc116301ce3114e70bf8a1fc6bab3c32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDeath
+  basePickupPrefab: {fileID: 4580489848919454108, guid: b320b3d8ca0f3ab4fbfb787c310ce1e0, type: 3}
 --- !u!114 &8502367156230202937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -551,6 +552,8 @@ GameObject:
   - component: {fileID: 6407310066309186307}
   - component: {fileID: 3512663033212370242}
   - component: {fileID: 6650043394725982814}
+  - component: {fileID: 208597392795478485}
+  - component: {fileID: 648706254791684019}
   m_Layer: 6
   m_Name: Enemy Small 6
   m_TagString: Untagged
@@ -726,6 +729,32 @@ MonoBehaviour:
   weaponModel: {fileID: 0}
   weaponAnimation: {fileID: 0}
   weaponSound: {fileID: 0}
+--- !u!114 &208597392795478485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2491917793797506238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34585d1aeb0db41d1b01fe1477920cb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthTracker
+  maxHealth: 100
+--- !u!114 &648706254791684019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2491917793797506238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc116301ce3114e70bf8a1fc6bab3c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDeath
+  basePickupPrefab: {fileID: 4580489848919454108, guid: b320b3d8ca0f3ab4fbfb787c310ce1e0, type: 3}
 --- !u!1 &3031999419072535276
 GameObject:
   m_ObjectHideFlags: 0
@@ -1216,6 +1245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc116301ce3114e70bf8a1fc6bab3c32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDeath
+  basePickupPrefab: {fileID: 4580489848919454108, guid: b320b3d8ca0f3ab4fbfb787c310ce1e0, type: 3}
 --- !u!114 &3132728228046811035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1645,6 +1675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc116301ce3114e70bf8a1fc6bab3c32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDeath
+  basePickupPrefab: {fileID: 4580489848919454108, guid: b320b3d8ca0f3ab4fbfb787c310ce1e0, type: 3}
 --- !u!114 &7030197453292726730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1863,6 +1894,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc116301ce3114e70bf8a1fc6bab3c32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDeath
+  basePickupPrefab: {fileID: 4580489848919454108, guid: b320b3d8ca0f3ab4fbfb787c310ce1e0, type: 3}
 --- !u!114 &21690377035500765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2193,6 +2225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc116301ce3114e70bf8a1fc6bab3c32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDeath
+  basePickupPrefab: {fileID: 4580489848919454108, guid: b320b3d8ca0f3ab4fbfb787c310ce1e0, type: 3}
 --- !u!114 &6474176702307878816
 MonoBehaviour:
   m_ObjectHideFlags: 0

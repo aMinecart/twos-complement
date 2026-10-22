@@ -290,6 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc116301ce3114e70bf8a1fc6bab3c32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDeath
+  basePickupPrefab: {fileID: 4580489848919454108, guid: b320b3d8ca0f3ab4fbfb787c310ce1e0, type: 3}
 --- !u!114 &6427555241979556297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -547,6 +548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc116301ce3114e70bf8a1fc6bab3c32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDeath
+  basePickupPrefab: {fileID: 4580489848919454108, guid: b320b3d8ca0f3ab4fbfb787c310ce1e0, type: 3}
 --- !u!114 &7947848389896640265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -572,6 +574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc116301ce3114e70bf8a1fc6bab3c32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDeath
+  basePickupPrefab: {fileID: 4580489848919454108, guid: b320b3d8ca0f3ab4fbfb787c310ce1e0, type: 3}
 --- !u!114 &641434979795027739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -832,6 +835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc116301ce3114e70bf8a1fc6bab3c32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDeath
+  basePickupPrefab: {fileID: 4580489848919454108, guid: b320b3d8ca0f3ab4fbfb787c310ce1e0, type: 3}
 --- !u!114 &2281688788316911674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -857,6 +861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc116301ce3114e70bf8a1fc6bab3c32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDeath
+  basePickupPrefab: {fileID: 4580489848919454108, guid: b320b3d8ca0f3ab4fbfb787c310ce1e0, type: 3}
 --- !u!114 &1038615493423472875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1082,6 +1087,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc116301ce3114e70bf8a1fc6bab3c32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDeath
+  basePickupPrefab: {fileID: 4580489848919454108, guid: b320b3d8ca0f3ab4fbfb787c310ce1e0, type: 3}
 --- !u!114 &3306114523466443854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1107,6 +1113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc116301ce3114e70bf8a1fc6bab3c32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDeath
+  basePickupPrefab: {fileID: 4580489848919454108, guid: b320b3d8ca0f3ab4fbfb787c310ce1e0, type: 3}
 --- !u!114 &6973337681815199536
 MonoBehaviour:
   m_ObjectHideFlags: 0
