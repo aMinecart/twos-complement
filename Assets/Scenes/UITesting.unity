@@ -154,6 +154,9 @@ MonoBehaviour:
   range: 2
   firingOriginTransform: {fileID: 1514050344}
   ownerHealth: {fileID: 323600391}
+  weaponModel: {fileID: 0}
+  weaponAnimation: {fileID: 0}
+  weaponSound: {fileID: 0}
 --- !u!4 &78682557
 Transform:
   m_ObjectHideFlags: 0
@@ -418,6 +421,9 @@ MonoBehaviour:
   range: 100
   firingOriginTransform: {fileID: 330585546}
   ownerHealth: {fileID: 1263121377}
+  weaponModel: {fileID: 0}
+  weaponAnimation: {fileID: 0}
+  weaponSound: {fileID: 0}
   magazineSize: 8
   reloadTime: 2
 --- !u!114 &330585549
@@ -1576,6 +1582,9 @@ MonoBehaviour:
   range: 2
   firingOriginTransform: {fileID: 330585546}
   ownerHealth: {fileID: 1263121377}
+  weaponModel: {fileID: 0}
+  weaponAnimation: {fileID: 0}
+  weaponSound: {fileID: 0}
 --- !u!1 &1226716309
 GameObject:
   m_ObjectHideFlags: 0
@@ -1906,7 +1915,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f16f8f8c0e09754aa9e0d50e3aedd65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProximityIcon
-  player: {fileID: 1263121386}
   warningIcon: {fileID: 356811984}
   warningDistance: 10
 --- !u!114 &1496748182
@@ -2380,7 +2388,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f16f8f8c0e09754aa9e0d50e3aedd65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProximityIcon
-  player: {fileID: 1263121386}
   warningIcon: {fileID: 752021325}
   warningDistance: 10
 --- !u!1 &1896704733
@@ -2624,7 +2631,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f16f8f8c0e09754aa9e0d50e3aedd65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProximityIcon
-  player: {fileID: 1263121386}
   warningIcon: {fileID: 540354879}
   warningDistance: 10
 --- !u!114 &2059998807
