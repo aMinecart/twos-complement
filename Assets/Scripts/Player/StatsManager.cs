@@ -15,6 +15,8 @@ public class StatsManager : MonoBehaviour
     public float jump_height { get; set; } = PlayerPhysics.BASE_JUMP_HEIGHT;
     public float float_strength { get; set; } = PlayerPhysics.BASE_FLOAT_STRENGTH;
     public float dash_speed { get; set; } = PlayerPhysics.BASE_DASH_SPEED;
+    public float max_dash_speed { get; set; } = PlayerPhysics.BASE_MAX_DASH_SPEED;
+    public float dash_distance { get; set; } = PlayerPhysics.BASE_DASH_DISTANCE;
 
     // player control constants
     public float look_sensitivity { get; set; } = 0.1f;

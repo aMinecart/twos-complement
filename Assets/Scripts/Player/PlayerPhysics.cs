@@ -12,7 +12,9 @@ public static class PlayerPhysics
     public const float BASE_AIR_REDUCTION_FACTOR = 0.1f;
     public const float BASE_JUMP_HEIGHT = 0.1677050983f;
     public const float BASE_FLOAT_STRENGTH = 0.1f;
-    public const float BASE_DASH_SPEED = 2.0f * BASE_MAX_SPEED;
+    public const float BASE_DASH_SPEED = 8.3f;
+    public const float BASE_DASH_DISTANCE = 5.644f;
+    public const float BASE_MAX_DASH_SPEED = 8.9f;
 
 
     // basic physics functions
@@ -62,19 +64,19 @@ public static class PlayerPhysics
         return currVelocity;
     }
 
-    public static Vector3 ApplyDashForce(Vector3 currVelocity, VectorNorm3 dashDir, float dashSpeed, float relativeDistance = 1.0f, bool asImpulse = false)
+    public static Vector3 ApplyDashForce(Vector3 currVelocity, VectorNorm3 dashDir, float dashSpeed, float maxDashSpeed, bool asImpulse = false)
     {
         if (!asImpulse)
         {
-            return dashSpeed * (Vector3)dashDir;
+            return Mathf.Max(dashSpeed, maxDashSpeed) * (Vector3)dashDir;
         }
 
         float projSpeed = Vector3.Dot(currVelocity, dashDir);
-        if (projSpeed > dashSpeed)
+        if (projSpeed + dashSpeed > maxDashSpeed)
         {
-            projSpeed = Mathf.Max(dashSpeed - projSpeed, 0);
+            dashSpeed = Mathf.Max(maxDashSpeed - dashSpeed, 0);
         }
 
-        return currVelocity + projSpeed * (Vector3)dashDir;
+        return currVelocity + dashSpeed * (Vector3)dashDir;
     }
 }

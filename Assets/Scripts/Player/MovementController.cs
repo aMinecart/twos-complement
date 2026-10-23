@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -105,7 +106,7 @@ public class MovementController : MonoBehaviour
                                        layerMask: groundMask);
         
         // skip physics calculations if player cannot move
-        if (rb.isKinematic)
+        if (rb.isKinematic || inDash)
         {
             return;
         }
@@ -154,15 +155,21 @@ public class MovementController : MonoBehaviour
                 );
             }
 
+            // apply dash force if player is not already dashing
             rb.linearVelocity = PlayerPhysics.ApplyDashForce(
                 currVelocity: rb.linearVelocity,
                 dashDir: wishDir,
                 dashSpeed: playerStats.dash_speed,
-                relativeDistance: 1.0f, // placeholder
+                maxDashSpeed: playerStats.max_dash_speed,
                 asImpulse: !grounded
             );
 
-            inDash = true;
+            if (grounded)
+            {
+                // lock player in ground dash until timer expires
+                inDash = true;
+                StartCoroutine(HandleDashTimer(Time.fixedTime, playerStats.dash_distance / playerStats.dash_speed));
+            }
         }
 
         // apply gravity to the player unconditionally
@@ -175,11 +182,22 @@ public class MovementController : MonoBehaviour
         attemptJump = false; // prevent player from jumping until they release and press the button again
         attemptDash = false; // prevent player from dashing until they release and press the button again
 
-        inDash = false; // temp reset, replace with timer
-
         // display current movement information
         // print($"input vector: {moveInputDir}");
         // print($"grounded: {grounded}, velocity: {rb.linearVelocity}");
+        // print($"in crouch: {inCrouch}, in dash: {inDash}");
+    }
+
+    private IEnumerator HandleDashTimer(float startTime, float duration)
+    {
+        float endTime = startTime + duration;
+        while (Time.fixedTime + 10 * Mathf.Epsilon < endTime)
+        {
+            print($"Time to next dash: {startTime + duration - Time.fixedTime}");
+            yield return new WaitForFixedUpdate();
+        }
+
+        inDash = false;
     }
 
     /*
