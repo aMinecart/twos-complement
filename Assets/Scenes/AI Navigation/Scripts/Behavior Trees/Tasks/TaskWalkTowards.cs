@@ -14,6 +14,7 @@ public class TaskWalkTowards : Node
         this.entity = entity;
         this.player = player;
         agent = entity.GetComponent<NavMeshAgent>();
+        Debug.Log("here");
     }
 
     public override NodeState Evaluate()

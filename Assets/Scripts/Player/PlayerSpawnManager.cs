@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerSpawnManager : MonoBehaviour
 {
    [Header("Player Setup")]
-   public Transform player;
+   private Transform player;
    public Transform spawnPoint;
 
    [Header("Procedural Levels")]
@@ -46,9 +46,11 @@ public class PlayerSpawnManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
+        player = PlayerReference.Instance.transform;
         //non-procedural scenes- will spawn right away 
         if (!waitForGeneratedSpawn)
         {
+            if(spawnPoint == null) spawnPoint = player.transform;
             BeginSpawn();
         }
     }
