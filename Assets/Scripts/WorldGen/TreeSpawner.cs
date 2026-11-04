@@ -3,7 +3,7 @@ using UnityEngine;
 public class TreeSpawner : MonoBehaviour
 {
     public GameObject prefab;
-    public int numberOfInstances = 20000;
+    public int numberOfInstances = 15000;
 
     [Header("Valid tree height (normalized 0-1)")]
     public float minNormHeight = 0.30f;
@@ -19,13 +19,13 @@ public class TreeSpawner : MonoBehaviour
  
         for (int i = 0; i < numberOfInstances; i++)
         {
-            float xPos = 1f * Random.Range(1, 499);
-            float zPos = 1f * Random.Range(1, 499);
-            float normH = heights[(int)(4.098 * zPos), (int)(4.098 * xPos)];
+            float xPos = 1f*Random.Range(1,449);
+            float zPos = 1f*Random.Range(1,449);
+            float normH = heights[(int)(4.55333333*zPos), (int)(4.55333333*xPos)];
             float yPos = normH * heightScale;
  
-            float X = (((float)xPos / 500f) * (2f * 6f + 2f) - 1f);
-            float Z = (((float)zPos / 500f) * (2f * 6f + 2f) - 1f);
+            float X = (((float)xPos/450f)*(2f*5f+2f)-1f);
+            float Z = (((float)zPos/450f)*(2f*5f+2f)-1f);
  
             float varyX = 1.5f * (0.5f * perlin(0.37f * X, 0.37f * (Z - 34f)) + 0.45f * perlin(0.511f * X, 0.511f * (Z - 81f)));
             float varyZ = 1.5f * (0.5f * perlin(0.37f * (X - 43f), 0.37f * Z) + 0.45f * perlin(0.511f * (X + 73f), 0.511f * Z));
@@ -43,7 +43,7 @@ public class TreeSpawner : MonoBehaviour
 
     float mazeMag(float x, float z, int[,] mazeGen)
     {
-        if((x<0f)||(x>=2f*6f)||(z<0f)||(z>=2f*6f)) return 1f;
+        if((x<0f)||(x>=2f*5f)||(z<0f)||(z>=2f*5f)) return 1f;
 
         float mi_x = (float)mazeGen[(int)x, (int)z]*(1f-intr(x)) + (float)mazeGen[(int)x+1, (int)z]*intr(x);
         float mi_x1 = (float)mazeGen[(int)x, (int)z+1]*(1f-intr(x)) + (float)mazeGen[(int)x+1, (int)z+1]*intr(x);
