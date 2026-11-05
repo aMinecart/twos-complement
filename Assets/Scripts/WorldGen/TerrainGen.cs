@@ -6,13 +6,13 @@ public class TerrainGen : MonoBehaviour
 {
     [Header("Terrain")]
     public int resolution = 2049;
-    public float width = 500f;
+    public float width = 450f;
     public float heightScale = 100f;
 
     [Header("Generation")]
     public float sampleScale = 1.0f;
     public int lvlSeed = 42;
-    public int mazeSize = 6;
+    public int mazeSize = 5;
     public Transform player;
 
     private Terrain terrain;
