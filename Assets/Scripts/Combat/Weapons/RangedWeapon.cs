@@ -112,6 +112,6 @@ public abstract class RangedWeapon : Weapon
         currentAmmo = magazineSize;
         isReloading = false;
 
-        Debug.Log("Reload complete. Ammo: " + currentAmmo + "/" + magazineSize);
+        //Debug.Log("Reload complete. Ammo: " + currentAmmo + "/" + magazineSize);
     }
 }

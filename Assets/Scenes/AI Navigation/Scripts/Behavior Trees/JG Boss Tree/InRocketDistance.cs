@@ -13,8 +13,8 @@ public class InRocketDistance : Node
 
     public override NodeState Evaluate()
     {
-        //If in rocket range, success
-        if(Vector3.Distance(PlayerReference.Instance.transform.position, boss.transform.position) < minRocketRange)
+        //If far enough, shoot
+        if(Vector3.Distance(PlayerReference.Instance.transform.position, boss.transform.position) > minRocketRange)
         {
             state = NodeState.SUCCESS;
             return state;

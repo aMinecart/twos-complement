@@ -9,8 +9,11 @@ public class JungleBossTree : TreeSetup
     public float visionRange;
     public float rocketMinRange;
     public float rocketFireRate;
+    public float laserWallTimer;
     public GameObject[] rocketSpawns;
     public GameObject rocket;
+    public GameObject laserWallSpawn;
+    public GameObject laserWall;
 
     public float speed = 2f;
 
@@ -33,13 +36,15 @@ public class JungleBossTree : TreeSetup
             {
                 new InRocketDistance(rocketMinRange, gameObject),
                 new FireRockets(rocketSpawns, rocket, rocketFireRate),
+                new TaskWalkTowards(gameObject, player),
             }),
 
             // //Laser attack timer gone? BOOM
-            // new Sequence(new List<Node>
-            // {
-
-            // }),
+            new Sequence(new List<Node>
+            {
+                new CanFireLaser(laserWallTimer),
+                new FireLaserWall(laserWallSpawn, laserWall),
+            }),
             
             //Walk towards player
             new TaskWalkTowards(gameObject, player),
