@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 2552233150343288125}
   - component: {fileID: 3427427552347205892}
   - component: {fileID: 6427555241979556297}
+  - component: {fileID: 2136403011308649175}
   m_Layer: 6
   m_Name: Enemy Huge
   m_TagString: Untagged
@@ -312,6 +313,21 @@ MonoBehaviour:
   weaponModel: {fileID: 0}
   weaponAnimation: {fileID: 0}
   weaponSound: {fileID: 0}
+--- !u!114 &2136403011308649175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799173766858703657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d3d5e377d387949aca2024ad34bb8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  player: {fileID: 0}
+  detectionRadius: 8
+  heatPerSecond: 5
 --- !u!1 &1568533986053939783
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,6 +384,7 @@ GameObject:
   - component: {fileID: 7947848389896640265}
   - component: {fileID: 7102427331621354432}
   - component: {fileID: 641434979795027739}
+  - component: {fileID: 4468188108162677856}
   m_Layer: 6
   m_Name: Enemy Medium 1
   m_TagString: Untagged
@@ -600,6 +617,21 @@ MonoBehaviour:
   reloadTime: 0
   projectilePrefab: {fileID: 6258376407274449733, guid: 99e8ffdaf26884ad0980d99b98870ab2, type: 3}
   projectileSpeed: 5
+--- !u!114 &4468188108162677856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2156502060916689431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d3d5e377d387949aca2024ad34bb8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  player: {fileID: 0}
+  detectionRadius: 8
+  heatPerSecond: 5
 --- !u!1 &2898494191040355631
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,6 +687,7 @@ GameObject:
   - component: {fileID: 2281688788316911674}
   - component: {fileID: 5884576872576772676}
   - component: {fileID: 1038615493423472875}
+  - component: {fileID: 655716699247147787}
   m_Layer: 6
   m_Name: Enemy Medium 2
   m_TagString: Untagged
@@ -887,6 +920,21 @@ MonoBehaviour:
   reloadTime: 0
   projectilePrefab: {fileID: 6258376407274449733, guid: 99e8ffdaf26884ad0980d99b98870ab2, type: 3}
   projectileSpeed: 5
+--- !u!114 &655716699247147787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3840282260097478987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d3d5e377d387949aca2024ad34bb8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  player: {fileID: 0}
+  detectionRadius: 8
+  heatPerSecond: 5
 --- !u!1 &3849295370632698553
 GameObject:
   m_ObjectHideFlags: 0
@@ -907,6 +955,7 @@ GameObject:
   - component: {fileID: 3306114523466443854}
   - component: {fileID: 1778727420707612932}
   - component: {fileID: 6973337681815199536}
+  - component: {fileID: 8364200601902433474}
   m_Layer: 6
   m_Name: Enemy Medium 3
   m_TagString: Untagged
@@ -1139,6 +1188,21 @@ MonoBehaviour:
   reloadTime: 0
   projectilePrefab: {fileID: 6258376407274449733, guid: 99e8ffdaf26884ad0980d99b98870ab2, type: 3}
   projectileSpeed: 5
+--- !u!114 &8364200601902433474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3849295370632698553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d3d5e377d387949aca2024ad34bb8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  player: {fileID: 0}
+  detectionRadius: 8
+  heatPerSecond: 5
 --- !u!1 &5004388068181464412
 GameObject:
   m_ObjectHideFlags: 0

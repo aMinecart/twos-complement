@@ -87,6 +87,7 @@ public class HeatController : MonoBehaviour
 
     private void NotifyHeatChanged()
     {
+        //Debug.Log("Here");
         OnHeatChanged?.Invoke(currentHeat, maxHeat); 
     }
 
