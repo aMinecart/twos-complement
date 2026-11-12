@@ -15,7 +15,9 @@ public class MovementController : MonoBehaviour
     // player status variables
     public bool grounded { get; private set; } = false;
     public bool inCrouch { get; private set; } = false;
-    public bool inDash { get; private set; } = false;
+    
+    public float timeToDashEnd { get; private set; } = 0.0f;
+    public bool inDash => (timeToDashEnd > 0);
 
     // inputs to collision detection system
     [SerializeField] private LayerMask groundMask;
@@ -135,9 +137,9 @@ public class MovementController : MonoBehaviour
         // apply jump force if player meets jump requirements
         if (attemptJump && grounded && !inCrouch)
         {
-            rb.linearVelocity = PlayerPhysics.ApplyJumpForce(
+            rb.linearVelocity = PlayerPhysics.ApplyVerticalForce(
                 currVelocity: rb.linearVelocity,
-                jumpHeight: playerStats.jump_height,
+                forceStrength: playerStats.jump_height,
                 gravityAccel: playerStats.gravity_accel,
                 gravityMultiplier: playerStats.gravity_multiplier
             );            
@@ -147,9 +149,9 @@ public class MovementController : MonoBehaviour
             if (!grounded)
             {
                 // remove any vertical speed accumulated by the player
-                rb.linearVelocity = PlayerPhysics.ApplyFloatForce(
+                rb.linearVelocity = PlayerPhysics.ApplyVerticalForce(
                     currVelocity: rb.linearVelocity,
-                    floatStrengh: playerStats.float_strength,
+                    forceStrength: playerStats.float_strength,
                     gravityAccel: playerStats.gravity_accel,
                     gravityMultiplier: playerStats.gravity_multiplier
                 );
@@ -167,7 +169,6 @@ public class MovementController : MonoBehaviour
             if (grounded)
             {
                 // lock player in ground dash until timer expires
-                inDash = true;
                 StartCoroutine(HandleDashTimer(Time.fixedTime, playerStats.dash_distance / playerStats.dash_speed));
             }
         }
@@ -191,13 +192,16 @@ public class MovementController : MonoBehaviour
     private IEnumerator HandleDashTimer(float startTime, float duration)
     {
         float endTime = startTime + duration;
-        while (Time.fixedTime + 10 * Mathf.Epsilon < endTime)
+        float tolerance = 10 * Mathf.Epsilon;
+
+        while (Time.fixedTime + tolerance < endTime)
         {
-            print($"Time to next dash: {startTime + duration - Time.fixedTime}");
+            timeToDashEnd = endTime - startTime;
+            print($"Time to next dash: {endTime - Time.fixedTime}");
             yield return new WaitForFixedUpdate();
         }
 
-        inDash = false;
+        timeToDashEnd = 0.0f;
     }
 
     /*

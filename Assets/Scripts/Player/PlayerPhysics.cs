@@ -10,7 +10,7 @@ public static class PlayerPhysics
     public const float BASE_GRAVITY_ACCEL = 15.24f;
     public const float BASE_GRAVITY_MULTIPLIER = 1.0f;
     public const float BASE_AIR_REDUCTION_FACTOR = 0.1f;
-    public const float BASE_JUMP_HEIGHT = 0.1677050983f;
+    public const float BASE_JUMP_HEIGHT = 0.1677050983f * 2;
     public const float BASE_FLOAT_STRENGTH = 0.1f;
     public const float BASE_DASH_SPEED = 8.3f;
     public const float BASE_DASH_DISTANCE = 5.644f;
@@ -52,15 +52,9 @@ public static class PlayerPhysics
         return currVelocity + accelSpeed * (Vector3)accelDir;
     }
 
-    public static Vector3 ApplyJumpForce(Vector3 currVelocity, float jumpHeight, float gravityAccel, float gravityMultiplier = 1.0f)
+    public static Vector3 ApplyVerticalForce(Vector3 currVelocity, float forceStrength, float gravityAccel, float gravityMultiplier = 1.0f)
     {
-        currVelocity.y = 2 * gravityAccel * gravityMultiplier * jumpHeight;
-        return currVelocity;
-    }
-
-    public static Vector3 ApplyFloatForce(Vector3 currVelocity, float floatStrengh, float gravityAccel, float gravityMultiplier = 1.0f)
-    {
-        currVelocity.y = floatStrengh * gravityAccel * gravityMultiplier;
+        currVelocity.y = forceStrength * gravityAccel * gravityMultiplier;
         return currVelocity;
     }
 
