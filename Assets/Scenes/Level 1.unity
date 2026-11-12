@@ -299,13 +299,49 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2256063402748941675, guid: 571b95ea7a9946a4c9527def14f19510, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2256063402748941675, guid: 571b95ea7a9946a4c9527def14f19510, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993359384117309668, guid: 571b95ea7a9946a4c9527def14f19510, type: 3}
+      propertyPath: numberOfInstances
+      value: 15000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3106495629958071053, guid: 571b95ea7a9946a4c9527def14f19510, type: 3}
+      propertyPath: width
+      value: 450
+      objectReference: {fileID: 0}
     - target: {fileID: 3106495629958071053, guid: 571b95ea7a9946a4c9527def14f19510, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 2121900426}
+    - target: {fileID: 3106495629958071053, guid: 571b95ea7a9946a4c9527def14f19510, type: 3}
+      propertyPath: mazeSize
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3138037724165960587, guid: 571b95ea7a9946a4c9527def14f19510, type: 3}
       propertyPath: m_Name
       value: WorldGen
+      objectReference: {fileID: 0}
+    - target: {fileID: 3525494551330739110, guid: 571b95ea7a9946a4c9527def14f19510, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 3525494551330739110, guid: 571b95ea7a9946a4c9527def14f19510, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 3525494551330739110, guid: 571b95ea7a9946a4c9527def14f19510, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 225
+      objectReference: {fileID: 0}
+    - target: {fileID: 3525494551330739110, guid: 571b95ea7a9946a4c9527def14f19510, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 225
       objectReference: {fileID: 0}
     - target: {fileID: 4113449074066079604, guid: 571b95ea7a9946a4c9527def14f19510, type: 3}
       propertyPath: player
