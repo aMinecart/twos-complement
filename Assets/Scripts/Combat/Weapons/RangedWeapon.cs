@@ -28,6 +28,8 @@ public abstract class RangedWeapon : Weapon
     // weapon specific implementation of firing and reload
     protected abstract void Shoot();
 
+    public override bool IsCrosshairDimmed => isReloading || currentAmmo <= 0;
+    
     // set ammo to full when the script first stats
     void Start()
     {

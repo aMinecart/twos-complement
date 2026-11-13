@@ -18,25 +18,29 @@ public class PlayerHealthUI : MonoBehaviour
     
     private void OnEnable()
     {
-        if(playerHealth != null)
-        {
-            playerHealth.OnHealthChanged += UpdateHealthUI; 
-        }
+        Subscribe(); 
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
-        if(playerHealth != null)
+       if(playerHealth == null && PlayerReference.Instance != null)
         {
-            UpdateHealthUI(
-                playerHealth.CurrentHealth, 
-                playerHealth.MaxHealth
-            );
-        }
-        else
-        {
-            Debug.LogWarning("PlayerHealthUI: Player HealthTracker isn't assigned!");
+            playerHealth = PlayerReference.Instance.GetComponentInChildren<HealthTracker>();
+
+            if(playerHealth == null)
+            {
+                playerHealth = PlayerReference.Instance.GetComponentInParent<HealthTracker>();
+            }
+
+            if(playerHealth == null)
+            {
+                Debug.LogWarning("PlayerHealthUI: Player HealthTracker not found! Is there a PlayerReference on the player, with a HealthTracker on or under it?");
+                return;
+            }
+            Subscribe(); 
+
+            UpdateHealthUI(playerHealth.CurrentHealth, playerHealth.MaxHealth); 
         }
     }
 
@@ -46,6 +50,16 @@ public class PlayerHealthUI : MonoBehaviour
         {
             playerHealth.OnHealthChanged -= UpdateHealthUI; 
         }
+    }
+
+    private void Subscribe()
+    {
+        if(playerHealth == null)
+        {
+            return; 
+        }
+        playerHealth.OnHealthChanged -= UpdateHealthUI; 
+        playerHealth.OnHealthChanged += UpdateHealthUI; 
     }
 
     private void UpdateHealthUI(float currentHealth, float maxHealth)
