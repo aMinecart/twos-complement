@@ -3,6 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(HealthTracker))]
 public class EnemyDeath : MonoBehaviour
 {
+    public GameObject BossArenaWalls; //Optional
+    public GameObject BossArenaColliders; //Optional
     private HealthTracker health;
     [SerializeField] private BuffPickup basePickupPrefab;
 
@@ -26,6 +28,14 @@ public class EnemyDeath : MonoBehaviour
 
     private void HandleDeath()
     {
+        if(gameObject.tag == "Boss")
+        {
+            BossArenaWalls.SetActive(false);
+            BossArenaColliders.SetActive(false);
+            //TODO: Spawn Weapon Here
+            Destroy(gameObject);
+            return;
+        }
         // spawn random buff at enemy location
         BuffPickup.CreateRandBuffPickup(GameManager.rng, basePickupPrefab, transform.position);
 
