@@ -6,6 +6,8 @@ public class PlasmaGun : RangedWeapon
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private float projectileSpeed;
 
+    public override CrosshairStyle Style => CrosshairStyle.Ring; 
+    
     // Fire plasma projectile
     protected override void Shoot()
     {

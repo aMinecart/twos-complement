@@ -4,6 +4,10 @@ using UnityEngine;
 // and only change stats values (at least for the basic test)
 public class MeleeWeapon : Weapon
 {
+    public override CrosshairStyle Style => CrosshairStyle.Dot; 
+    public override float CrosshairFireKick => 8f;
+    public override bool IsCrosshairDimmed => Time.time < nextAttackTime; 
+    
     // Called when player or anemy tries to use melee attack 
     public override bool Attack()
     {
