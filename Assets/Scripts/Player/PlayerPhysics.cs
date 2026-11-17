@@ -6,11 +6,12 @@ public static class PlayerPhysics
     public const float BASE_ACCEL_RATE = 5.6f;
     public const float BASE_MAX_SPEED = 5.715f;
     public const float BASE_MIN_STOP_SPEED = 1.905f;
-    public const float BASE_FRICTION_RATE = 4.8f;
+    public const float BASE_FRICTION_RATE = 4.8f * 1.1f;
     public const float BASE_GRAVITY_ACCEL = 15.24f;
     public const float BASE_GRAVITY_MULTIPLIER = 1.0f;
     public const float BASE_AIR_REDUCTION_FACTOR = 0.1f;
-    public const float BASE_JUMP_HEIGHT = 0.1677050983f * 2;
+    public const float BASE_JUMP_HEIGHT = 0.1677050983f * 2.5f;
+    public const float BASE_AIR_JUMP_STRENGTH_BONUS = 1.75f;
     public const float BASE_FLOAT_STRENGTH = 0.1f;
     public const float BASE_DASH_SPEED = 8.3f;
     public const float BASE_DASH_DISTANCE = 5.644f;

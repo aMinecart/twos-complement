@@ -6,6 +6,9 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CapsuleCollider))]
 public class MovementController : MonoBehaviour
 {
+    // player movement constants
+    public int maxAirJumps { get; private set; } = 1;
+
     // player input management variables
     public Vector2 moveInputDir { get; private set; } = Vector2.zero;
     public Vector2 lookInputDir { get; private set; } = Vector2.zero;
@@ -18,6 +21,7 @@ public class MovementController : MonoBehaviour
     
     public float timeToDashEnd { get; private set; } = 0.0f;
     public bool inDash => (timeToDashEnd > 0);
+    public int currAirJumps { get; private set; } = 0;
 
     // inputs to collision detection system
     [SerializeField] private LayerMask groundMask;
@@ -113,7 +117,12 @@ public class MovementController : MonoBehaviour
             return;
         }
 
-        // apply friction if player is grounded
+        // retrieve player movement constants from player stats
+        float accelRate = playerStats.accel_rate;
+        float maxMoveSpeed = playerStats.max_move_speed;
+        float jumpHeight = playerStats.jump_height;
+
+        // apply friction and reset air jumps if player is grounded
         if (grounded)
         {
             rb.linearVelocity = PlayerPhysics.ApplyFriction(
@@ -121,43 +130,48 @@ public class MovementController : MonoBehaviour
                 frictionRate: playerStats.friction_rate,
                 minStopSpeed: playerStats.min_stop_speed
             );
+
+            currAirJumps = 0;
+        }
+        else // modify player constants for airborne movement
+        {
+            accelRate /= playerStats.air_reduction_factor;
+            maxMoveSpeed *= playerStats.air_reduction_factor;
+            jumpHeight *= playerStats.air_jump_strength_bonus;
         }
 
-        // rotate inputted move direction by rigidbody's current rotation
+        // rotate inputted move direction to match rigidbody's current rotation
         VectorNorm3 wishDir = new VectorNorm3(rb.rotation * moveInputDir.ToXZVector3());
 
-        // apply accleration based on player's desired acceleration and if airborne
+        // apply accleration based on player's desired move direction
         rb.linearVelocity = PlayerPhysics.Accelerate(
             currVelocity: rb.linearVelocity,
             accelDir: wishDir,
-            accelRate: (grounded ? playerStats.accel_rate : playerStats.accel_rate * (1 / playerStats.air_reduction_factor)),
-            maxSpeed: (grounded ? playerStats.max_move_speed : playerStats.max_move_speed * playerStats.air_reduction_factor)
+            accelRate: accelRate,
+            maxSpeed: maxMoveSpeed
         );
 
         // apply jump force if player meets jump requirements
-        if (attemptJump && grounded && !inCrouch)
-        {
-            rb.linearVelocity = PlayerPhysics.ApplyVerticalForce(
-                currVelocity: rb.linearVelocity,
-                forceStrength: playerStats.jump_height,
-                gravityAccel: playerStats.gravity_accel,
-                gravityMultiplier: playerStats.gravity_multiplier
-            );            
-        }
-        else if (attemptDash && !inDash)
+        if (attemptJump && (grounded || currAirJumps < maxAirJumps))
         {
             if (!grounded)
             {
-                // remove any vertical speed accumulated by the player
-                rb.linearVelocity = PlayerPhysics.ApplyVerticalForce(
-                    currVelocity: rb.linearVelocity,
-                    forceStrength: playerStats.float_strength,
-                    gravityAccel: playerStats.gravity_accel,
-                    gravityMultiplier: playerStats.gravity_multiplier
-                );
+                // record air jump being performed
+                currAirJumps++;
             }
 
-            // apply dash force if player is not already dashing
+            rb.linearVelocity = PlayerPhysics.ApplyVerticalForce(
+                currVelocity: rb.linearVelocity,
+                forceStrength: jumpHeight,
+                gravityAccel: playerStats.gravity_accel,
+                gravityMultiplier: playerStats.gravity_multiplier
+            );
+        }
+
+        // apply dash force if player meets dash requirements
+        if (attemptDash && !inDash)
+        {
+            // apply dash force dynamically based on if airborne
             rb.linearVelocity = PlayerPhysics.ApplyDashForce(
                 currVelocity: rb.linearVelocity,
                 dashDir: wishDir,

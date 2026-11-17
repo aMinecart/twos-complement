@@ -13,6 +13,7 @@ public class StatsManager : MonoBehaviour
     public float air_reduction_factor { get; set; } = PlayerPhysics.BASE_AIR_REDUCTION_FACTOR;
     public float gravity_multiplier { get; set; } = PlayerPhysics.BASE_GRAVITY_MULTIPLIER;
     public float jump_height { get; set; } = PlayerPhysics.BASE_JUMP_HEIGHT;
+    public float air_jump_strength_bonus { get; set; } = PlayerPhysics.BASE_AIR_JUMP_STRENGTH_BONUS;
     public float float_strength { get; set; } = PlayerPhysics.BASE_FLOAT_STRENGTH;
     public float dash_speed { get; set; } = PlayerPhysics.BASE_DASH_SPEED;
     public float max_dash_speed { get; set; } = PlayerPhysics.BASE_MAX_DASH_SPEED;
