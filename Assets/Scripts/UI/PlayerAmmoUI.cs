@@ -151,11 +151,10 @@ public class PlayerAmmoUI : MonoBehaviour
                 return;
             }
             searchTimer = 0.5f; 
-            GameObject player = GameObject.FindGameObjectWithTag("Player"); 
             
-            if(player != null)
+            if (PlayerReference.Instance != null)
             {
-                weaponManager = player.GetComponent<WeaponManager>();
+                weaponManager = PlayerReference.Instance.GetComponentInChildren<WeaponManager>();
             }
 
             if (weaponManager == null)

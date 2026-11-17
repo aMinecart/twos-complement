@@ -22,12 +22,19 @@ public abstract class Weapon : MonoBehaviour
     public AudioSource WeaponSound => weaponSound;
 
 
+    //CROSSHAIR UI 
+    public Transform FiringOrigin => firingOriginTransform; 
+    public float Range =>range; 
+    public virtual CrosshairStyle Style => CrosshairStyle.Cross; 
+    public virtual float CrosshairSpreadAngle => 0f; 
+    public virtual float CrosshairFireKick => 8f; 
+    public virtual bool IsCrosshairDimmed => false; 
 
     protected float nextAttackTime = 0f;
 
     //public static event Action AttackSuccess;
     //public static event Action EnemyHit;
-
+    
     public void Initialize(HealthTracker owner, Transform origin)
     {
         ownerHealth = owner;

@@ -22,6 +22,8 @@ public class WeaponManager : MonoBehaviour
     // Index of currently selected hotbar weapon
     private int currWeaponIndex = -1;
 
+    public event System.Action<Weapon> WeaponFired; 
+
     // Returns currently equipped weapon
     public Weapon ActiveWeapon
     {
@@ -315,12 +317,22 @@ public class WeaponManager : MonoBehaviour
         return weapons.Contains(weapon);
     }
 
+    //select hotbar slot directly (0-based). -1 = empty hands 
+    public void SelectHotbarSlot(int index)
+    {
+        SwitchToWeapon(index); 
+    }
     // Called by player input or enemy AI
     public void Attack()
     {
         if (ActiveWeapon != null && ActiveWeapon.isActiveAndEnabled)
         {
-            ActiveWeapon.Attack();
+            //attack returns true ONLY when a shot really fired
+            if (ActiveWeapon.Attack())
+            {
+                WeaponFired?.Invoke(ActiveWeapon); 
+            }
+            
         }
     }
 
