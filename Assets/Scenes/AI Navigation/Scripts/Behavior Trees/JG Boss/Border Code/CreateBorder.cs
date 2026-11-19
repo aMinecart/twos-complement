@@ -5,6 +5,7 @@ public class CreateBorder : MonoBehaviour
     GameObject player;
     public GameObject wall;
     public GameObject wallCollider;
+    public GameObject boss;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -23,6 +24,9 @@ public class CreateBorder : MonoBehaviour
 
             //Disable collider
             gameObject.SetActive(false);
+
+            //Activate boss scripts
+            boss.GetComponent<JungleBossTree>().enabled = true;
         }
     }
 }

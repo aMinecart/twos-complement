@@ -14,6 +14,7 @@ public class JungleBossTree : TreeSetup
     public GameObject rocket;
     public GameObject laserWallSpawn;
     public GameObject laserWall;
+    public GameObject mist;
 
     public float speed = 2f;
 
@@ -26,11 +27,6 @@ public class JungleBossTree : TreeSetup
         //Else, walk towards player and perform laser layer attack every so often
         Node root = new Selector(new List<Node>
         {
-            // //In range? Melee
-            // new Sequence(new List<Node>
-            // {
-
-            // }),
             //Far away? ROCKET
             new Sequence(new List<Node>
             {
@@ -44,6 +40,13 @@ public class JungleBossTree : TreeSetup
             {
                 new CanFireLaser(laserWallTimer),
                 new FireLaserWall(laserWallSpawn, laserWall),
+            }),
+
+            //In range to melee? Use mist
+            new Sequence(new List<Node>
+            {
+                new CanUseMist(player, gameObject),
+                new FireMist(mist),
             }),
             
             //Walk towards player
