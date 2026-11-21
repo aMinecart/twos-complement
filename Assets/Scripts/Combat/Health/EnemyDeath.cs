@@ -3,9 +3,12 @@ using UnityEngine;
 [RequireComponent(typeof(HealthTracker))]
 public class EnemyDeath : MonoBehaviour
 {
-    public GameObject BossArenaWalls; //Optional
-    public GameObject BossArenaColliders; //Optional
+    [Header("For Bosses")]
+    public GameObject BossArenaWalls;
+    public GameObject BossArenaColliders;
+    public GameObject teleporter;
     private HealthTracker health;
+    [Header("Other")]
     [SerializeField] private BuffPickup basePickupPrefab;
 
     void Awake()
@@ -32,6 +35,7 @@ public class EnemyDeath : MonoBehaviour
         {
             BossArenaWalls.SetActive(false);
             BossArenaColliders.SetActive(false);
+            teleporter.GetComponent<TeleporterCode>().enabled = true;
             //TODO: Spawn Weapon Here
             Destroy(gameObject);
             return;

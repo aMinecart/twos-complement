@@ -375,6 +375,7 @@ GameObject:
   - component: {fileID: 5850317871984665783}
   - component: {fileID: 3493042549601224085}
   - component: {fileID: 8828159628091250056}
+  - component: {fileID: 6501752145453043223}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -835,6 +836,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21c060705c6f1f64da49450bc424ca8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StatsManager
+--- !u!114 &6501752145453043223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5720902316750530133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcba83383b029d04193acfa19afdbc4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HeatController
+  maxHeat: 100
+  currentHeat: 0
+  coolingRate: 0
 --- !u!1 &5881467348062080138
 GameObject:
   m_ObjectHideFlags: 0

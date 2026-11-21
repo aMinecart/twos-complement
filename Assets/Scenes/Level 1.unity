@@ -327,6 +327,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WorldGen
       objectReference: {fileID: 0}
+    - target: {fileID: 3138037724165960587, guid: 571b95ea7a9946a4c9527def14f19510, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3525494551330739110, guid: 571b95ea7a9946a4c9527def14f19510, type: 3}
       propertyPath: m_LocalScale.x
       value: 45
