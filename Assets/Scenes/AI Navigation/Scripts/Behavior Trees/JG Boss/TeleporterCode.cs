@@ -3,8 +3,7 @@ using UnityEngine.UI;
 
 public class TeleporterCode : MonoBehaviour
 {
-    public Image interactUI;
-    Image uiUse;
+    public GameObject interactUI;
     
     void Awake()
     {
@@ -15,7 +14,16 @@ public class TeleporterCode : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            Debug.Log("Display ui");
+            Debug.Log("here");
+            interactUI.SetActive(true);
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            interactUI.SetActive(false);
         }
     }
 }
