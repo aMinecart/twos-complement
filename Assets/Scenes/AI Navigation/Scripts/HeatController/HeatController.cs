@@ -9,7 +9,7 @@ public class HeatController : MonoBehaviour
     public float currentHeat = 0f;
 
     [Header("Cooling")]
-    [SerializeField] private float coolingRate = 5f; 
+    [SerializeField] private float coolingRate = 0f; 
 
     public static HeatController Instance { get; private set; }
     public event Action<float, float> OnHeatChanged; 

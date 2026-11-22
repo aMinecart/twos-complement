@@ -1,4 +1,5 @@
 using System;
+using Unity.VectorGraphics;
 using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
@@ -20,6 +21,8 @@ public abstract class Weapon : MonoBehaviour
     public Animation WeaponAnimation => weaponAnimation;
     [SerializeField] protected AudioSource weaponSound; //Weapon animation
     public AudioSource WeaponSound => weaponSound;
+    [SerializeField] protected GameObject sceneCam; //Camera
+    public GameObject SceneCam => sceneCam;
 
 
     //CROSSHAIR UI 
@@ -95,4 +98,15 @@ public abstract class Weapon : MonoBehaviour
     //{
     //    EnemyHit?.Invoke();
     //}
+
+
+    //For moving the weapons with the camera
+    void LateUpdate()
+    {
+        if(sceneCam != null)
+        {
+            transform.rotation = sceneCam.transform.rotation;
+            transform.position = sceneCam.transform.position;
+        }
+    }
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using BehaviorTree;
+using UnityEngine.AI;
 
 public class CheckCanShoot : Node
 {
@@ -19,6 +20,7 @@ public class CheckCanShoot : Node
         if(Vector3.Distance(target.transform.position, enemy.transform.position) < attackRange)
         {
             state = NodeState.SUCCESS;
+            enemy.GetComponent<NavMeshAgent>().ResetPath();
             //Debug.Log(Vector3.Distance(target.transform.position, enemy.transform.position));
             return NodeState.SUCCESS;
         }

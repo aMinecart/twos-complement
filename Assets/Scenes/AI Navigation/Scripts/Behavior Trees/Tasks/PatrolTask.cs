@@ -3,39 +3,43 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using BehaviorTree;
+using UnityEngine.Rendering;
+using UnityEditor.PackageManager;
 
 public class PatrolTask : Node
 {
-    private Transform[] waypoints;
     private GameObject entity;
-    private int currentWaypoint = 0;
-    //private float patrolSpeed = 2f;
-    //private float waitTime = 1f;
-    private Coroutine prevCoroutine;
-
     private NavMeshAgent agent;
+    private Vector3 destination;
+    private float patrolDistance = 50f;
 
 
-    public PatrolTask(GameObject entity, Transform[] waypoints)
+    public PatrolTask(GameObject entity)
     {
         this.entity = entity;
         agent = entity.GetComponent<NavMeshAgent>();
-        this.waypoints = waypoints;
     }
 
     //Will constantly eval, as its always running, and tree is always evaluating from the root.
     public override NodeState Evaluate()
     {
-        agent.destination = waypoints[currentWaypoint].transform.position;
-        if(Vector3.Distance(waypoints[currentWaypoint].transform.position, entity.transform.position) < 1f)
+        if(agent.remainingDistance < 5f)
         {
-            currentWaypoint++;
-            if(currentWaypoint == waypoints.Length) currentWaypoint = 0;
+            FindDestination();
+            agent.destination = destination;
         }
-
 
         state = NodeState.RUNNING;
         return state;
+    }
+
+    void FindDestination()
+    {
+        Vector3 randomDirection = Random.insideUnitSphere * patrolDistance;
+        randomDirection = entity.transform.position + randomDirection;
+        NavMeshHit hit;
+        NavMesh.SamplePosition(randomDirection, out hit, 25f, 1);
+        destination = hit.position;
     }
 
 }
