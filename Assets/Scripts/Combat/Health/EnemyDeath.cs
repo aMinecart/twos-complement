@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(HealthTracker))]
@@ -33,9 +34,9 @@ public class EnemyDeath : MonoBehaviour
     {
         if(gameObject.tag == "Boss")
         {
-            BossArenaWalls.SetActive(false);
-            BossArenaColliders.SetActive(false);
-            teleporter.GetComponent<TeleporterCode>().enabled = true;
+            if(BossArenaWalls != null) BossArenaWalls.SetActive(false);
+            if(BossArenaColliders != null) BossArenaColliders.SetActive(false);
+            if(teleporter != null) teleporter.GetComponent<TeleporterCode>().enabled = true;
             //TODO: Spawn Weapon Here
             Destroy(gameObject);
             return;
