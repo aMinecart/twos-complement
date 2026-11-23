@@ -1,4 +1,5 @@
 using System;
+using Unity.VectorGraphics;
 using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
@@ -102,7 +103,10 @@ public abstract class Weapon : MonoBehaviour
     //For moving the weapons with the camera
     void LateUpdate()
     {
-        transform.rotation = sceneCam.transform.rotation;
-        transform.position = sceneCam.transform.position;
+        if(sceneCam != null)
+        {
+            transform.rotation = sceneCam.transform.rotation;
+            transform.position = sceneCam.transform.position;
+        }
     }
 }

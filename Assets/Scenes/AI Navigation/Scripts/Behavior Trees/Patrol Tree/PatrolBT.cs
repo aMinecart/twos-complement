@@ -21,7 +21,7 @@ public class PatrolBT : TreeSetup
 
             new Sequence(new List<Node>
             {
-                new CheckInMeleeRange(player, gameObject, attackRange),
+                new CheckCanShoot(player, gameObject, attackRange),
                 new TaskAttack(gameObject, player),
             }),
 
@@ -30,10 +30,10 @@ public class PatrolBT : TreeSetup
                 new CheckCanSee(player, gameObject, visionRange, visionAngle),
                 new TaskWalkTowards(gameObject, player),
             }),
-            new PatrolTask(gameObject, waypoints),
+
+            new PatrolTask(gameObject),
         });
 
-        //Node root = new PatrolTask(gameObject, waypoints);
         return root;
     }
 }
